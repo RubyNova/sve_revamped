@@ -1,0 +1,893 @@
+{
+  "SaveName": "testing lua stuff",
+  "EpochTime": 1718316645,
+  "Date": "6/13/2024 11:10:45 PM",
+  "VersionNumber": "v13.2.2",
+  "GameMode": "testing lua stuff",
+  "GameType": "",
+  "GameComplexity": "",
+  "Tags": [],
+  "Gravity": 0.5,
+  "PlayArea": 0.5,
+  "Table": "Table_Custom",
+  "TableURL": "http://cloud-3.steamusercontent.com/ugc/2462986576127620533/6ECED663FBEC1C3FC46831ED1318713693DCF7A6/",
+  "Sky": "Sky_Regal",
+  "Note": "",
+  "TabStates": {
+    "0": {
+      "title": "Rules",
+      "body": "",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 0
+    },
+    "1": {
+      "title": "White",
+      "body": "",
+      "color": "White",
+      "visibleColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "id": 1
+    },
+    "2": {
+      "title": "Brown",
+      "body": "",
+      "color": "Brown",
+      "visibleColor": {
+        "r": 0.443,
+        "g": 0.231,
+        "b": 0.09
+      },
+      "id": 2
+    },
+    "3": {
+      "title": "Red",
+      "body": "",
+      "color": "Red",
+      "visibleColor": {
+        "r": 0.856,
+        "g": 0.1,
+        "b": 0.094
+      },
+      "id": 3
+    },
+    "4": {
+      "title": "Orange",
+      "body": "",
+      "color": "Orange",
+      "visibleColor": {
+        "r": 0.956,
+        "g": 0.392,
+        "b": 0.113
+      },
+      "id": 4
+    },
+    "5": {
+      "title": "Yellow",
+      "body": "",
+      "color": "Yellow",
+      "visibleColor": {
+        "r": 0.905,
+        "g": 0.898,
+        "b": 0.172
+      },
+      "id": 5
+    },
+    "6": {
+      "title": "Green",
+      "body": "",
+      "color": "Green",
+      "visibleColor": {
+        "r": 0.192,
+        "g": 0.701,
+        "b": 0.168
+      },
+      "id": 6
+    },
+    "7": {
+      "title": "Blue",
+      "body": "",
+      "color": "Blue",
+      "visibleColor": {
+        "r": 0.118,
+        "g": 0.53,
+        "b": 1.0
+      },
+      "id": 7
+    },
+    "8": {
+      "title": "Teal",
+      "body": "",
+      "color": "Teal",
+      "visibleColor": {
+        "r": 0.129,
+        "g": 0.694,
+        "b": 0.607
+      },
+      "id": 8
+    },
+    "9": {
+      "title": "Purple",
+      "body": "",
+      "color": "Purple",
+      "visibleColor": {
+        "r": 0.627,
+        "g": 0.125,
+        "b": 0.941
+      },
+      "id": 9
+    },
+    "10": {
+      "title": "Pink",
+      "body": "",
+      "color": "Pink",
+      "visibleColor": {
+        "r": 0.96,
+        "g": 0.439,
+        "b": 0.807
+      },
+      "id": 10
+    },
+    "11": {
+      "title": "Black",
+      "body": "",
+      "color": "Black",
+      "visibleColor": {
+        "r": 0.25,
+        "g": 0.25,
+        "b": 0.25
+      },
+      "id": 11
+    }
+  },
+  "Grid": {
+    "Type": 0,
+    "Lines": false,
+    "Color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0
+    },
+    "Opacity": 0.75,
+    "ThickLines": false,
+    "Snapping": false,
+    "Offset": false,
+    "BothSnapping": false,
+    "xSize": 2.0,
+    "ySize": 2.0,
+    "PosOffset": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 0.0
+    }
+  },
+  "Lighting": {
+    "LightIntensity": 0.54,
+    "LightColor": {
+      "r": 1.0,
+      "g": 0.9804,
+      "b": 0.8902
+    },
+    "AmbientIntensity": 1.3,
+    "AmbientType": 0,
+    "AmbientSkyColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientEquatorColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientGroundColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "ReflectionIntensity": 1.0,
+    "LutIndex": 0,
+    "LutContribution": 1.0
+  },
+  "Hands": {
+    "Enable": true,
+    "DisableUnused": false,
+    "Hiding": 0
+  },
+  "ComponentTags": {
+    "labels": []
+  },
+  "Turns": {
+    "Enable": false,
+    "Type": 0,
+    "TurnOrder": [],
+    "Reverse": false,
+    "SkipEmpty": false,
+    "DisableInteractions": false,
+    "PassTurns": true,
+    "TurnColor": ""
+  },
+  "DecalPallet": [],
+  "LuaScript": "--[[ Lua code. See documentation: https://api.tabletopsimulator.com/ --]]\n\n--[[ The onLoad event is called after the game save finishes loading. --]]\nfunction onLoad()\n    --Tables.setTable(\"Table_Custom\")\n    Tables.getTableObject().scale({0.7, 1, 1.24})\nend\n\n--[[ The onUpdate event is called once per frame. --]]\nfunction onUpdate()\n    --[[ print('onUpdate loop!') --]]\nend\n\nfunction onPlayerConnect(player)\n    player.promote()\nend\n\nfunction onPlayerTurn(player, previous_player)\n\n    if player == nil then\n        print(\"Player is nil! Please reset turn functionality.\")\n        Turns.enable = false\n        return\n    end\n\n    local red_player_current = \"7f0840\"\n    local red_player_max = \"b3a2f1\"\n    local blue_player_current = \"bba386\"\n    local blue_player_max = \"4e6229\"\n\n    if player.color == \"Red\" then\n        local current_object = getObjectFromGUID(red_player_current)\n        local max_object = getObjectFromGUID(red_player_max)\n        local new_max = max_object.getVar(\"currentMax\") + 1\n        current_object.setVar(\"currentAvailable\", new_max)\n        current_object.call(\"on_turn_start\", {})\n        max_object.setVar(\"currentMax\", new_max)\n        max_object.call(\"on_turn_start\", {})\n        getObjectFromGUID(\"c51012\").call(\"on_turn_start\", {})\n    elseif player.color == \"Blue\" then\n        local current_object = getObjectFromGUID(blue_player_current)\n        local max_object = getObjectFromGUID(blue_player_max)\n        local new_max = max_object.getVar(\"currentMax\") + 1\n        current_object.setVar(\"currentAvailable\", new_max)\n        current_object.call(\"on_turn_start\", {})\n        max_object.setVar(\"currentMax\", new_max)\n        max_object.call(\"on_turn_start\", {})\n        getObjectFromGUID(\"31e453\").call(\"on_turn_start\", {})\n    end\nend\n\nfunction onPlayerChangeColor(player_color)\n    if player_color == \"Grey\" or player_color == \"Black\" then\n        return\n    end\n\n    if Turns.enable == false then\n        Turns.enable = true\n    end\nend",
+  "LuaScriptState": "",
+  "XmlUI": "<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->",
+  "SnapPoints": [
+    {
+      "Position": {
+        "x": 26.6652889,
+        "y": 0.9611349,
+        "z": -5.366961
+      }
+    },
+    {
+      "Position": {
+        "x": 26.6607056,
+        "y": 0.9611349,
+        "z": -15.5918512
+      }
+    },
+    {
+      "Position": {
+        "x": 26.6148148,
+        "y": 0.9611349,
+        "z": -25.7664719
+      }
+    },
+    {
+      "Position": {
+        "x": -26.6260433,
+        "y": 0.9611349,
+        "z": -15.5752411
+      }
+    },
+    {
+      "Position": {
+        "x": -26.6456,
+        "y": 0.9611349,
+        "z": -25.88325
+      }
+    },
+    {
+      "Position": {
+        "x": -26.6478863,
+        "y": 0.9611349,
+        "z": 5.78770065
+      }
+    },
+    {
+      "Position": {
+        "x": -26.6315384,
+        "y": 0.9611349,
+        "z": 16.00514
+      }
+    },
+    {
+      "Position": {
+        "x": -26.6218872,
+        "y": 0.9611349,
+        "z": 26.16796
+      }
+    },
+    {
+      "Position": {
+        "x": 26.6655254,
+        "y": 0.9611349,
+        "z": 26.3152256
+      }
+    },
+    {
+      "Position": {
+        "x": 26.62109,
+        "y": 0.9611349,
+        "z": 16.0098782
+      }
+    }
+  ],
+  "ObjectStates": [
+    {
+      "GUID": "362aed",
+      "Name": "Custom_Tile",
+      "Transform": {
+        "posX": 84.55632,
+        "posY": 9.270804E-06,
+        "posZ": 0.0450544432,
+        "rotX": 1.1828663E-06,
+        "rotY": 180.0,
+        "rotZ": 9.42273255E-05,
+        "scaleX": 45.0,
+        "scaleY": 1.0,
+        "scaleZ": 45.0
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2462986576127620702/4BEAAB6D2452DBCA59C9B8236709CCF2AC33C875/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomTile": {
+          "Type": 0,
+          "Thickness": 0.2,
+          "Stackable": false,
+          "Stretch": true
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "PhysicsMaterial": {
+        "StaticFriction": 1.0,
+        "DynamicFriction": 0.7,
+        "Bounciness": 0.0,
+        "FrictionCombine": 0,
+        "BounceCombine": 0
+      },
+      "Rigidbody": {
+        "Mass": 8.333334,
+        "Drag": 0.1,
+        "AngularDrag": 0.1,
+        "UseGravity": false
+      }
+    },
+    {
+      "GUID": "241283",
+      "Name": "HandTrigger",
+      "Transform": {
+        "posX": 0.0,
+        "posY": 3.29337835,
+        "posZ": -42.6871872,
+        "rotX": 0.0,
+        "rotY": 0.0,
+        "rotZ": 0.0,
+        "scaleX": 20.0,
+        "scaleY": 11.8970528,
+        "scaleZ": 7.87418
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.856,
+        "g": 0.09999997,
+        "b": 0.09399996,
+        "a": 0.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "FogColor": "Red",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "6de656",
+      "Name": "HandTrigger",
+      "Transform": {
+        "posX": 0.0,
+        "posY": 3.29337835,
+        "posZ": 42.7214241,
+        "rotX": 0.0,
+        "rotY": 179.800049,
+        "rotZ": 0.0,
+        "scaleX": 20.0,
+        "scaleY": 11.8970528,
+        "scaleZ": 7.874141
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.117999978,
+        "g": 0.53,
+        "b": 1.0,
+        "a": 0.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "FogColor": "Blue",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "7f0840",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 34.59,
+        "posY": 1.06121755,
+        "posZ": -10.0,
+        "rotX": -4.662849E-07,
+        "rotY": 180.019058,
+        "rotZ": -7.476431E-07,
+        "scaleX": 1.44652486,
+        "scaleY": 1.0,
+        "scaleZ": 1.44652486
+      },
+      "Nickname": "Available Play Points",
+      "Description": "The amount of play points currently available to you. Automatically refreshes on turn start.",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2462986576127620893/148A6ADE83DDBDE2E5E81D31388F7E3B538E5620/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "local available_play_points_value = 0\r\nlocal max_play_points_guid = \"b3a2f1\"\r\n\r\nfunction onLoad()\r\n\r\n    params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(available_play_points_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 255},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase your currently available play points. Right-click to reduce instead.\",\r\n    }\r\n\r\n    self.createButton(params)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    if alt_click then\r\n        available_play_points_value = available_play_points_value - 1\r\n    else\r\n        available_play_points_value = available_play_points_value + 1\r\n    end\r\n\r\n    local max_counter = getObjectFromGUID(max_play_points_guid).getVar(\"currentMax\")\r\n\r\n    if available_play_points_value <= 0 then\r\n        available_play_points_value = 0\r\n    elseif available_play_points_value > max_counter then\r\n        available_play_points_value = max_counter\r\n    end\r\n\r\n    self.editButton({index=0, label=tostring(available_play_points_value)})\r\nend\r\n\r\nfunction on_turn_start(params)\r\n    available_play_points_value = self.getVar(\"currentAvailable\")\r\n    self.editButton({index=0, label=tostring(available_play_points_value)})\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "b3a2f1",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 34.59,
+        "posY": 1.06121755,
+        "posZ": -16.0,
+        "rotX": -2.6847357E-07,
+        "rotY": 180.0066,
+        "rotZ": 1.30300478E-07,
+        "scaleX": 1.44652486,
+        "scaleY": 1.0,
+        "scaleZ": 1.44652486
+      },
+      "Nickname": "Maximum Play Points",
+      "Description": "Your current maximum play points. Limit is 10. Automatically increases by 1 on turn start.",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2462986576127620975/7A40A4520B94913AFED0ABB43D708C81972F8252/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "local maximum_play_points_value = 0\r\n\r\nfunction onLoad()\r\n\r\n    params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(maximum_play_points_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 255},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase your maximum play points. Right-click to reduce instead.\",\r\n    }\r\n\r\n    self.setVar(\"currentMax\", maximum_play_points_value)    \r\n    self.createButton(params)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    if alt_click then\r\n        maximum_play_points_value = maximum_play_points_value - 1\r\n    else\r\n        maximum_play_points_value = maximum_play_points_value + 1\r\n    end\r\n\r\n    if maximum_play_points_value <= 0 then\r\n        maximum_play_points_value = 0\r\n    elseif maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n\r\n    self.setVar(\"currentMax\", maximum_play_points_value)    \r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend\r\n\r\nfunction on_turn_start(params)\r\n    maximum_play_points_value = self.getVar(\"currentMax\")\r\n\r\n    if maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n\r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "46698c",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 34.59,
+        "posY": 1.06121755,
+        "posZ": -4.09,
+        "rotX": 7.31022567E-07,
+        "rotY": 179.999908,
+        "rotZ": -2.91562827E-08,
+        "scaleX": 1.47602439,
+        "scaleY": 1.0,
+        "scaleZ": 1.47602439
+      },
+      "Nickname": "Leader Defence",
+      "Description": "Current total defence of your leader. If this drops to 0, you lose the game!",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2462986576127621039/F138A8A9C2DAE81032C19CD0ABDDFCC5975EEFDE/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "local leader_defence_value = 20\r\n\r\nfunction onLoad()\r\n\r\n    params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(leader_defence_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 255},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase Leader Defence. Right-click to reduce Leader Defence. If you hit 0, you lose the game!\",\r\n    }\r\n\r\n    self.createButton(params)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    if alt_click then\r\n        leader_defence_value = leader_defence_value - 1\r\n    else\r\n        leader_defence_value = leader_defence_value + 1\r\n    end\r\n\r\n    if leader_defence_value <= 0 then\r\n        leader_defence_value = 0\r\n    end\r\n\r\n    self.editButton({index=0, label=tostring(leader_defence_value)})\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "35438e",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -34.4794846,
+        "posY": 1.06522357,
+        "posZ": 4.59246731,
+        "rotX": 2.500979E-07,
+        "rotY": 0.0217078086,
+        "rotZ": -3.336552E-07,
+        "scaleX": 1.47602439,
+        "scaleY": 1.0,
+        "scaleZ": 1.47602439
+      },
+      "Nickname": "Leader Defence",
+      "Description": "Current total defence of your leader. If this drops to 0, you lose the game!",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2462986576127621039/F138A8A9C2DAE81032C19CD0ABDDFCC5975EEFDE/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "local leader_defence_value = 20\r\n\r\nfunction onLoad()\r\n\r\n    params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(leader_defence_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 255},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase Leader Defence. Right-click to reduce Leader Defence. If you hit 0, you lose the game!\",\r\n    }\r\n\r\n    self.createButton(params)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    if alt_click then\r\n        leader_defence_value = leader_defence_value - 1\r\n    else\r\n        leader_defence_value = leader_defence_value + 1\r\n    end\r\n\r\n    if leader_defence_value <= 0 then\r\n        leader_defence_value = 0\r\n    end\r\n\r\n    self.editButton({index=0, label=tostring(leader_defence_value)})\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "bba386",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -34.47948,
+        "posY": 1.06522346,
+        "posZ": 10.5024662,
+        "rotX": 3.15181546E-06,
+        "rotY": 0.0256264657,
+        "rotZ": -2.65735571E-06,
+        "scaleX": 1.44652486,
+        "scaleY": 1.0,
+        "scaleZ": 1.44652486
+      },
+      "Nickname": "Available Play Points",
+      "Description": "The amount of play points currently available to you. Automatically refreshes on turn start.",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2462986576127620893/148A6ADE83DDBDE2E5E81D31388F7E3B538E5620/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "local available_play_points_value = 0\r\nlocal max_play_points_guid = \"4e6229\"\r\n\r\nfunction onLoad()\r\n\r\n    params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(available_play_points_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 255},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase your currently available play points. Right-click to reduce instead.\",\r\n    }\r\n\r\n    self.createButton(params)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    if alt_click then\r\n        available_play_points_value = available_play_points_value - 1\r\n    else\r\n        available_play_points_value = available_play_points_value + 1\r\n    end\r\n\r\n    local max_counter = getObjectFromGUID(max_play_points_guid).getVar(\"currentMax\")\r\n\r\n    if available_play_points_value <= 0 then\r\n        available_play_points_value = 0\r\n    elseif available_play_points_value > max_counter then\r\n        available_play_points_value = max_counter\r\n    end\r\n\r\n    self.editButton({index=0, label=tostring(available_play_points_value)})\r\nend\r\n\r\nfunction on_turn_start(params)\r\n    available_play_points_value = self.getVar(\"currentAvailable\")\r\n    self.editButton({index=0, label=tostring(available_play_points_value)})\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "4e6229",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -34.4794769,
+        "posY": 1.06522357,
+        "posZ": 16.5024529,
+        "rotX": 2.37508342E-08,
+        "rotY": 0.025555158,
+        "rotZ": -7.4181E-07,
+        "scaleX": 1.44652486,
+        "scaleY": 1.0,
+        "scaleZ": 1.44652486
+      },
+      "Nickname": "Maximum Play Points",
+      "Description": "Your current maximum play points. Limit is 10. Automatically increases by 1 on turn start.",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2462986576127620975/7A40A4520B94913AFED0ABB43D708C81972F8252/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "local maximum_play_points_value = 0\r\n\r\nfunction onLoad()\r\n\r\n    params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(maximum_play_points_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 255},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase your maximum play points. Right-click to reduce instead.\",\r\n    }\r\n\r\n    self.setVar(\"currentMax\", maximum_play_points_value)    \r\n    self.createButton(params)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    if alt_click then\r\n        maximum_play_points_value = maximum_play_points_value - 1\r\n    else\r\n        maximum_play_points_value = maximum_play_points_value + 1\r\n    end\r\n\r\n    if maximum_play_points_value <= 0 then\r\n        maximum_play_points_value = 0\r\n    elseif maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n\r\n    self.setVar(\"currentMax\", maximum_play_points_value)    \r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend\r\n\r\nfunction on_turn_start(params)\r\n    maximum_play_points_value = self.getVar(\"currentMax\")\r\n\r\n    if maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n\r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "c51012",
+      "Name": "ScriptingTrigger",
+      "Transform": {
+        "posX": -0.00583171844,
+        "posY": 3.51113486,
+        "posZ": -16.6808777,
+        "rotX": 0.0,
+        "rotY": 0.190898314,
+        "rotZ": 0.0,
+        "scaleX": 46.7707634,
+        "scaleY": 5.1,
+        "scaleZ": 30.766037
+      },
+      "Nickname": "Red Side Play Zone",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.509803951
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "LuaScript": "function on_turn_start(params)\r\n    local objects_list = self.getObjects()\r\n\r\n    for k,v in pairs(objects_list) do\r\n        v.setRotation({0, 180, 0})\r\n    end\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "31e453",
+      "Name": "ScriptingTrigger",
+      "Transform": {
+        "posX": -0.120772362,
+        "posY": 3.51113486,
+        "posZ": 17.0117474,
+        "rotX": 0.0,
+        "rotY": -0.0009990222,
+        "rotZ": 0.0,
+        "scaleX": 46.84844,
+        "scaleY": 5.1,
+        "scaleZ": 30.4515362
+      },
+      "Nickname": "Blue Side Play Zone",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.509803951
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "LuaScript": "function on_turn_start(params)\r\n    local objects_list = self.getObjects()\r\n\r\n    for k,v in pairs(objects_list) do\r\n        v.setRotation({0, 0, 0})\r\n    end\r\nend",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  ]
+}
