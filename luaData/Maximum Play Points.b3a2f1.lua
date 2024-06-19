@@ -1,11 +1,17 @@
-local maximum_play_points_value = 0
+local current_max_prop_name = "currentMax"
 
-function onLoad()
+function onLoad(script_state)
+    local counter_state = JSON.decode(script_state)
+    local play_points_value = 0
 
-    params = {
+    if counter_state ~= nil and counter_state.play_points ~= nil then
+        play_points_value = counter_state.play_points
+    end
+
+    local params = {
         click_function = "on_button_click",
         function_owner = self,
-        label          = tostring(maximum_play_points_value),
+        label          = tostring(play_points_value),
         position       = {0, 0.2, 0},
         rotation       = {0, 0, 0},
         width          = 1000,
@@ -17,11 +23,25 @@ function onLoad()
         tooltip        = "Left click to increase your maximum play points. Right-click to reduce instead.",
     }
 
-    self.setVar("currentMax", maximum_play_points_value)    
+    self.setVar(current_max_prop_name, maximum_play_points_value)    
     self.createButton(params)
 end
 
+function onSave()
+    local counter_state = {
+        play_points = self.getVar(current_max_prop_name)
+    }
+
+    return JSON.encode(counter_state)
+end
+
 function on_button_click(obj, color, alt_click)
+    local maximum_play_points_value = self.getVar(current_max_prop_name)
+
+    if maximum_play_points_value == nil then
+        maximum_play_points_value = 0
+    end
+
     if alt_click then
         maximum_play_points_value = maximum_play_points_value - 1
     else
@@ -34,16 +54,22 @@ function on_button_click(obj, color, alt_click)
         maximum_play_points_value = 10
     end
 
-    self.setVar("currentMax", maximum_play_points_value)    
+    self.setVar(current_max_prop_name, maximum_play_points_value)    
     self.editButton({index=0, label=tostring(maximum_play_points_value)})
 end
 
 function on_turn_start(params)
-    maximum_play_points_value = self.getVar("currentMax")
+    local maximum_play_points_value = self.getVar(current_max_prop_name)
+
+    if maximum_play_points_value == nil then
+        maximum_play_points_value = 0
+    end
 
     if maximum_play_points_value > 10 then
         maximum_play_points_value = 10
     end
+    
+    self.setVar(current_max_prop_name, maximum_play_points_value)
 
     self.editButton({index=0, label=tostring(maximum_play_points_value)})
 end

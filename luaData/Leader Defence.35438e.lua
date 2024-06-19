@@ -1,6 +1,12 @@
-local leader_defence_value = 20
+local leader_defence_prop_name = "leaderDefence"
 
-function onLoad()
+function onLoad(script_state)
+    local leader_defence_state = JSON.decode(script_state)
+    local leader_defence_value = 20
+
+    if leader_defence_state ~= nil and leader_defence_state.leader_defence ~= nil then
+        leader_defence_value = leader_defence_state.leader_defence
+    end
 
     params = {
         click_function = "on_button_click",
@@ -17,10 +23,21 @@ function onLoad()
         tooltip        = "Left click to increase Leader Defence. Right-click to reduce Leader Defence. If you hit 0, you lose the game!",
     }
 
+    self.setVar(leader_defence_prop_name, leader_defence_value)
     self.createButton(params)
 end
 
+function onSave()
+    local leader_defence_state = {
+        leader_defence = self.getVar(leader_defence_prop_name)
+    }
+
+    return JSON.encode(leader_defence_state)
+end
+
 function on_button_click(obj, color, alt_click)
+    local leader_defence_value = self.getVar(leader_defence_prop_name)
+
     if alt_click then
         leader_defence_value = leader_defence_value - 1
     else
@@ -30,6 +47,7 @@ function on_button_click(obj, color, alt_click)
     if leader_defence_value <= 0 then
         leader_defence_value = 0
     end
-
+    
+    self.setVar(leader_defence_prop_name, leader_defence_value)
     self.editButton({index=0, label=tostring(leader_defence_value)})
 end
