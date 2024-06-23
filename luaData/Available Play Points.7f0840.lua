@@ -20,7 +20,7 @@ function onLoad(script_state)
         height         = 1000,
         font_size      = 800,
         color          = {0.5, 0.0, 0.0, 0},
-        font_color     = {1, 1, 1, 255},
+        font_color     = {1, 1, 1, 100},
         hover_color    = {0.8, 0.8, 0.8, 0.2},
         tooltip        = "Left click to increase your currently available play points. Right-click to reduce instead.",
     }
@@ -52,6 +52,10 @@ function on_button_click(obj, color, alt_click)
 
     local max_counter = getObjectFromGUID(max_play_points_guid).getVar(current_max_prop_name)
 
+    if max_counter == nil then
+        max_counter = 0
+    end
+
     if available_play_points_value <= 0 then
         available_play_points_value = 0
     elseif available_play_points_value > max_counter then
@@ -63,12 +67,8 @@ function on_button_click(obj, color, alt_click)
 end
 
 function on_turn_start(params)
-    local available_play_points_value = self.getVar(current_available_prop_name)
+    local available_play_points_value = params.value
     
-    if available_play_points_value == nil then
-        available_play_points_value = 0
-    end
-
     local max_counter = getObjectFromGUID(max_play_points_guid).getVar(current_max_prop_name)
 
     if max_counter == nil then
@@ -81,5 +81,6 @@ function on_turn_start(params)
         available_play_points_value = max_counter
     end
     
+    self.setVar(current_available_prop_name, available_play_points_value)
     self.editButton({index=0, label=tostring(available_play_points_value)})
 end

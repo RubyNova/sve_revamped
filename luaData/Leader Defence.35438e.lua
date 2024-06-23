@@ -18,7 +18,7 @@ function onLoad(script_state)
         height         = 1000,
         font_size      = 800,
         color          = {0.5, 0.0, 0.0, 0},
-        font_color     = {1, 1, 1, 255},
+        font_color     = {1, 1, 1, 100},
         hover_color    = {0.8, 0.8, 0.8, 0.2},
         tooltip        = "Left click to increase Leader Defence. Right-click to reduce Leader Defence. If you hit 0, you lose the game!",
     }

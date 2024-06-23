@@ -1,4 +1,5 @@
 local current_max_prop_name = "currentMax"
+local player_current = "7f0840"
 
 function onLoad(script_state)
     local counter_state = JSON.decode(script_state)
@@ -18,7 +19,7 @@ function onLoad(script_state)
         height         = 1000,
         font_size      = 800,
         color          = {0.5, 0.0, 0.0, 0},
-        font_color     = {1, 1, 1, 255},
+        font_color     = {1, 1, 1, 100},
         hover_color    = {0.8, 0.8, 0.8, 0.2},
         tooltip        = "Left click to increase your maximum play points. Right-click to reduce instead.",
     }
@@ -59,17 +60,32 @@ function on_button_click(obj, color, alt_click)
 end
 
 function on_turn_start(params)
-    local maximum_play_points_value = self.getVar(current_max_prop_name)
-
-    if maximum_play_points_value == nil then
-        maximum_play_points_value = 0
-    end
+    local maximum_play_points_value = params.value
 
     if maximum_play_points_value > 10 then
         maximum_play_points_value = 10
     end
     
     self.setVar(current_max_prop_name, maximum_play_points_value)
-
     self.editButton({index=0, label=tostring(maximum_play_points_value)})
+end
+
+function onPlayerTurn(player, previous_player)
+    if player == nil or player.color ~= "Red" then
+        return
+    end
+
+    local current_object = getObjectFromGUID(player_current)
+    local new_max = self.getVar(current_max_prop_name)
+
+    if new_max == nil then
+        new_max = 0
+    end
+
+    new_max = new_max + 1
+
+    on_turn_start({value = new_max})
+
+    current_object.call("on_turn_start", {value = new_max})
+    getObjectFromGUID("c51012").call("on_turn_start", {})
 end
