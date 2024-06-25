@@ -1,7 +1,7 @@
 {
   "SaveName": "testing lua stuff",
-  "EpochTime": 1719088532,
-  "Date": "6/22/2024 9:35:32 PM",
+  "EpochTime": 1719277480,
+  "Date": "6/25/2024 2:04:40 AM",
   "VersionNumber": "v13.2.2",
   "GameMode": "testing lua stuff",
   "GameType": "",
@@ -10,7 +10,7 @@
   "Gravity": 0.5,
   "PlayArea": 0.5,
   "Table": "Table_Custom",
-  "TableURL": "http://cloud-3.steamusercontent.com/ugc/2462986576127620533/6ECED663FBEC1C3FC46831ED1318713693DCF7A6/",
+  "TableURL": "http://cloud-3.steamusercontent.com/ugc/2457357698616928928/D3F66D9A674A25FE6E3FD22DB7EB04B32074F3CF/",
   "Sky": "Sky_Regal",
   "Note": "",
   "TabStates": {
@@ -215,7 +215,7 @@
     "TurnColor": ""
   },
   "DecalPallet": [],
-  "LuaScript": "--[[ Lua code. See documentation: https://api.tabletopsimulator.com/ --]]\n\nfunction split(inputstr, sep)\n    if sep == nil then\n        sep = \"%s\" -- Default to whitespace\n    end\n    local t = {}\n    for str in string.gmatch(inputstr, \"([^\" .. sep .. \"]+)\") do\n        table.insert(t, str)\n    end\n    return t\nend\n\n--[[ The onLoad event is called after the game save finishes loading. --]]\nfunction onLoad()\n    --Tables.setTable(\"Table_Custom\")\n    Tables.getTableObject().scale({ 0.33, 1, 0.584 })\n\n\n    --local load_params = {\n    --    click_function = \"load_cards\",\n    --    function_owner = self,\n    --    label = \"LOAD\",\n    --    position = { 0, 7, 3 },\n    --    rotation = { 0, 0, 0 },\n    --    width = 800,\n    --    height = 400,\n    --    font_size = 340,\n    --    color = { 0.5, 0.5, 0.5 },\n    --    font_color = { 1, 1, 1 },\n    --    tooltip = \"Spawn shitloads of cards my guy\"\n    --}\n\n    --Tables.getTableObject().createButton(load_params)\nend\n\nfunction load_cards(obj, color, alt_click)\n    -- this is cooked as fuck bro\n    local back_of_card =\n    \"http://cloud-3.steamusercontent.com/ugc/2462986661277403686/F7DECF05616CD3296AB56BC3D51096286805962F/\"\n\n    -- BP01\n    --local cards_to_load = {\n    --    \"BP01-001EN\",\n    --    \"BP01-002EN\",\n    --    \"BP01-003EN\",\n    --    \"BP01-004EN\",\n    --    \"BP01-005EN\",\n    --    \"BP01-006EN\",\n    --    \"BP01-007EN\",\n    --    \"BP01-008EN\",\n    --    \"BP01-009EN\",\n    --    \"BP01-010EN\",\n    --    \"BP01-011EN\",\n    --    \"BP01-012EN\",\n    --    \"BP01-013EN\",\n    --    \"BP01-014EN\",\n    --    \"BP01-015EN\",\n    --    \"BP01-016EN\",\n    --    \"BP01-017EN\",\n    --    \"BP01-018EN\",\n    --    \"BP01-019EN\",\n    --    \"BP01-020EN\",\n    --    \"BP01-021EN\",\n    --    \"BP01-022EN\",\n    --    \"BP01-023EN\",\n    --    \"BP01-024EN\",\n    --    \"BP01-025EN\",\n    --    \"BP01-026EN\",\n    --    \"BP01-027EN\",\n    --    \"BP01-028EN\",\n    --    \"BP01-029EN\",\n    --    \"BP01-030EN\",\n    --    \"BP01-031EN\",\n    --    \"BP01-032EN\",\n    --    \"BP01-033EN\",\n    --    \"BP01-034EN\",\n    --    \"BP01-035EN\",\n    --    \"BP01-036EN\",\n    --    \"BP01-037EN\",\n    --    \"BP01-038EN\",\n    --    \"BP01-039EN\",\n    --    \"BP01-040EN\",\n    --    \"BP01-041EN\",\n    --    \"BP01-042EN\",\n    --    \"BP01-043EN\",\n    --    \"BP01-044EN\",\n    --    \"BP01-045EN\",\n    --    \"BP01-046EN\",\n    --    \"BP01-047EN\",\n    --    \"BP01-048EN\",\n    --    \"BP01-049EN\",\n    --    \"BP01-050EN\",\n    --    \"BP01-051EN\",\n    --    \"BP01-052EN\",\n    --    \"BP01-053EN\",\n    --    \"BP01-054EN\",\n    --    \"BP01-055EN\",\n    --    \"BP01-056EN\",\n    --    \"BP01-057EN\",\n    --    \"BP01-058EN\",\n    --    \"BP01-059EN\",\n    --    \"BP01-060EN\",\n    --    \"BP01-061EN\",\n    --    \"BP01-062EN\",\n    --    \"BP01-063EN\",\n    --    \"BP01-064EN\",\n    --    \"BP01-065EN\",\n    --    \"BP01-066EN\",\n    --    \"BP01-067EN\",\n    --    \"BP01-068EN\",\n    --    \"BP01-069EN\",\n    --    \"BP01-070EN\",\n    --    \"BP01-071EN\",\n    --    \"BP01-072EN\",\n    --    \"BP01-073EN\",\n    --    \"BP01-074EN\",\n    --    \"BP01-075EN\",\n    --    \"BP01-076EN\",\n    --    \"BP01-077EN\",\n    --    \"BP01-078EN\",\n    --    \"BP01-079EN\",\n    --    \"BP01-080EN\",\n    --    \"BP01-081EN\",\n    --    \"BP01-082EN\",\n    --    \"BP01-083EN\",\n    --    \"BP01-084EN\",\n    --    \"BP01-085EN\",\n    --    \"BP01-086EN\",\n    --    \"BP01-087EN\",\n    --    \"BP01-088EN\",\n    --    \"BP01-089EN\",\n    --    \"BP01-090EN\",\n    --    \"BP01-091EN\",\n    --    \"BP01-092EN\",\n    --    \"BP01-093EN\",\n    --    \"BP01-094EN\",\n    --    \"BP01-095EN\",\n    --    \"BP01-096EN\",\n    --    \"BP01-097EN\",\n    --    \"BP01-098EN\",\n    --    \"BP01-099EN\",\n    --    \"BP01-100EN\",\n    --    \"BP01-101EN\",\n    --    \"BP01-102EN\",\n    --    \"BP01-103EN\",\n    --    \"BP01-104EN\",\n    --    \"BP01-105EN\",\n    --    \"BP01-106EN\",\n    --    \"BP01-107EN\",\n    --    \"BP01-108EN\",\n    --    \"BP01-109EN\",\n    --    \"BP01-110EN\",\n    --    \"BP01-111EN\",\n    --    \"BP01-112EN\",\n    --    \"BP01-113EN\",\n    --    \"BP01-114EN\",\n    --    \"BP01-115EN\",\n    --    \"BP01-116EN\",\n    --    \"BP01-117EN\",\n    --    \"BP01-118EN\",\n    --    \"BP01-119EN\",\n    --    \"BP01-120EN\",\n    --    \"BP01-121EN\",\n    --    \"BP01-122EN\",\n    --    \"BP01-123EN\",\n    --    \"BP01-124EN\",\n    --    \"BP01-125EN\",\n    --    \"BP01-126EN\",\n    --    \"BP01-127EN\",\n    --    \"BP01-128EN\",\n    --    \"BP01-129EN\",\n    --    \"BP01-130EN\",\n    --    \"BP01-131EN\",\n    --    \"BP01-132EN\",\n    --    \"BP01-133EN\",\n    --    \"BP01-134EN\",\n    --    \"BP01-135EN\",\n    --    \"BP01-136EN\",\n    --    \"BP01-137EN\",\n    --    \"BP01-138EN\",\n    --    \"BP01-139EN\",\n    --    \"BP01-140EN\",\n    --    \"BP01-141EN\",\n    --    \"BP01-142EN\",\n    --    \"BP01-143EN\",\n    --    \"BP01-144EN\",\n    --    \"BP01-145EN\",\n    --    \"BP01-146EN\",\n    --    \"BP01-147EN\",\n    --    \"BP01-148EN\",\n    --    \"BP01-149EN\",\n    --    \"BP01-150EN\",\n    --    \"BP01-151EN\",\n    --    \"BP01-152EN\",\n    --    \"BP01-153EN\",\n    --    \"BP01-154EN\",\n    --    \"BP01-155EN\",\n    --    \"BP01-156EN\",\n    --    \"BP01-157EN\",\n    --    \"BP01-158EN\",\n    --    \"BP01-159EN\",\n    --    \"BP01-160EN\",\n    --    \"BP01-161EN\",\n    --    \"BP01-162EN\",\n    --    \"BP01-163EN\",\n    --    \"BP01-164EN\",\n    --    \"BP01-165EN\",\n    --    \"BP01-166EN\",\n    --    \"BP01-167EN\",\n    --    \"BP01-168EN\",\n    --    \"BP01-169EN\",\n    --    \"BP01-170EN\",\n    --    \"BP01-171EN\",\n    --    \"BP01-172EN\",\n    --    \"BP01-173EN\",\n    --    \"BP01-174EN\",\n    --    \"BP01-175EN\",\n    --    \"BP01-176EN\",\n    --    \"BP01-177EN\",\n    --    \"BP01-178EN\",\n    --    \"BP01-179EN\",\n    --    \"BP01-180EN\",\n    --    \"BP01-U01EN\",\n    --    \"BP01-U02EN\",\n    --    \"BP01-U03EN\",\n    --    \"BP01-U04EN\",\n    --    \"BP01-U05EN\",\n    --    \"BP01-U06EN\",\n    --    \"BP01-U07EN\",\n    --    \"BP01-LD01EN\",\n    --    \"BP01-LD02EN\",\n    --    \"BP01-LD03EN\",\n    --    \"BP01-LD04EN\",\n    --    \"BP01-LD05EN\",\n    --    \"BP01-LD06EN\",\n    --    \"BP01-LD07EN\",\n    --    \"BP01-LD08EN\",\n    --    \"BP01-LD09EN\",\n    --    \"BP01-LD10EN\",\n    --    \"BP01-LD11EN\",\n    --    \"BP01-LD12EN\",\n    --    \"BP01-T01EN\",\n    --    \"BP01-T02EN\",\n    --    \"BP01-T03EN\",\n    --    \"BP01-T04EN\",\n    --    \"BP01-T05EN\",\n    --    \"BP01-T06EN\",\n    --    \"BP01-T07EN\",\n    --    \"BP01-T08EN\",\n    --    \"BP01-T09EN\",\n    --    \"BP01-T10EN\",\n    --    \"BP01-T11EN\",\n    --    \"BP01-T12EN\",\n    --    \"BP01-T13EN\",\n    --    \"BP01-T14EN\",\n    --    \"BP01-T15EN\",\n    --    \"BP01-T16EN\",\n    --    \"BP01-T17EN\",\n    --}\n\n    -- BP02\n    --local cards_to_load = {\n    --    \"BP02-001EN\",\n    --    \"BP02-002EN\",\n    --    \"BP02-003EN\",\n    --    \"BP02-004EN\",\n    --    \"BP02-005EN\",\n    --    \"BP02-006EN\",\n    --    \"BP02-007EN\",\n    --    \"BP02-008EN\",\n    --    \"BP02-009EN\",\n    --    \"BP02-010EN\",\n    --    \"BP02-011EN\",\n    --    \"BP02-012EN\",\n    --    \"BP02-013EN\",\n    --    \"BP02-014EN\",\n    --    \"BP02-015EN\",\n    --    \"BP02-016EN\",\n    --    \"BP02-017EN\",\n    --    \"BP02-018EN\",\n    --    \"BP02-019EN\",\n    --    \"BP02-020EN\",\n    --    \"BP02-021EN\",\n    --    \"BP02-022EN\",\n    --    \"BP02-023EN\",\n    --    \"BP02-024EN\",\n    --    \"BP02-025EN\",\n    --    \"BP02-026EN\",\n    --    \"BP02-027EN\",\n    --    \"BP02-028EN\",\n    --    \"BP02-029EN\",\n    --    \"BP02-030EN\",\n    --    \"BP02-031EN\",\n    --    \"BP02-032EN\",\n    --    \"BP02-033EN\",\n    --    \"BP02-034EN\",\n    --    \"BP02-035EN\",\n    --    \"BP02-036EN\",\n    --    \"BP02-037EN\",\n    --    \"BP02-038EN\",\n    --    \"BP02-039EN\",\n    --    \"BP02-040EN\",\n    --    \"BP02-041EN\",\n    --    \"BP02-042EN\",\n    --    \"BP02-043EN\",\n    --    \"BP02-044EN\",\n    --    \"BP02-045EN\",\n    --    \"BP02-046EN\",\n    --    \"BP02-047EN\",\n    --    \"BP02-048EN\",\n    --    \"BP02-049EN\",\n    --    \"BP02-050EN\",\n    --    \"BP02-051EN\",\n    --    \"BP02-052EN\",\n    --    \"BP02-053EN\",\n    --    \"BP02-054EN\",\n    --    \"BP02-055EN\",\n    --    \"BP02-056EN\",\n    --    \"BP02-057EN\",\n    --    \"BP02-058EN\",\n    --    \"BP02-059EN\",\n    --    \"BP02-060EN\",\n    --    \"BP02-061EN\",\n    --    \"BP02-062EN\",\n    --    \"BP02-063EN\",\n    --    \"BP02-064EN\",\n    --    \"BP02-065EN\",\n    --    \"BP02-066EN\",\n    --    \"BP02-067EN\",\n    --    \"BP02-068EN\",\n    --    \"BP02-069EN\",\n    --    \"BP02-070EN\",\n    --    \"BP02-071EN\",\n    --    \"BP02-072EN\",\n    --    \"BP02-073EN\",\n    --    \"BP02-074EN\",\n    --    \"BP02-075EN\",\n    --    \"BP02-076EN\",\n    --    \"BP02-077EN\",\n    --    \"BP02-078EN\",\n    --    \"BP02-079EN\",\n    --    \"BP02-080EN\",\n    --    \"BP02-081EN\",\n    --    \"BP02-082EN\",\n    --    \"BP02-083EN\",\n    --    \"BP02-084EN\",\n    --    \"BP02-085EN\",\n    --    \"BP02-086EN\",\n    --    \"BP02-087EN\",\n    --    \"BP02-088EN\",\n    --    \"BP02-089EN\",\n    --    \"BP02-090EN\",\n    --    \"BP02-091EN\",\n    --    \"BP02-092EN\",\n    --    \"BP02-093EN\",\n    --    \"BP02-094EN\",\n    --    \"BP02-095EN\",\n    --    \"BP02-096EN\",\n    --    \"BP02-097EN\",\n    --    \"BP02-098EN\",\n    --    \"BP02-099EN\",\n    --    \"BP02-100EN\",\n    --    \"BP02-101EN\",\n    --    \"BP02-102EN\",\n    --    \"BP02-103EN\",\n    --    \"BP02-104EN\",\n    --    \"BP02-105EN\",\n    --    \"BP02-106EN\",\n    --    \"BP02-107EN\",\n    --    \"BP02-108EN\",\n    --    \"BP02-109EN\",\n    --    \"BP02-110EN\",\n    --    \"BP02-111EN\",\n    --    \"BP02-112EN\",\n    --    \"BP02-113EN\",\n    --    \"BP02-114EN\",\n    --    \"BP02-115EN\",\n    --    \"BP02-116EN\",\n    --    \"BP02-117EN\",\n    --    \"BP02-U01EN\",\n    --    \"BP02-U02EN\",\n    --    \"BP02-U03EN\",\n    --    \"BP02-U04EN\",\n    --    \"BP02-U05EN\",\n    --    \"BP02-U06EN\",\n    --    \"BP02-U07EN\",\n    --    \"BP02-T01EN\",\n    --    \"BP02-T02EN\",\n    --    \"BP02-T03EN\",\n    --    \"BP02-T04EN\",\n    --    \"BP02-T05EN\",\n    --    \"BP02-T06EN\",\n    --    \"BP02-T07EN\",\n    --    \"BP02-T08EN\",\n    --}\n\n    --BP03\n    --local cards_to_load = {\n    --    \"BP03-001EN\",\n    --    \"BP03-002EN\",\n    --    \"BP03-003EN\",\n    --    \"BP03-004EN\",\n    --    \"BP03-005EN\",\n    --    \"BP03-006EN\",\n    --    \"BP03-007EN\",\n    --    \"BP03-008EN\",\n    --    \"BP03-009EN\",\n    --    \"BP03-010EN\",\n    --    \"BP03-011EN\",\n    --    \"BP03-012EN\",\n    --    \"BP03-013EN\",\n    --    \"BP03-014EN\",\n    --    \"BP03-015EN\",\n    --    \"BP03-016EN\",\n    --    \"BP03-017EN\",\n    --    \"BP03-018EN\",\n    --    \"BP03-019EN\",\n    --    \"BP03-020EN\",\n    --    \"BP03-021EN\",\n    --    \"BP03-022EN\",\n    --    \"BP03-023EN\",\n    --    \"BP03-024EN\",\n    --    \"BP03-025EN\",\n    --    \"BP03-026EN\",\n    --    \"BP03-027EN\",\n    --    \"BP03-028EN\",\n    --    \"BP03-029EN\",\n    --    \"BP03-030EN\",\n    --    \"BP03-031EN\",\n    --    \"BP03-032EN\",\n    --    \"BP03-033EN\",\n    --    \"BP03-034EN\",\n    --    \"BP03-035EN\",\n    --    \"BP03-036EN\",\n    --    \"BP03-037EN\",\n    --    \"BP03-038EN\",\n    --    \"BP03-039EN\",\n    --    \"BP03-040EN\",\n    --    \"BP03-041EN\",\n    --    \"BP03-042EN\",\n    --    \"BP03-043EN\",\n    --    \"BP03-044EN\",\n    --    \"BP03-045EN\",\n    --    \"BP03-046EN\",\n    --    \"BP03-047EN\",\n    --    \"BP03-048EN\",\n    --    \"BP03-049EN\",\n    --    \"BP03-050EN\",\n    --    \"BP03-051EN\",\n    --    \"BP03-052EN\",\n    --    \"BP03-053EN\",\n    --    \"BP03-054EN\",\n    --    \"BP03-055EN\",\n    --    \"BP03-056EN\",\n    --    \"BP03-057EN\",\n    --    \"BP03-058EN\",\n    --    \"BP03-059EN\",\n    --    \"BP03-060EN\",\n    --    \"BP03-061EN\",\n    --    \"BP03-062EN\",\n    --    \"BP03-063EN\",\n    --    \"BP03-064EN\",\n    --    \"BP03-065EN\",\n    --    \"BP03-066EN\",\n    --    \"BP03-067EN\",\n    --    \"BP03-068EN\",\n    --    \"BP03-069EN\",\n    --    \"BP03-070EN\",\n    --    \"BP03-071EN\",\n    --    \"BP03-072EN\",\n    --    \"BP03-073EN\",\n    --    \"BP03-074EN\",\n    --    \"BP03-075EN\",\n    --    \"BP03-076EN\",\n    --    \"BP03-077EN\",\n    --    \"BP03-078EN\",\n    --    \"BP03-079EN\",\n    --    \"BP03-080EN\",\n    --    \"BP03-081EN\",\n    --    \"BP03-082EN\",\n    --    \"BP03-083EN\",\n    --    \"BP03-084EN\",\n    --    \"BP03-085EN\",\n    --    \"BP03-086EN\",\n    --    \"BP03-087EN\",\n    --    \"BP03-088EN\",\n    --    \"BP03-089EN\",\n    --    \"BP03-090EN\",\n    --    \"BP03-091EN\",\n    --    \"BP03-092EN\",\n    --    \"BP03-093EN\",\n    --    \"BP03-094EN\",\n    --    \"BP03-095EN\",\n    --    \"BP03-096EN\",\n    --    \"BP03-097EN\",\n    --    \"BP03-098EN\",\n    --    \"BP03-099EN\",\n    --    \"BP03-100EN\",\n    --    \"BP03-101EN\",\n    --    \"BP03-102EN\",\n    --    \"BP03-103EN\",\n    --    \"BP03-104EN\",\n    --    \"BP03-105EN\",\n    --    \"BP03-106EN\",\n    --    \"BP03-107EN\",\n    --    \"BP03-108EN\",\n    --    \"BP03-109EN\",\n    --    \"BP03-110EN\",\n    --    \"BP03-111EN\",\n    --    \"BP03-112EN\",\n    --    \"BP03-113EN\",\n    --    \"BP03-114EN\",\n    --    \"BP03-115EN\",\n    --    \"BP03-116EN\",\n    --    \"BP03-117EN\",\n    --    \"BP03-118EN\",\n    --    \"BP03-119EN\",\n    --    \"BP03-120EN\",\n    --    \"BP03-121EN\",\n    --    \"BP03-U01EN\",\n    --    \"BP03-U02EN\",\n    --    \"BP03-U03EN\",\n    --    \"BP03-U04EN\",\n    --    \"BP03-U05EN\",\n    --    \"BP03-U06EN\",\n    --    \"BP03-U07EN\",\n    --    \"BP03-LD01EN\",\n    --    \"BP03-LD02EN\",\n    --    \"BP03-LD03EN\",\n    --    \"BP03-T01EN\",\n    --}\n\n    --BP04\n    --local cards_to_load = {\n    --    \"BP04-001EN\",\n    --    \"BP04-002EN\",\n    --    \"BP04-003EN\",\n    --    \"BP04-004EN\",\n    --    \"BP04-005EN\",\n    --    \"BP04-006EN\",\n    --    \"BP04-007EN\",\n    --    \"BP04-008EN\",\n    --    \"BP04-009EN\",\n    --    \"BP04-010EN\",\n    --    \"BP04-011EN\",\n    --    \"BP04-012EN\",\n    --    \"BP04-013EN\",\n    --    \"BP04-014EN\",\n    --    \"BP04-015EN\",\n    --    \"BP04-016EN\",\n    --    \"BP04-017EN\",\n    --    \"BP04-018EN\",\n    --    \"BP04-019EN\",\n    --    \"BP04-020EN\",\n    --    \"BP04-021EN\",\n    --    \"BP04-022EN\",\n    --    \"BP04-023EN\",\n    --    \"BP04-024EN\",\n    --    \"BP04-025EN\",\n    --    \"BP04-026EN\",\n    --    \"BP04-027EN\",\n    --    \"BP04-028EN\",\n    --    \"BP04-029EN\",\n    --    \"BP04-030EN\",\n    --    \"BP04-031EN\",\n    --    \"BP04-032EN\",\n    --    \"BP04-033EN\",\n    --    \"BP04-034EN\",\n    --    \"BP04-035EN\",\n    --    \"BP04-036EN\",\n    --    \"BP04-037EN\",\n    --    \"BP04-038EN\",\n    --    \"BP04-039EN\",\n    --    \"BP04-040EN\",\n    --    \"BP04-041EN\",\n    --    \"BP04-042EN\",\n    --    \"BP04-043EN\",\n    --    \"BP04-044EN\",\n    --    \"BP04-045EN\",\n    --    \"BP04-046EN\",\n    --    \"BP04-047EN\",\n    --    \"BP04-048EN\",\n    --    \"BP04-049EN\",\n    --    \"BP04-050EN\",\n    --    \"BP04-051EN\",\n    --    \"BP04-052EN\",\n    --    \"BP04-053EN\",\n    --    \"BP04-054EN\",\n    --    \"BP04-055EN\",\n    --    \"BP04-056EN\",\n    --    \"BP04-057EN\",\n    --    \"BP04-058EN\",\n    --    \"BP04-059EN\",\n    --    \"BP04-060EN\",\n    --    \"BP04-061EN\",\n    --    \"BP04-062EN\",\n    --    \"BP04-063EN\",\n    --    \"BP04-064EN\",\n    --    \"BP04-065EN\",\n    --    \"BP04-066EN\",\n    --    \"BP04-067EN\",\n    --    \"BP04-068EN\",\n    --    \"BP04-069EN\",\n    --    \"BP04-070EN\",\n    --    \"BP04-071EN\",\n    --    \"BP04-072EN\",\n    --    \"BP04-073EN\",\n    --    \"BP04-074EN\",\n    --    \"BP04-075EN\",\n    --    \"BP04-076EN\",\n    --    \"BP04-077EN\",\n    --    \"BP04-078EN\",\n    --    \"BP04-079EN\",\n    --    \"BP04-080EN\",\n    --    \"BP04-081EN\",\n    --    \"BP04-082EN\",\n    --    \"BP04-083EN\",\n    --    \"BP04-084EN\",\n    --    \"BP04-085EN\",\n    --    \"BP04-086EN\",\n    --    \"BP04-087EN\",\n    --    \"BP04-088EN\",\n    --    \"BP04-089EN\",\n    --    \"BP04-090EN\",\n    --    \"BP04-091EN\",\n    --    \"BP04-092EN\",\n    --    \"BP04-093EN\",\n    --    \"BP04-094EN\",\n    --    \"BP04-095EN\",\n    --    \"BP04-096EN\",\n    --    \"BP04-097EN\",\n    --    \"BP04-098EN\",\n    --    \"BP04-099EN\",\n    --    \"BP04-100EN\",\n    --    \"BP04-101EN\",\n    --    \"BP04-102EN\",\n    --    \"BP04-103EN\",\n    --    \"BP04-104EN\",\n    --    \"BP04-105EN\",\n    --    \"BP04-106EN\",\n    --    \"BP04-107EN\",\n    --    \"BP04-108EN\",\n    --    \"BP04-109EN\",\n    --    \"BP04-110EN\",\n    --    \"BP04-111EN\",\n    --    \"BP04-112EN\",\n    --    \"BP04-113EN\",\n    --    \"BP04-114EN\",\n    --    \"BP04-115EN\",\n    --    \"BP04-116EN\",\n    --    \"BP04-117EN\",\n    --    \"BP04-118EN\",\n    --    \"BP04-119EN\",\n    --    \"BP04-120EN\",\n    --    \"BP04-121EN\",\n    --    \"BP04-122EN\",\n    --    \"BP04-123EN\",\n    --    \"BP04-124EN\",\n    --    \"BP04-125EN\",\n    --    \"BP04-126EN\",\n    --    \"BP04-127EN\",\n    --    \"BP04-128EN\",\n    --    \"BP04-129EN\",\n    --    \"BP04-130EN\",\n    --    \"BP04-U01EN\",\n    --    \"BP04-U02EN\",\n    --    \"BP04-U03EN\",\n    --    \"BP04-U04EN\",\n    --    \"BP04-U05EN\",\n    --    \"BP04-U06EN\",\n    --    \"BP04-U07EN\",\n    --    \"BP04-LD01EN\",\n    --    \"BP04-LD02EN\",\n    --    \"BP04-LD03EN\",\n    --    \"BP04-LD04EN\",\n    --    \"BP04-LD05EN\",\n    --    \"BP04-LD06EN\",\n    --    \"BP04-LD07EN\",\n    --    \"BP04-LD08EN\",\n    --    \"BP04-LD09EN\",\n    --    \"BP04-LD10EN\",\n    --    \"BP04-T01EN\",\n    --    \"BP04-T02EN\",\n    --    \"BP04-T03EN\",\n    --    \"BP04-T04EN\",\n    --}\n\n    --BP05\n    --local cards_to_load = {\n    --    \"BP05-001EN\",\n    --    \"BP05-002EN\",\n    --    \"BP05-003EN\",\n    --    \"BP05-004EN\",\n    --    \"BP05-005EN\",\n    --    \"BP05-006EN\",\n    --    \"BP05-007EN\",\n    --    \"BP05-008EN\",\n    --    \"BP05-009EN\",\n    --    \"BP05-010EN\",\n    --    \"BP05-011EN\",\n    --    \"BP05-012EN\",\n    --    \"BP05-013EN\",\n    --    \"BP05-014EN\",\n    --    \"BP05-015EN\",\n    --    \"BP05-016EN\",\n    --    \"BP05-017EN\",\n    --    \"BP05-018EN\",\n    --    \"BP05-019EN\",\n    --    \"BP05-020EN\",\n    --    \"BP05-021EN\",\n    --    \"BP05-022EN\",\n    --    \"BP05-023EN\",\n    --    \"BP05-024EN\",\n    --    \"BP05-025EN\",\n    --    \"BP05-026EN\",\n    --    \"BP05-027EN\",\n    --    \"BP05-028EN\",\n    --    \"BP05-029EN\",\n    --    \"BP05-030EN\",\n    --    \"BP05-031EN\",\n    --    \"BP05-032EN\",\n    --    \"BP05-033EN\",\n    --    \"BP05-034EN\",\n    --    \"BP05-035EN\",\n    --    \"BP05-036EN\",\n    --    \"BP05-037EN\",\n    --    \"BP05-038EN\",\n    --    \"BP05-039EN\",\n    --    \"BP05-040EN\",\n    --    \"BP05-041EN\",\n    --    \"BP05-042EN\",\n    --    \"BP05-043EN\",\n    --    \"BP05-044EN\",\n    --    \"BP05-045EN\",\n    --    \"BP05-046EN\",\n    --    \"BP05-047EN\",\n    --    \"BP05-048EN\",\n    --    \"BP05-049EN\",\n    --    \"BP05-050EN\",\n    --    \"BP05-051EN\",\n    --    \"BP05-052EN\",\n    --    \"BP05-053EN\",\n    --    \"BP05-054EN\",\n    --    \"BP05-055EN\",\n    --    \"BP05-056EN\",\n    --    \"BP05-057EN\",\n    --    \"BP05-058EN\",\n    --    \"BP05-059EN\",\n    --    \"BP05-060EN\",\n    --    \"BP05-061EN\",\n    --    \"BP05-062EN\",\n    --    \"BP05-063EN\",\n    --    \"BP05-064EN\",\n    --    \"BP05-065EN\",\n    --    \"BP05-066EN\",\n    --    \"BP05-067EN\",\n    --    \"BP05-068EN\",\n    --    \"BP05-069EN\",\n    --    \"BP05-070EN\",\n    --    \"BP05-071EN\",\n    --    \"BP05-072EN\",\n    --    \"BP05-073EN\",\n    --    \"BP05-074EN\",\n    --    \"BP05-075EN\",\n    --    \"BP05-076EN\",\n    --    \"BP05-077EN\",\n    --    \"BP05-078EN\",\n    --    \"BP05-079EN\",\n    --    \"BP05-080EN\",\n    --    \"BP05-081EN\",\n    --    \"BP05-082EN\",\n    --    \"BP05-083EN\",\n    --    \"BP05-084EN\",\n    --    \"BP05-085EN\",\n    --    \"BP05-086EN\",\n    --    \"BP05-087EN\",\n    --    \"BP05-088EN\",\n    --    \"BP05-089EN\",\n    --    \"BP05-090EN\",\n    --    \"BP05-091EN\",\n    --    \"BP05-092EN\",\n    --    \"BP05-093EN\",\n    --    \"BP05-094EN\",\n    --    \"BP05-095EN\",\n    --    \"BP05-096EN\",\n    --    \"BP05-097EN\",\n    --    \"BP05-098EN\",\n    --    \"BP05-099EN\",\n    --    \"BP05-100EN\",\n    --    \"BP05-101EN\",\n    --    \"BP05-102EN\",\n    --    \"BP05-103EN\",\n    --    \"BP05-104EN\",\n    --    \"BP05-105EN\",\n    --    \"BP05-106EN\",\n    --    \"BP05-107EN\",\n    --    \"BP05-108EN\",\n    --    \"BP05-109EN\",\n    --    \"BP05-110EN\",\n    --    \"BP05-111EN\",\n    --    \"BP05-112EN\",\n    --    \"BP05-113EN\",\n    --    \"BP05-114EN\",\n    --    \"BP05-115EN\",\n    --    \"BP05-116EN\",\n    --    \"BP05-117EN\",\n    --    \"BP05-U01EN\",\n    --    \"BP05-U02EN\",\n    --    \"BP05-U03EN\",\n    --    \"BP05-U04EN\",\n    --    \"BP05-U05EN\",\n    --    \"BP05-U06EN\",\n    --    \"BP05-U07EN\",\n    --    \"BP05-LD01EN\",\n    --    \"BP05-LD02EN\",\n    --    \"BP05-LD03EN\",\n    --    \"BP05-LD04EN\",\n    --    \"BP05-LD05EN\",\n    --    \"BP05-LD06EN\",\n    --    \"BP05-T01EN\",\n    --    \"BP05-T02EN\",\n    --    \"BP05-T03EN\",\n    --    \"BP05-T04EN\",\n    --    \"BP05-T05EN\",\n    --}\n\n    --local cards_to_load = {\n        --\"CP01-001EN\",\n        --\"CP01-002EN\",\n        --\"CP01-003EN\",\n        --\"CP01-004EN\",\n        --\"CP01-005EN\",\n        --\"CP01-006EN\",\n        --\"CP01-007EN\",\n        --\"CP01-008EN\",\n        --\"CP01-009EN\",\n        --\"CP01-010EN\",\n        --\"CP01-011EN\",\n        --\"CP01-012EN\",\n        --\"CP01-013EN\",\n        --\"CP01-014EN\",\n        --\"CP01-015EN\",\n        --\"CP01-016EN\",\n        --\"CP01-017EN\",\n        --\"CP01-018EN\",\n        --\"CP01-019EN\",\n        --\"CP01-020EN\",\n        --\"CP01-021EN\",\n        --\"CP01-022EN\",\n        --\"CP01-023EN\",\n        --\"CP01-024EN\",\n        --\"CP01-025EN\",\n        --\"CP01-026EN\",\n        --\"CP01-027EN\",\n        --\"CP01-028EN\",\n        --\"CP01-029EN\",\n        --\"CP01-030EN\",\n        --\"CP01-031EN\",\n        --\"CP01-032EN\",\n        --\"CP01-033EN\",\n        --\"CP01-034EN\",\n        --\"CP01-035EN\",\n        --\"CP01-036EN\",\n        --\"CP01-037EN\",\n        --\"CP01-038EN\",\n        --\"CP01-039EN\",\n        --\"CP01-040EN\",\n        --\"CP01-041EN\",\n        --\"CP01-042EN\",\n        --\"CP01-043EN\",\n        --\"CP01-044EN\",\n        --\"CP01-045EN\",\n        --\"CP01-046EN\",\n        --\"CP01-047EN\",\n        --\"CP01-048EN\",\n        --\"CP01-049EN\",\n        --\"CP01-050EN\",\n        --\"CP01-051EN\",\n        --\"CP01-052EN\",\n        --\"CP01-053EN\",\n        --\"CP01-054EN\",\n        --\"CP01-055EN\",\n        --\"CP01-056EN\",\n        --\"CP01-057EN\",\n        --\"CP01-058EN\",\n        --\"CP01-059EN\",\n        --\"CP01-060EN\",\n        --\"CP01-061EN\",\n        --\"CP01-062EN\",\n        --\"CP01-063EN\",\n        --\"CP01-064EN\",\n        --\"CP01-065EN\",\n        --\"CP01-066EN\",\n        --\"CP01-067EN\",\n        --\"CP01-068EN\",\n        --\"CP01-069EN\",\n        --\"CP01-070EN\",\n        --\"CP01-071EN\",\n        --\"CP01-072EN\",\n        --\"CP01-073EN\",\n        --\"CP01-074EN\",\n        --\"CP01-075EN\",\n        --\"CP01-076EN\",\n        --\"CP01-077EN\",\n        --\"CP01-078EN\",\n        --\"CP01-079EN\",\n        --\"CP01-080EN\",\n        --\"CP01-081EN\",\n        --\"CP01-082EN\",\n        --\"CP01-083EN\",\n        --\"CP01-084EN\",\n        --\"CP01-085EN\",\n        --\"CP01-SP01EN\",\n        --\"CP01-SP02EN\",\n        --\"CP01-SP03EN\",\n        --\"CP01-SP04EN\",\n        --\"CP01-SP05EN\",\n        --\"CP01-SP06EN\",\n        --\"CP01-SP07EN\",\n        --\"CP01-SP08EN\",\n        --\"CP01-SP09EN\",\n        --\"CP01-SP10EN\",\n        --\"CP01-SP11EN\",\n        --\"CP01-SP12EN\",\n        --\"CP01-SP13EN\",\n        --\"CP01-SP14EN\",\n        --\"CP01-SP15EN\",\n        --\"CP01-SP16EN\",\n        --\"CP01-SP17EN\",\n        --\"CP01-SP18EN\",\n        --\"CP01-SP19EN\",\n        --\"CP01-LD01EN\",\n        --\"CP01-LD02EN\",\n        --\"CP01-LD03EN\",\n        --\"CP01-LD04EN\",\n        --\"CP01-LD05EN\",\n        --\"CP01-LD06EN\",\n        --\"CP01-LD07EN\",\n        --\"CP01-LD08EN\"\n    --}\n\n    --SD06\n    --local cards_to_load = {\n    --    \"SD06-001EN\",\n    --    \"SD06-002EN\",\n    --    \"SD06-003EN\",\n    --    \"SD06-004EN\",\n    --    \"SD06-005EN\",\n    --    \"SD06-006EN\",\n    --    \"SD06-007EN\",\n    --    \"SD06-008EN\",\n    --    \"SD06-009EN\",\n    --    \"SD06-010EN\",\n    --    \"SD06-011EN\",\n    --    \"SD06-012EN\",\n    --    \"SD06-013EN\",\n    --    \"SD06-014EN\",\n    --    \"SD06-015EN\",\n    --    \"SD06-016EN\",\n    --    \"SD06-017EN\",\n    --    \"SD06-018EN\",\n    --    \"SD06-019EN\",\n    --    \"SD06-020EN\",\n    --}\n\n    --SD05\n    --local cards_to_load = {\n    --    \"SD05-001EN\",\n    --    \"SD05-002EN\",\n    --    \"SD05-003EN\",\n    --    \"SD05-004EN\",\n    --    \"SD05-005EN\",\n    --    \"SD05-006EN\",\n    --    \"SD05-007EN\",\n    --    \"SD05-008EN\",\n    --    \"SD05-009EN\",\n    --    \"SD05-010EN\",\n    --    \"SD05-011EN\",\n    --    \"SD05-012EN\",\n    --    \"SD05-013EN\",\n    --    \"SD05-014EN\",\n    --    \"SD05-015EN\",\n    --    \"SD05-016EN\",\n    --    \"SD05-017EN\",\n    --    \"SD05-018EN\",\n    --    \"SD05-019EN\",\n    --    \"SD05-020EN\",\n    --}\n\n    --SD04\n    --local cards_to_load = {\n    --    \"SD04-001EN\",\n    --    \"SD04-002EN\",\n    --    \"SD04-003EN\",\n    --    \"SD04-004EN\",\n    --    \"SD04-005EN\",\n    --    \"SD04-006EN\",\n    --    \"SD04-007EN\",\n    --    \"SD04-008EN\",\n    --    \"SD04-009EN\",\n    --    \"SD04-010EN\",\n    --    \"SD04-011EN\",\n    --    \"SD04-012EN\",\n    --    \"SD04-013EN\",\n    --    \"SD04-014EN\",\n    --    \"SD04-015EN\",\n    --    \"SD04-016EN\",\n    --    \"SD04-017EN\",\n    --    \"SD04-018EN\",\n    --    \"SD04-019EN\",\n    --    \"SD04-020EN\",\n    --}\n\n    --SD03\n    --local cards_to_load = {\n    --    \"SD03-001EN\",\n    --    \"SD03-002EN\",\n    --    \"SD03-003EN\",\n    --    \"SD03-004EN\",\n    --    \"SD03-005EN\",\n    --    \"SD03-006EN\",\n    --    \"SD03-007EN\",\n    --    \"SD03-008EN\",\n    --    \"SD03-009EN\",\n    --    \"SD03-010EN\",\n    --    \"SD03-011EN\",\n    --    \"SD03-012EN\",\n    --    \"SD03-013EN\",\n    --    \"SD03-014EN\",\n    --    \"SD03-015EN\",\n    --    \"SD03-016EN\",\n    --    \"SD03-017EN\",\n    --    \"SD03-018EN\",\n    --    \"SD03-019EN\",\n    --    \"SD03-020EN\",\n    --}\n\n    --SD02\n    --local cards_to_load = {\n    --    \"SD02-001EN\",\n    --    \"SD02-002EN\",\n    --    \"SD02-003EN\",\n    --    \"SD02-004EN\",\n    --    \"SD02-005EN\",\n    --    \"SD02-006EN\",\n    --    \"SD02-007EN\",\n    --    \"SD02-008EN\",\n    --    \"SD02-009EN\",\n    --    \"SD02-010EN\",\n    --    \"SD02-011EN\",\n    --    \"SD02-012EN\",\n    --    \"SD02-013EN\",\n    --    \"SD02-014EN\",\n    --    \"SD02-015EN\",\n    --    \"SD02-016EN\",\n    --    \"SD02-017EN\",\n    --    \"SD02-018EN\",\n    --    \"SD02-019EN\",\n    --    \"SD02-020EN\",\n    --}\n\n    --SD01\n    --local cards_to_load = {\n    --    \"SD01-001EN\",\n    --    \"SD01-002EN\",\n    --    \"SD01-003EN\",\n    --    \"SD01-004EN\",\n    --    \"SD01-005EN\",\n    --    \"SD01-006EN\",\n    --    \"SD01-007EN\",\n    --    \"SD01-008EN\",\n    --    \"SD01-009EN\",\n    --    \"SD01-010EN\",\n    --    \"SD01-011EN\",\n    --    \"SD01-012EN\",\n    --    \"SD01-013EN\",\n    --    \"SD01-014EN\",\n    --    \"SD01-015EN\",\n    --    \"SD01-016EN\",\n    --    \"SD01-017EN\",\n    --    \"SD01-018EN\",\n    --    \"SD01-019EN\",\n    --    \"SD01-020EN\",\n    --}\n\n    --local new_loaded_cards = {\n    --}\n\n    --local offset = 0\n    --for i, card_code in ipairs(cards_to_load) do\n    --    local split_card_code = split(card_code, \"-\")\n    --    local new_card = spawnObject({ type = \"Card\", position = { 0, 3 + offset, 0 }, sound = false })\n    --    local file_path = \"file:///C:\\\\Users\\\\Matt\\\\Documents\\\\dev\\\\test_python_sve_stuff_idk\\\\cards\\\\\" .. split_card_code[1] .. \"\\\\\" .. card_code .. \".png\"\n    --    new_card.setCustomObject({ face = file_path, back = back_of_card })\n    --    table.insert(new_loaded_cards, new_card)\n    --    offset = offset + 0.3\n    --end\n\n    print(\"grouping \" .. tostring(#new_loaded_cards) .. \" cards\")\n    group(new_loaded_cards)\nend\n\nlocal test_array = {\n    \"BP01-001EN\",\n    \"BP01-002EN\",\n    \"BP01-003EN\",\n    \"BP01-004EN\",\n    \"BP01-005EN\",\n    \"BP01-006EN\",\n    \"BP01-007EN\",\n    \"BP01-008EN\",\n    \"BP01-009EN\",\n    \"BP01-010EN\",\n    \"BP01-011EN\",\n    \"BP01-012EN\",\n    \"BP01-013EN\",\n    \"BP01-014EN\",\n    \"BP01-015EN\",\n    \"BP01-016EN\",\n    \"BP01-017EN\",\n    \"BP01-018EN\",\n    \"BP01-019EN\",\n    \"BP01-020EN\",\n    \"BP01-021EN\",\n    \"BP01-022EN\",\n    \"BP01-023EN\",\n    \"BP01-024EN\",\n    \"BP01-025EN\",\n    \"BP01-026EN\",\n    \"BP01-027EN\",\n    \"BP01-028EN\",\n    \"BP01-029EN\",\n    \"BP01-030EN\",\n    \"BP01-031EN\",\n    \"BP01-032EN\",\n    \"BP01-033EN\",\n    \"BP01-034EN\",\n    \"BP01-035EN\",\n    \"BP01-036EN\",\n    \"BP01-037EN\",\n    \"BP01-038EN\",\n    \"BP01-039EN\",\n    \"BP01-040EN\",\n    \"BP01-041EN\",\n    \"BP01-042EN\",\n    \"BP01-043EN\",\n    \"BP01-044EN\",\n    \"BP01-045EN\",\n    \"BP01-046EN\",\n    \"BP01-047EN\",\n    \"BP01-048EN\",\n    \"BP01-049EN\",\n    \"BP01-050EN\",\n    \"BP01-051EN\",\n    \"BP01-052EN\",\n    \"BP01-053EN\",\n    \"BP01-054EN\",\n    \"BP01-055EN\",\n    \"BP01-056EN\",\n    \"BP01-057EN\",\n    \"BP01-058EN\",\n    \"BP01-059EN\",\n    \"BP01-060EN\",\n    \"BP01-061EN\",\n    \"BP01-062EN\",\n    \"BP01-063EN\",\n    \"BP01-064EN\",\n    \"BP01-065EN\",\n    \"BP01-066EN\",\n    \"BP01-067EN\",\n    \"BP01-068EN\",\n    \"BP01-069EN\",\n    \"BP01-070EN\",\n    \"BP01-071EN\",\n    \"BP01-072EN\",\n    \"BP01-073EN\",\n    \"BP01-074EN\",\n    \"BP01-075EN\",\n    \"BP01-076EN\",\n    \"BP01-077EN\",\n    \"BP01-078EN\",\n    \"BP01-079EN\",\n    \"BP01-080EN\",\n    \"BP01-081EN\",\n    \"BP01-082EN\",\n    \"BP01-083EN\",\n    \"BP01-084EN\",\n    \"BP01-085EN\",\n    \"BP01-086EN\",\n    \"BP01-087EN\",\n    \"BP01-088EN\",\n    \"BP01-089EN\",\n    \"BP01-090EN\",\n    \"BP01-091EN\",\n    \"BP01-092EN\",\n    \"BP01-093EN\",\n    \"BP01-094EN\",\n    \"BP01-095EN\",\n    \"BP01-096EN\",\n    \"BP01-097EN\",\n    \"BP01-098EN\",\n    \"BP01-099EN\",\n    \"BP01-101EN\",\n    \"BP01-102EN\",\n    \"BP01-103EN\",\n    \"BP01-104EN\",\n    \"BP01-105EN\",\n    \"BP01-106EN\",\n    \"BP01-107EN\",\n    \"BP01-108EN\",\n    \"BP01-109EN\",\n    \"BP01-110EN\",\n    \"BP01-111EN\",\n    \"BP01-112EN\",\n    \"BP01-113EN\",\n    \"BP01-114EN\",\n    \"BP01-115EN\",\n    \"BP01-116EN\",\n    \"BP01-117EN\",\n    \"BP01-118EN\",\n    \"BP01-119EN\",\n    \"BP01-120EN\",\n    \"BP01-121EN\",\n    \"BP01-122EN\",\n    \"BP01-123EN\",\n    \"BP01-124EN\",\n    \"BP01-125EN\",\n    \"BP01-126EN\",\n    \"BP01-127EN\",\n    \"BP01-128EN\",\n    \"BP01-129EN\",\n    \"BP01-130EN\",\n    \"BP01-131EN\",\n    \"BP01-132EN\",\n    \"BP01-133EN\",\n    \"BP01-134EN\",\n    \"BP01-135EN\",\n    \"BP01-136EN\",\n    \"BP01-137EN\",\n    \"BP01-138EN\",\n    \"BP01-139EN\",\n    \"BP01-140EN\",\n    \"BP01-141EN\",\n    \"BP01-142EN\",\n    \"BP01-143EN\",\n    \"BP01-144EN\",\n    \"BP01-145EN\",\n    \"BP01-146EN\",\n    \"BP01-147EN\",\n    \"BP01-148EN\",\n    \"BP01-149EN\",\n    \"BP01-150EN\",\n    \"BP01-151EN\",\n    \"BP01-152EN\",\n    \"BP01-153EN\",\n    \"BP01-154EN\",\n    \"BP01-155EN\",\n    \"BP01-156EN\",\n    \"BP01-157EN\",\n    \"BP01-158EN\",\n    \"BP01-159EN\",\n    \"BP01-160EN\",\n    \"BP01-161EN\",\n    \"BP01-162EN\",\n    \"BP01-163EN\",\n    \"BP01-164EN\",\n    \"BP01-165EN\",\n    \"BP01-166EN\",\n    \"BP01-167EN\",\n    \"BP01-168EN\",\n    \"BP01-169EN\",\n    \"BP01-170EN\",\n    \"BP01-171EN\",\n    \"BP01-172EN\",\n    \"BP01-173EN\",\n    \"BP01-174EN\",\n    \"BP01-175EN\",\n    \"BP01-176EN\",\n    \"BP01-177EN\",\n    \"BP01-178EN\",\n    \"BP01-179EN\",\n    \"BP01-180EN\",\n    \"BP02-001EN\",\n    \"BP02-002EN\",\n    \"BP02-003EN\",\n    \"BP02-004EN\",\n    \"BP02-005EN\",\n    \"BP02-006EN\",\n    \"BP02-007EN\",\n    \"BP02-008EN\",\n    \"BP02-009EN\",\n    \"BP02-010EN\",\n    \"BP02-011EN\",\n    \"BP02-012EN\",\n    \"BP02-010EN\",\n    \"BP02-011EN\",\n    \"BP02-012EN\",\n    \"BP02-013EN\",\n    \"BP02-014EN\",\n    \"BP02-015EN\",\n    \"BP02-016EN\",\n    \"BP02-017EN\",\n    \"BP02-018EN\",\n    \"BP02-019EN\",\n    \"BP02-020EN\",\n    \"BP02-021EN\",\n    \"BP02-022EN\",\n    \"BP02-023EN\",\n    \"BP02-024EN\",\n    \"BP02-025EN\",\n    \"BP02-026EN\",\n    \"BP02-027EN\",\n    \"BP02-028EN\",\n    \"BP02-029EN\",\n    \"BP02-030EN\",\n    \"BP02-031EN\",\n    \"BP02-032EN\",\n    \"BP02-033EN\",\n    \"BP02-034EN\",\n    \"BP02-035EN\",\n    \"BP02-036EN\",\n    \"BP02-037EN\",\n    \"BP02-038EN\",\n    \"BP02-039EN\",\n    \"BP02-040EN\",\n    \"BP02-041EN\",\n    \"BP02-042EN\",\n    \"BP02-043EN\",\n    \"BP02-044EN\",\n    \"BP02-045EN\",\n    \"BP02-046EN\",\n    \"BP02-047EN\",\n    \"BP02-048EN\",\n    \"BP02-049EN\",\n    \"BP02-050EN\",\n    \"BP02-051EN\",\n    \"BP02-052EN\",\n    \"BP02-053EN\",\n    \"BP02-054EN\",\n    \"BP02-055EN\",\n    \"BP02-056EN\",\n    \"BP02-057EN\",\n    \"BP02-058EN\",\n    \"BP02-059EN\",\n    \"BP02-060EN\",\n    \"BP02-061EN\",\n    \"BP02-062EN\",\n    \"BP02-063EN\",\n    \"BP02-064EN\",\n    \"BP02-065EN\",\n    \"BP02-066EN\",\n    \"BP02-067EN\",\n    \"BP02-068EN\",\n    \"BP02-069EN\",\n    \"BP02-070EN\",\n    \"BP02-071EN\",\n    \"BP02-072EN\",\n    \"BP02-073EN\",\n    \"BP02-074EN\",\n    \"BP02-075EN\",\n    \"BP02-076EN\",\n    \"BP02-077EN\",\n    \"BP02-078EN\",\n    \"BP02-079EN\",\n    \"BP02-080EN\",\n    \"BP02-081EN\",\n    \"BP02-082EN\",\n    \"BP02-083EN\",\n    \"BP02-084EN\",\n    \"BP02-085EN\",\n    \"BP02-086EN\",\n    \"BP02-087EN\",\n    \"BP02-088EN\",\n    \"BP02-089EN\",\n    \"BP02-090EN\",\n    \"BP02-091EN\",\n    \"BP02-092EN\",\n    \"BP02-093EN\",\n    \"BP02-094EN\",\n    \"BP02-095EN\",\n    \"BP02-096EN\",\n    \"BP02-097EN\",\n    \"BP02-098EN\",\n    \"BP02-099EN\",\n    \"BP02-101EN\",\n    \"BP02-102EN\",\n    \"BP02-103EN\",\n    \"BP02-104EN\",\n    \"BP02-105EN\",\n    \"BP02-106EN\",\n    \"BP02-107EN\",\n    \"BP02-108EN\",\n    \"BP02-109EN\",\n    \"BP02-110EN\",\n    \"BP02-111EN\",\n    \"BP02-112EN\",\n    \"BP02-113EN\",\n    \"BP02-114EN\",\n    \"BP02-115EN\",\n    \"BP02-116EN\",\n    \"BP02-117EN\",\n    \"BP03-001EN\",\n    \"BP03-002EN\",\n    \"BP03-003EN\",\n    \"BP03-004EN\",\n    \"BP03-005EN\",\n    \"BP03-006EN\",\n    \"BP03-007EN\",\n    \"BP03-008EN\",\n    \"BP03-009EN\",\n    \"BP03-010EN\",\n    \"BP03-011EN\",\n    \"BP03-012EN\",\n    \"BP03-010EN\",\n    \"BP03-011EN\",\n    \"BP03-012EN\",\n    \"BP03-013EN\",\n    \"BP03-014EN\",\n    \"BP03-015EN\",\n    \"BP03-016EN\",\n    \"BP03-017EN\",\n    \"BP03-018EN\",\n    \"BP03-019EN\",\n    \"BP03-020EN\",\n    \"BP03-021EN\",\n    \"BP03-022EN\",\n    \"BP03-023EN\",\n    \"BP03-024EN\",\n    \"BP03-025EN\",\n    \"BP03-026EN\",\n    \"BP03-027EN\",\n    \"BP03-028EN\",\n    \"BP03-029EN\",\n    \"BP03-030EN\",\n    \"BP03-031EN\",\n    \"BP03-032EN\",\n    \"BP03-033EN\",\n    \"BP03-034EN\",\n    \"BP03-035EN\",\n    \"BP03-036EN\",\n    \"BP03-037EN\",\n    \"BP03-038EN\",\n    \"BP03-039EN\",\n    \"BP03-040EN\",\n    \"BP03-041EN\",\n    \"BP03-042EN\",\n    \"BP03-043EN\",\n    \"BP03-044EN\",\n    \"BP03-045EN\",\n    \"BP03-046EN\",\n    \"BP03-047EN\",\n    \"BP03-048EN\",\n    \"BP03-049EN\",\n    \"BP03-050EN\",\n    \"BP03-051EN\",\n    \"BP03-052EN\",\n    \"BP03-053EN\",\n    \"BP03-054EN\",\n    \"BP03-055EN\",\n    \"BP03-056EN\",\n    \"BP03-057EN\",\n    \"BP03-058EN\",\n    \"BP03-059EN\",\n    \"BP03-060EN\",\n    \"BP03-061EN\",\n    \"BP03-062EN\",\n    \"BP03-063EN\",\n    \"BP03-064EN\",\n    \"BP03-065EN\",\n    \"BP03-066EN\",\n    \"BP03-067EN\",\n    \"BP03-068EN\",\n    \"BP03-069EN\",\n    \"BP03-070EN\",\n    \"BP03-071EN\",\n    \"BP03-072EN\",\n    \"BP03-073EN\",\n    \"BP03-074EN\",\n    \"BP03-075EN\",\n    \"BP03-076EN\",\n    \"BP03-077EN\",\n    \"BP03-078EN\",\n    \"BP03-079EN\",\n    \"BP03-080EN\",\n    \"BP03-081EN\",\n    \"BP03-082EN\",\n    \"BP03-083EN\",\n    \"BP03-084EN\",\n    \"BP03-085EN\",\n    \"BP03-086EN\",\n    \"BP03-087EN\",\n    \"BP03-088EN\",\n    \"BP03-089EN\",\n    \"BP03-090EN\",\n    \"BP03-091EN\",\n    \"BP03-092EN\",\n    \"BP03-093EN\",\n    \"BP03-094EN\",\n    \"BP03-095EN\",\n    \"BP03-096EN\",\n    \"BP03-097EN\",\n    \"BP03-098EN\",\n    \"BP03-099EN\",\n    \"BP03-101EN\",\n    \"BP03-102EN\",\n    \"BP03-103EN\",\n    \"BP03-104EN\",\n    \"BP03-105EN\",\n    \"BP03-106EN\",\n    \"BP03-107EN\",\n    \"BP03-108EN\",\n    \"BP03-109EN\",\n    \"BP03-110EN\",\n    \"BP03-111EN\",\n    \"BP03-112EN\",\n    \"BP03-113EN\",\n    \"BP03-114EN\",\n    \"BP03-115EN\",\n    \"BP03-116EN\",\n    \"BP03-117EN\",\n    \"BP03-118EN\",\n    \"BP03-119EN\",\n    \"BP03-120EN\",\n    \"BP03-121EN\",\n    \"BP04-001EN\",\n    \"BP04-002EN\",\n    \"BP04-003EN\",\n    \"BP04-004EN\",\n    \"BP04-005EN\",\n    \"BP04-006EN\",\n    \"BP04-007EN\",\n    \"BP04-008EN\",\n    \"BP04-009EN\",\n    \"BP04-010EN\",\n    \"BP04-011EN\",\n    \"BP04-012EN\",\n    \"BP04-010EN\",\n    \"BP04-011EN\",\n    \"BP04-012EN\",\n    \"BP04-013EN\",\n    \"BP04-014EN\",\n    \"BP04-015EN\",\n    \"BP04-016EN\",\n    \"BP04-017EN\",\n    \"BP04-018EN\",\n    \"BP04-019EN\",\n    \"BP04-020EN\",\n    \"BP04-021EN\",\n    \"BP04-022EN\",\n    \"BP04-023EN\",\n    \"BP04-024EN\",\n    \"BP04-025EN\",\n    \"BP04-026EN\",\n    \"BP04-027EN\",\n    \"BP04-028EN\",\n    \"BP04-029EN\",\n    \"BP04-030EN\",\n    \"BP04-031EN\",\n    \"BP04-032EN\",\n    \"BP04-033EN\",\n    \"BP04-034EN\",\n    \"BP04-035EN\",\n    \"BP04-036EN\",\n    \"BP04-037EN\",\n    \"BP04-038EN\",\n    \"BP04-039EN\",\n    \"BP04-040EN\",\n    \"BP04-041EN\",\n    \"BP04-042EN\",\n    \"BP04-043EN\",\n    \"BP04-044EN\",\n    \"BP04-045EN\",\n    \"BP04-046EN\",\n    \"BP04-047EN\",\n    \"BP04-048EN\",\n    \"BP04-049EN\",\n    \"BP04-050EN\",\n    \"BP04-051EN\",\n    \"BP04-052EN\",\n    \"BP04-053EN\",\n    \"BP04-054EN\",\n    \"BP04-055EN\",\n    \"BP04-056EN\",\n    \"BP04-057EN\",\n    \"BP04-058EN\",\n    \"BP04-059EN\",\n    \"BP04-060EN\",\n    \"BP04-061EN\",\n    \"BP04-062EN\",\n    \"BP04-063EN\",\n    \"BP04-064EN\",\n    \"BP04-065EN\",\n    \"BP04-066EN\",\n    \"BP04-067EN\",\n    \"BP04-068EN\",\n    \"BP04-069EN\",\n    \"BP04-070EN\",\n    \"BP04-071EN\",\n    \"BP04-072EN\",\n    \"BP04-073EN\",\n    \"BP04-074EN\",\n    \"BP04-075EN\",\n    \"BP04-076EN\",\n    \"BP04-077EN\",\n    \"BP04-078EN\",\n    \"BP04-079EN\",\n    \"BP04-080EN\",\n    \"BP04-081EN\",\n    \"BP04-082EN\",\n    \"BP04-083EN\",\n    \"BP04-084EN\",\n    \"BP04-085EN\",\n    \"BP04-086EN\",\n    \"BP04-087EN\",\n    \"BP04-088EN\",\n    \"BP04-089EN\",\n    \"BP04-090EN\",\n    \"BP04-091EN\",\n    \"BP04-092EN\",\n    \"BP04-093EN\",\n    \"BP04-094EN\",\n    \"BP04-095EN\",\n    \"BP04-096EN\",\n    \"BP04-097EN\",\n    \"BP04-098EN\",\n    \"BP04-099EN\",\n    \"BP04-101EN\",\n    \"BP04-102EN\",\n    \"BP04-103EN\",\n    \"BP04-104EN\",\n    \"BP04-105EN\",\n    \"BP04-106EN\",\n    \"BP04-107EN\",\n    \"BP04-108EN\",\n    \"BP04-109EN\",\n    \"BP04-110EN\",\n    \"BP04-111EN\",\n    \"BP04-112EN\",\n    \"BP04-113EN\",\n    \"BP04-114EN\",\n    \"BP04-115EN\",\n    \"BP04-116EN\",\n    \"BP04-117EN\",\n    \"BP04-118EN\",\n    \"BP04-119EN\",\n    \"BP04-120EN\",\n    \"BP04-121EN\",\n    \"BP04-122EN\",\n    \"BP04-123EN\",\n    \"BP04-124EN\",\n    \"BP04-125EN\",\n    \"BP04-126EN\",\n    \"BP04-127EN\",\n    \"BP04-128EN\",\n    \"BP04-129EN\",\n    \"BP04-130EN\",\n    \"BP05-001EN\",\n    \"BP05-002EN\",\n    \"BP05-003EN\",\n    \"BP05-004EN\",\n    \"BP05-005EN\",\n    \"BP05-006EN\",\n    \"BP05-007EN\",\n    \"BP05-008EN\",\n    \"BP05-009EN\",\n    \"BP05-010EN\",\n    \"BP05-011EN\",\n    \"BP05-012EN\",\n    \"BP05-010EN\",\n    \"BP05-011EN\",\n    \"BP05-012EN\",\n    \"BP05-013EN\",\n    \"BP05-014EN\",\n    \"BP05-015EN\",\n    \"BP05-016EN\",\n    \"BP05-017EN\",\n    \"BP05-018EN\",\n    \"BP05-019EN\",\n    \"BP05-020EN\",\n    \"BP05-021EN\",\n    \"BP05-022EN\",\n    \"BP05-023EN\",\n    \"BP05-024EN\",\n    \"BP05-025EN\",\n    \"BP05-026EN\",\n    \"BP05-027EN\",\n    \"BP05-028EN\",\n    \"BP05-029EN\",\n    \"BP05-030EN\",\n    \"BP05-031EN\",\n    \"BP05-032EN\",\n    \"BP05-033EN\",\n    \"BP05-034EN\",\n    \"BP05-035EN\",\n    \"BP05-036EN\",\n    \"BP05-037EN\",\n    \"BP05-038EN\",\n    \"BP05-039EN\",\n    \"BP05-040EN\",\n    \"BP05-041EN\",\n    \"BP05-042EN\",\n    \"BP05-043EN\",\n    \"BP05-044EN\",\n    \"BP05-045EN\",\n    \"BP05-046EN\",\n    \"BP05-047EN\",\n    \"BP05-048EN\",\n    \"BP05-049EN\",\n    \"BP05-050EN\",\n    \"BP05-051EN\",\n    \"BP05-052EN\",\n    \"BP05-053EN\",\n    \"BP05-054EN\",\n    \"BP05-055EN\",\n    \"BP05-056EN\",\n    \"BP05-057EN\",\n    \"BP05-058EN\",\n    \"BP05-059EN\",\n    \"BP05-060EN\",\n    \"BP05-061EN\",\n    \"BP05-062EN\",\n    \"BP05-063EN\",\n    \"BP05-064EN\",\n    \"BP05-065EN\",\n    \"BP05-066EN\",\n    \"BP05-067EN\",\n    \"BP05-068EN\",\n    \"BP05-069EN\",\n    \"BP05-070EN\",\n    \"BP05-071EN\",\n    \"BP05-072EN\",\n    \"BP05-073EN\",\n    \"BP05-074EN\",\n    \"BP05-075EN\",\n    \"BP05-076EN\",\n    \"BP05-077EN\",\n    \"BP05-078EN\",\n    \"BP05-079EN\",\n    \"BP05-080EN\",\n    \"BP05-081EN\",\n    \"BP05-082EN\",\n    \"BP05-083EN\",\n    \"BP05-084EN\",\n    \"BP05-085EN\",\n    \"BP05-086EN\",\n    \"BP05-087EN\",\n    \"BP05-088EN\",\n    \"BP05-089EN\",\n    \"BP05-090EN\",\n    \"BP05-091EN\",\n    \"BP05-092EN\",\n    \"BP05-093EN\",\n    \"BP05-094EN\",\n    \"BP05-095EN\",\n    \"BP05-096EN\",\n    \"BP05-097EN\",\n    \"BP05-098EN\",\n    \"BP05-099EN\",\n    \"BP05-101EN\",\n    \"BP05-102EN\",\n    \"BP05-103EN\",\n    \"BP05-104EN\",\n    \"BP05-105EN\",\n    \"BP05-106EN\",\n    \"BP05-107EN\",\n    \"BP05-108EN\",\n    \"BP05-109EN\",\n    \"BP05-110EN\",\n    \"BP05-111EN\",\n    \"BP05-112EN\",\n    \"BP05-113EN\",\n    \"BP05-114EN\",\n    \"BP05-115EN\",\n    \"BP05-116EN\",\n    \"BP05-117EN\",\n    \"CP01-001EN\",\n    \"CP01-002EN\",\n    \"CP01-003EN\",\n    \"CP01-004EN\",\n    \"CP01-005EN\",\n    \"CP01-006EN\",\n    \"CP01-007EN\",\n    \"CP01-008EN\",\n    \"CP01-009EN\",\n    \"CP01-010EN\",\n    \"CP01-011EN\",\n    \"CP01-012EN\",\n    \"CP01-010EN\",\n    \"CP01-011EN\",\n    \"CP01-012EN\",\n    \"CP01-013EN\",\n    \"CP01-014EN\",\n    \"CP01-015EN\",\n    \"CP01-016EN\",\n    \"CP01-017EN\",\n    \"CP01-018EN\",\n    \"CP01-019EN\",\n    \"CP01-020EN\",\n    \"CP01-021EN\",\n    \"CP01-022EN\",\n    \"CP01-023EN\",\n    \"CP01-024EN\",\n    \"CP01-025EN\",\n    \"CP01-026EN\",\n    \"CP01-027EN\",\n    \"CP01-028EN\",\n    \"CP01-029EN\",\n    \"CP01-030EN\",\n    \"CP01-031EN\",\n    \"CP01-032EN\",\n    \"CP01-033EN\",\n    \"CP01-034EN\",\n    \"CP01-035EN\",\n    \"CP01-036EN\",\n    \"CP01-037EN\",\n    \"CP01-038EN\",\n    \"CP01-039EN\",\n    \"CP01-040EN\",\n    \"CP01-041EN\",\n    \"CP01-042EN\",\n    \"CP01-043EN\",\n    \"CP01-044EN\",\n    \"CP01-045EN\",\n    \"CP01-046EN\",\n    \"CP01-047EN\",\n    \"CP01-048EN\",\n    \"CP01-049EN\",\n    \"CP01-050EN\",\n    \"CP01-051EN\",\n    \"CP01-052EN\",\n    \"CP01-053EN\",\n    \"CP01-054EN\",\n    \"CP01-055EN\",\n    \"CP01-056EN\",\n    \"CP01-057EN\",\n    \"CP01-058EN\",\n    \"CP01-059EN\",\n    \"CP01-060EN\",\n    \"CP01-061EN\",\n    \"CP01-062EN\",\n    \"CP01-063EN\",\n    \"CP01-064EN\",\n    \"CP01-065EN\",\n    \"CP01-066EN\",\n    \"CP01-067EN\",\n    \"CP01-068EN\",\n    \"CP01-069EN\",\n    \"CP01-070EN\",\n    \"CP01-071EN\",\n    \"CP01-072EN\",\n    \"CP01-073EN\",\n    \"CP01-074EN\",\n    \"CP01-075EN\",\n    \"CP01-076EN\",\n    \"CP01-077EN\",\n    \"CP01-078EN\",\n    \"CP01-079EN\",\n    \"CP01-080EN\",\n    \"CP01-081EN\",\n    \"CP01-082EN\",\n    \"CP01-083EN\",\n    \"CP01-084EN\",\n    \"SD01-001EN\",\n    \"SD01-002EN\",\n    \"SD01-003EN\",\n    \"SD01-004EN\",\n    \"SD01-005EN\",\n    \"SD01-006EN\",\n    \"SD01-007EN\",\n    \"SD01-008EN\",\n    \"SD01-009EN\",\n    \"SD01-010EN\",\n    \"SD01-011EN\",\n    \"SD01-012EN\",\n    \"SD01-010EN\",\n    \"SD01-011EN\",\n    \"SD01-012EN\",\n    \"SD01-013EN\",\n    \"SD01-014EN\",\n    \"SD01-015EN\",\n    \"SD01-016EN\",\n    \"SD01-017EN\",\n    \"SD01-018EN\",\n    \"SD01-019EN\",\n    \"SD01-020EN\",\n    \"SD02-001EN\",\n    \"SD02-002EN\",\n    \"SD02-003EN\",\n    \"SD02-004EN\",\n    \"SD02-005EN\",\n    \"SD02-006EN\",\n    \"SD02-007EN\",\n    \"SD02-008EN\",\n    \"SD02-009EN\",\n    \"SD02-010EN\",\n    \"SD02-011EN\",\n    \"SD02-012EN\",\n    \"SD02-010EN\",\n    \"SD02-011EN\",\n    \"SD02-012EN\",\n    \"SD02-013EN\",\n    \"SD02-014EN\",\n    \"SD02-015EN\",\n    \"SD02-016EN\",\n    \"SD02-017EN\",\n    \"SD02-018EN\",\n    \"SD02-019EN\",\n    \"SD02-020EN\",\n    \"SD03-001EN\",\n    \"SD03-002EN\",\n    \"SD03-003EN\",\n    \"SD03-004EN\",\n    \"SD03-005EN\",\n    \"SD03-006EN\",\n    \"SD03-007EN\",\n    \"SD03-008EN\",\n    \"SD03-009EN\",\n    \"SD03-010EN\",\n    \"SD03-011EN\",\n    \"SD03-012EN\",\n    \"SD03-010EN\",\n    \"SD03-011EN\",\n    \"SD03-012EN\",\n    \"SD03-013EN\",\n    \"SD03-014EN\",\n    \"SD03-015EN\",\n    \"SD03-016EN\",\n    \"SD03-017EN\",\n    \"SD03-018EN\",\n    \"SD03-019EN\",\n    \"SD03-020EN\",\n    \"SD04-001EN\",\n    \"SD04-002EN\",\n    \"SD04-003EN\",\n    \"SD04-004EN\",\n    \"SD04-005EN\",\n    \"SD04-006EN\",\n    \"SD04-007EN\",\n    \"SD04-008EN\",\n    \"SD04-009EN\",\n    \"SD04-010EN\",\n    \"SD04-011EN\",\n    \"SD04-012EN\",\n    \"SD04-010EN\",\n    \"SD04-011EN\",\n    \"SD04-012EN\",\n    \"SD04-013EN\",\n    \"SD04-014EN\",\n    \"SD04-015EN\",\n    \"SD04-016EN\",\n    \"SD04-017EN\",\n    \"SD04-018EN\",\n    \"SD04-019EN\",\n    \"SD04-020EN\",\n    \"SD05-001EN\",\n    \"SD05-002EN\",\n    \"SD05-003EN\",\n    \"SD05-004EN\",\n    \"SD05-005EN\",\n    \"SD05-006EN\",\n    \"SD05-007EN\",\n    \"SD05-008EN\",\n    \"SD05-009EN\",\n    \"SD05-010EN\",\n    \"SD05-011EN\",\n    \"SD05-012EN\",\n    \"SD05-010EN\",\n    \"SD05-011EN\",\n    \"SD05-012EN\",\n    \"SD05-013EN\",\n    \"SD05-014EN\",\n    \"SD05-015EN\",\n    \"SD05-016EN\",\n    \"SD05-017EN\",\n    \"SD05-018EN\",\n    \"SD05-019EN\",\n    \"SD05-020EN\",\n    \"SD06-001EN\",\n    \"SD06-002EN\",\n    \"SD06-003EN\",\n    \"SD06-004EN\",\n    \"SD06-005EN\",\n    \"SD06-006EN\",\n    \"SD06-007EN\",\n    \"SD06-008EN\",\n    \"SD06-009EN\",\n    \"SD06-010EN\",\n    \"SD06-011EN\",\n    \"SD06-012EN\",\n    \"SD06-010EN\",\n    \"SD06-011EN\",\n    \"SD06-012EN\",\n    \"SD06-013EN\",\n    \"SD06-014EN\",\n    \"SD06-015EN\",\n    \"SD06-016EN\",\n    \"SD06-017EN\",\n    \"SD06-018EN\",\n    \"SD06-019EN\",\n    \"SD06-020EN\",\n    \"CSD01-001EN\",\n    \"CSD01-002EN\",\n    \"CSD01-003EN\",\n    \"CSD01-004EN\",\n    \"CSD01-005EN\",\n    \"CSD01-006EN\",\n    \"CSD01-007EN\",\n    \"CSD01-008EN\",\n    \"CSD01-009EN\",\n    \"CSD01-010EN\",\n    \"CSD01-011EN\",\n    \"CSD01-012EN\",\n    \"CSD01-010EN\",\n    \"CSD01-011EN\",\n    \"CSD01-012EN\",\n    \"CSD01-013EN\",\n    \"CSD01-014EN\",\n    \"CSD01-015EN\",\n    \"CSD01-016EN\",\n    \"CSD01-017EN\",\n    \"CSD01-018EN\",\n    \"CSD01-019EN\",\n    \"CSD01-020EN\",\n    \"CSD01-021EN\",\n    \"CSD01-022EN\",\n    \"CSD01-023EN\",\n    \"CSD01-024EN\",\n    \"CSD01-025EN\",\n    \"CSD01-026EN\",\n    \"CSD01-027EN\",\n    \"CSD01-028EN\",\n    \"CSD01-029EN\",\n    \"CSD01-030EN\",\n    \"CSD01-031EN\",\n    \"CSD01-032EN\",\n    \"BP01-T01EN\",\n    \"BP01-T02EN\",\n    \"BP01-T03EN\",\n    \"BP01-T04EN\",\n    \"BP01-T05EN\",\n    \"BP01-T06EN\",\n    \"BP01-T07EN\",\n    \"BP01-T08EN\",\n    \"BP01-T09EN\",\n    \"BP01-T10EN\",\n    \"BP01-T11EN\",\n    \"BP01-T12EN\",\n    \"BP01-T10EN\",\n    \"BP01-T11EN\",\n    \"BP01-T12EN\",\n    \"BP01-T13EN\",\n    \"BP01-T14EN\",\n    \"BP01-T15EN\",\n    \"BP01-T16EN\",\n    \"BP01-T17EN\",\n    \"BP02-T01EN\",\n    \"BP02-T02EN\",\n    \"BP02-T03EN\",\n    \"BP02-T04EN\",\n    \"BP02-T05EN\",\n    \"BP02-T06EN\",\n    \"BP02-T07EN\",\n    \"BP02-T08EN\",\n    \"BP03-T01EN\",\n    \"BP04-T01EN\",\n    \"BP04-T02EN\",\n    \"BP04-T03EN\",\n    \"BP04-T04EN\",\n    \"BP05-T01EN\",\n    \"BP05-T02EN\",\n    \"BP05-T03EN\",\n    \"BP05-T04EN\",\n    \"BP05-T05EN\",\n    \"BP01-U01EN\",\n    \"BP01-U02EN\",\n    \"BP01-U03EN\",\n    \"BP01-U04EN\",\n    \"BP01-U05EN\",\n    \"BP01-U06EN\",\n    \"BP01-U07EN\",\n    \"BP02-U01EN\",\n    \"BP02-U02EN\",\n    \"BP02-U03EN\",\n    \"BP02-U04EN\",\n    \"BP02-U05EN\",\n    \"BP02-U06EN\",\n    \"BP02-U07EN\",\n    \"BP03-U01EN\",\n    \"BP03-U02EN\",\n    \"BP03-U03EN\",\n    \"BP03-U04EN\",\n    \"BP03-U05EN\",\n    \"BP03-U06EN\",\n    \"BP03-U07EN\",\n    \"BP04-U01EN\",\n    \"BP04-U02EN\",\n    \"BP04-U03EN\",\n    \"BP04-U04EN\",\n    \"BP04-U05EN\",\n    \"BP04-U06EN\",\n    \"BP04-U07EN\",\n    \"BP05-U01EN\",\n    \"BP05-U02EN\",\n    \"BP05-U03EN\",\n    \"BP05-U04EN\",\n    \"BP05-U05EN\",\n    \"BP05-U06EN\",\n    \"BP05-U07EN\",\n    \"BP01-LD01EN\",\n    \"BP01-LD02EN\",\n    \"BP01-LD03EN\",\n    \"BP01-LD04EN\",\n    \"BP01-LD05EN\",\n    \"BP01-LD06EN\",\n    \"BP01-LD07EN\",\n    \"BP01-LD08EN\",\n    \"BP01-LD09EN\",\n    \"BP01-LD10EN\",\n    \"BP01-LD11EN\",\n    \"BP01-LD12EN\",\n    \"BP02-LD01EN\",\n    \"BP02-LD02EN\",\n    \"BP03-LD01EN\",\n    \"BP03-LD02EN\",\n    \"BP03-LD03EN\",\n    \"BP04-LD01EN\",\n    \"BP04-LD02EN\",\n    \"BP04-LD03EN\",\n    \"BP04-LD04EN\",\n    \"BP04-LD05EN\",\n    \"BP04-LD06EN\",\n    \"BP04-LD07EN\",\n    \"BP04-LD08EN\",\n    \"BP04-LD09EN\",\n    \"BP04-LD10EN\",\n    \"BP05-LD01EN\",\n    \"BP05-LD02EN\",\n    \"BP05-LD03EN\",\n    \"BP05-LD04EN\",\n    \"BP05-LD05EN\",\n    \"BP05-LD06EN\",\n    \"CP01-LD01EN\",\n    \"CP01-LD02EN\",\n    \"CP01-LD03EN\",\n    \"CP01-LD04EN\",\n    \"CP01-LD05EN\",\n    \"CP01-LD06EN\",\n    \"CP01-LD07EN\",\n    \"CP01-LD08EN\",\n    \"CSD-LD01EN\"\n}\n\n--[[ The onUpdate event is called once per frame. --]]\nfunction onUpdate()\n\nend\n\nfunction onPlayerConnect(player)\n    player.promote()\nend\n\nfunction onPlayerTurn(player, previous_player)\n    if player == nil then\n        print(\"Player is nil! Please reset turn functionality.\")\n        Turns.enable = false\n        return\n    end\nend\n\nfunction onPlayerChangeColor(player_color)\n    if player_color == \"Grey\" or player_color == \"Black\" then\n        return\n    end\n\n    if Turns.enable == false then\n        Turns.enable = true\n    end\nend",
+  "LuaScript": "--[[ Lua code. See documentation: https://api.tabletopsimulator.com/ --]]\n\nfunction split(inputstr, sep)\n    if sep == nil then\n        sep = \"%s\" -- Default to whitespace\n    end\n    local t = {}\n    for str in string.gmatch(inputstr, \"([^\" .. sep .. \"]+)\") do\n        table.insert(t, str)\n    end\n    return t\nend\n\n--[[ The onLoad event is called after the game save finishes loading. --]]\nfunction onLoad()\n    --Tables.setTable(\"Table_Custom\")\n    --Tables.setCustomURL(\"http://cloud-3.steamusercontent.com/ugc/2457357698616741578/7BBF631AAED3CD2655503C61051350C69E6B415F/\")\n    Tables.getTableObject().scale({ 0.33, 1, 0.584 })\n\n\n    --local load_params = {\n    --    click_function = \"load_cards\",\n    --    function_owner = self,\n    --    label = \"LOAD\",\n    --    position = { 0, 7, 3 },\n    --    rotation = { 0, 0, 0 },\n    --    width = 800,\n    --    height = 400,\n    --    font_size = 340,\n    --    color = { 0.5, 0.5, 0.5 },\n    --    font_color = { 1, 1, 1 },\n    --    tooltip = \"Spawn shitloads of cards my guy\"\n    --}\n\n    --Tables.getTableObject().createButton(load_params)\nend\n\nlocal ui_handler_cache = {}\n\nfunction register_ui_handler(params)\n    if ui_handler_cache[params.id] ~= nil then\n        error(\"Attempt to re-register handler with the same ID.\")\n        return\n    end\n\n    ui_handler_cache[params.id] = params.binding\nend\n\nfunction invoke_ui_handler(params)\n    if ui_handler_cache[params.id] == nil then\n        error(\"Attempt to invoke nonexistent UI handler function.\")\n    end\n\n    local binding = ui_handler_cache[params.id]\n    getObjectFromGUID(binding.binding_object).call(binding.func_name, params.args)\nend\n\n--[[ The onUpdate event is called once per frame. --]]\nfunction onUpdate()\n\nend\n\nfunction onPlayerConnect(player)\n    player.promote()\nend\n\nfunction onPlayerTurn(player, previous_player)\n    if player == nil then\n        print(\"Player is nil! Please reset turn functionality.\")\n        Turns.enable = false\n        return\n    end\nend\n\nfunction onPlayerChangeColor(player_color)\n    if player_color == \"Grey\" or player_color == \"Black\" then\n        return\n    end\n\n    --if Turns.enable == false then\n    --    Turns.enable = true\n    --end\nend\n\nfunction onObjectSpawn(object)\n    if object.type ~= \"Card\" then\n        return\n    end\n    \n    local existing_script = object.getLuaScript()\n    \n    --if existing_script ~= nil or existing_script ~= \"\" then\n    --    print(existing_script)\n    --    return\n    --end\n\n    \n    local functions_to_add = [[\nfunction onSave()\n\n    local xml_ui_str = self.UI.getXml()\n\n    local return_table = { xml_ui = xml_ui_str, context_table = self.getTable(\"contextualTableData\") }\n\n    if return_table.context_table == nil then\n        return_table.context_table = {}\n    end\n\n    return JSON.encode(return_table)\n\nend\n\n\nfunction onLoad(script_state)\n    local state_table = JSON.decode(script_state)\n\n    if state_table == nil then\n        return\n    end\n    \n    local assets = UI.getCustomAssets()\n    self.UI.setCustomAssets(assets)\n\n    if state_table.xml_ui ~= nil then\n        self.UI.setXml(state_table.xml_ui)\n    end\n\n    local contextual_data = state_table.context_table\n\n    if contextual_data == nil then\n        contextual_data = {}\n    end\n\n    self.setTable(\"contextualTableData\", contextual_data)\nend\n\nfunction on_dynamic_button_click(player, _, id)\n    Global.call(\"invoke_ui_handler\", {id = id, args = {context_object = self.getGUID()}})\nend\n    ]]\n\n    object.setLuaScript(functions_to_add)\nend\n\n\n\nfunction load_cards(obj, color, alt_click)\n    -- this is cooked as fuck bro\n    local back_of_card =\n    \"http://cloud-3.steamusercontent.com/ugc/2462986661277403686/F7DECF05616CD3296AB56BC3D51096286805962F/\"\n    --local test_array = {\n    --    \"BP01-001EN\",\n    --    \"BP01-002EN\",\n    --    \"BP01-003EN\",\n    --    \"BP01-004EN\",\n    --    \"BP01-005EN\",\n    --    \"BP01-006EN\",\n    --    \"BP01-007EN\",\n    --    \"BP01-008EN\",\n    --    \"BP01-009EN\",\n    --    \"BP01-010EN\",\n    --    \"BP01-011EN\",\n    --    \"BP01-012EN\",\n    --    \"BP01-013EN\",\n    --    \"BP01-014EN\",\n    --    \"BP01-015EN\",\n    --    \"BP01-016EN\",\n    --    \"BP01-017EN\",\n    --    \"BP01-018EN\",\n    --    \"BP01-019EN\",\n    --    \"BP01-020EN\",\n    --    \"BP01-021EN\",\n    --    \"BP01-022EN\",\n    --    \"BP01-023EN\",\n    --    \"BP01-024EN\",\n    --    \"BP01-025EN\",\n    --    \"BP01-026EN\",\n    --    \"BP01-027EN\",\n    --    \"BP01-028EN\",\n    --    \"BP01-029EN\",\n    --    \"BP01-030EN\",\n    --    \"BP01-031EN\",\n    --    \"BP01-032EN\",\n    --    \"BP01-033EN\",\n    --    \"BP01-034EN\",\n    --    \"BP01-035EN\",\n    --    \"BP01-036EN\",\n    --    \"BP01-037EN\",\n    --    \"BP01-038EN\",\n    --    \"BP01-039EN\",\n    --    \"BP01-040EN\",\n    --    \"BP01-041EN\",\n    --    \"BP01-042EN\",\n    --    \"BP01-043EN\",\n    --    \"BP01-044EN\",\n    --    \"BP01-045EN\",\n    --    \"BP01-046EN\",\n    --    \"BP01-047EN\",\n    --    \"BP01-048EN\",\n    --    \"BP01-049EN\",\n    --    \"BP01-050EN\",\n    --    \"BP01-051EN\",\n    --    \"BP01-052EN\",\n    --    \"BP01-053EN\",\n    --    \"BP01-054EN\",\n    --    \"BP01-055EN\",\n    --    \"BP01-056EN\",\n    --    \"BP01-057EN\",\n    --    \"BP01-058EN\",\n    --    \"BP01-059EN\",\n    --    \"BP01-060EN\",\n    --    \"BP01-061EN\",\n    --    \"BP01-062EN\",\n    --    \"BP01-063EN\",\n    --    \"BP01-064EN\",\n    --    \"BP01-065EN\",\n    --    \"BP01-066EN\",\n    --    \"BP01-067EN\",\n    --    \"BP01-068EN\",\n    --    \"BP01-069EN\",\n    --    \"BP01-070EN\",\n    --    \"BP01-071EN\",\n    --    \"BP01-072EN\",\n    --    \"BP01-073EN\",\n    --    \"BP01-074EN\",\n    --    \"BP01-075EN\",\n    --    \"BP01-076EN\",\n    --    \"BP01-077EN\",\n    --    \"BP01-078EN\",\n    --    \"BP01-079EN\",\n    --    \"BP01-080EN\",\n    --    \"BP01-081EN\",\n    --    \"BP01-082EN\",\n    --    \"BP01-083EN\",\n    --    \"BP01-084EN\",\n    --    \"BP01-085EN\",\n    --    \"BP01-086EN\",\n    --    \"BP01-087EN\",\n    --    \"BP01-088EN\",\n    --    \"BP01-089EN\",\n    --    \"BP01-090EN\",\n    --    \"BP01-091EN\",\n    --    \"BP01-092EN\",\n    --    \"BP01-093EN\",\n    --    \"BP01-094EN\",\n    --    \"BP01-095EN\",\n    --    \"BP01-096EN\",\n    --    \"BP01-097EN\",\n    --    \"BP01-098EN\",\n    --    \"BP01-099EN\",\n    --    \"BP01-101EN\",\n    --    \"BP01-102EN\",\n    --    \"BP01-103EN\",\n    --    \"BP01-104EN\",\n    --    \"BP01-105EN\",\n    --    \"BP01-106EN\",\n    --    \"BP01-107EN\",\n    --    \"BP01-108EN\",\n    --    \"BP01-109EN\",\n    --    \"BP01-110EN\",\n    --    \"BP01-111EN\",\n    --    \"BP01-112EN\",\n    --    \"BP01-113EN\",\n    --    \"BP01-114EN\",\n    --    \"BP01-115EN\",\n    --    \"BP01-116EN\",\n    --    \"BP01-117EN\",\n    --    \"BP01-118EN\",\n    --    \"BP01-119EN\",\n    --    \"BP01-120EN\",\n    --    \"BP01-121EN\",\n    --    \"BP01-122EN\",\n    --    \"BP01-123EN\",\n    --    \"BP01-124EN\",\n    --    \"BP01-125EN\",\n    --    \"BP01-126EN\",\n    --    \"BP01-127EN\",\n    --    \"BP01-128EN\",\n    --    \"BP01-129EN\",\n    --    \"BP01-130EN\",\n    --    \"BP01-131EN\",\n    --    \"BP01-132EN\",\n    --    \"BP01-133EN\",\n    --    \"BP01-134EN\",\n    --    \"BP01-135EN\",\n    --    \"BP01-136EN\",\n    --    \"BP01-137EN\",\n    --    \"BP01-138EN\",\n    --    \"BP01-139EN\",\n    --    \"BP01-140EN\",\n    --    \"BP01-141EN\",\n    --    \"BP01-142EN\",\n    --    \"BP01-143EN\",\n    --    \"BP01-144EN\",\n    --    \"BP01-145EN\",\n    --    \"BP01-146EN\",\n    --    \"BP01-147EN\",\n    --    \"BP01-148EN\",\n    --    \"BP01-149EN\",\n    --    \"BP01-150EN\",\n    --    \"BP01-151EN\",\n    --    \"BP01-152EN\",\n    --    \"BP01-153EN\",\n    --    \"BP01-154EN\",\n    --    \"BP01-155EN\",\n    --    \"BP01-156EN\",\n    --    \"BP01-157EN\",\n    --    \"BP01-158EN\",\n    --    \"BP01-159EN\",\n    --    \"BP01-160EN\",\n    --    \"BP01-161EN\",\n    --    \"BP01-162EN\",\n    --    \"BP01-163EN\",\n    --    \"BP01-164EN\",\n    --    \"BP01-165EN\",\n    --    \"BP01-166EN\",\n    --    \"BP01-167EN\",\n    --    \"BP01-168EN\",\n    --    \"BP01-169EN\",\n    --    \"BP01-170EN\",\n    --    \"BP01-171EN\",\n    --    \"BP01-172EN\",\n    --    \"BP01-173EN\",\n    --    \"BP01-174EN\",\n    --    \"BP01-175EN\",\n    --    \"BP01-176EN\",\n    --    \"BP01-177EN\",\n    --    \"BP01-178EN\",\n    --    \"BP01-179EN\",\n    --    \"BP01-180EN\",\n    --    \"BP02-001EN\",\n    --    \"BP02-002EN\",\n    --    \"BP02-003EN\",\n    --    \"BP02-004EN\",\n    --    \"BP02-005EN\",\n    --    \"BP02-006EN\",\n    --    \"BP02-007EN\",\n    --    \"BP02-008EN\",\n    --    \"BP02-009EN\",\n    --    \"BP02-010EN\",\n    --    \"BP02-011EN\",\n    --    \"BP02-012EN\",\n    --    \"BP02-010EN\",\n    --    \"BP02-011EN\",\n    --    \"BP02-012EN\",\n    --    \"BP02-013EN\",\n    --    \"BP02-014EN\",\n    --    \"BP02-015EN\",\n    --    \"BP02-016EN\",\n    --    \"BP02-017EN\",\n    --    \"BP02-018EN\",\n    --    \"BP02-019EN\",\n    --    \"BP02-020EN\",\n    --    \"BP02-021EN\",\n    --    \"BP02-022EN\",\n    --    \"BP02-023EN\",\n    --    \"BP02-024EN\",\n    --    \"BP02-025EN\",\n    --    \"BP02-026EN\",\n    --    \"BP02-027EN\",\n    --    \"BP02-028EN\",\n    --    \"BP02-029EN\",\n    --    \"BP02-030EN\",\n    --    \"BP02-031EN\",\n    --    \"BP02-032EN\",\n    --    \"BP02-033EN\",\n    --    \"BP02-034EN\",\n    --    \"BP02-035EN\",\n    --    \"BP02-036EN\",\n    --    \"BP02-037EN\",\n    --    \"BP02-038EN\",\n    --    \"BP02-039EN\",\n    --    \"BP02-040EN\",\n    --    \"BP02-041EN\",\n    --    \"BP02-042EN\",\n    --    \"BP02-043EN\",\n    --    \"BP02-044EN\",\n    --    \"BP02-045EN\",\n    --    \"BP02-046EN\",\n    --    \"BP02-047EN\",\n    --    \"BP02-048EN\",\n    --    \"BP02-049EN\",\n    --    \"BP02-050EN\",\n    --    \"BP02-051EN\",\n    --    \"BP02-052EN\",\n    --    \"BP02-053EN\",\n    --    \"BP02-054EN\",\n    --    \"BP02-055EN\",\n    --    \"BP02-056EN\",\n    --    \"BP02-057EN\",\n    --    \"BP02-058EN\",\n    --    \"BP02-059EN\",\n    --    \"BP02-060EN\",\n    --    \"BP02-061EN\",\n    --    \"BP02-062EN\",\n    --    \"BP02-063EN\",\n    --    \"BP02-064EN\",\n    --    \"BP02-065EN\",\n    --    \"BP02-066EN\",\n    --    \"BP02-067EN\",\n    --    \"BP02-068EN\",\n    --    \"BP02-069EN\",\n    --    \"BP02-070EN\",\n    --    \"BP02-071EN\",\n    --    \"BP02-072EN\",\n    --    \"BP02-073EN\",\n    --    \"BP02-074EN\",\n    --    \"BP02-075EN\",\n    --    \"BP02-076EN\",\n    --    \"BP02-077EN\",\n    --    \"BP02-078EN\",\n    --    \"BP02-079EN\",\n    --    \"BP02-080EN\",\n    --    \"BP02-081EN\",\n    --    \"BP02-082EN\",\n    --    \"BP02-083EN\",\n    --    \"BP02-084EN\",\n    --    \"BP02-085EN\",\n    --    \"BP02-086EN\",\n    --    \"BP02-087EN\",\n    --    \"BP02-088EN\",\n    --    \"BP02-089EN\",\n    --    \"BP02-090EN\",\n    --    \"BP02-091EN\",\n    --    \"BP02-092EN\",\n    --    \"BP02-093EN\",\n    --    \"BP02-094EN\",\n    --    \"BP02-095EN\",\n    --    \"BP02-096EN\",\n    --    \"BP02-097EN\",\n    --    \"BP02-098EN\",\n    --    \"BP02-099EN\",\n    --    \"BP02-101EN\",\n    --    \"BP02-102EN\",\n    --    \"BP02-103EN\",\n    --    \"BP02-104EN\",\n    --    \"BP02-105EN\",\n    --    \"BP02-106EN\",\n    --    \"BP02-107EN\",\n    --    \"BP02-108EN\",\n    --    \"BP02-109EN\",\n    --    \"BP02-110EN\",\n    --    \"BP02-111EN\",\n    --    \"BP02-112EN\",\n    --    \"BP02-113EN\",\n    --    \"BP02-114EN\",\n    --    \"BP02-115EN\",\n    --    \"BP02-116EN\",\n    --    \"BP02-117EN\",\n    --    \"BP03-001EN\",\n    --    \"BP03-002EN\",\n    --    \"BP03-003EN\",\n    --    \"BP03-004EN\",\n    --    \"BP03-005EN\",\n    --    \"BP03-006EN\",\n    --    \"BP03-007EN\",\n    --    \"BP03-008EN\",\n    --    \"BP03-009EN\",\n    --    \"BP03-010EN\",\n    --    \"BP03-011EN\",\n    --    \"BP03-012EN\",\n    --    \"BP03-010EN\",\n    --    \"BP03-011EN\",\n    --    \"BP03-012EN\",\n    --    \"BP03-013EN\",\n    --    \"BP03-014EN\",\n    --    \"BP03-015EN\",\n    --    \"BP03-016EN\",\n    --    \"BP03-017EN\",\n    --    \"BP03-018EN\",\n    --    \"BP03-019EN\",\n    --    \"BP03-020EN\",\n    --    \"BP03-021EN\",\n    --    \"BP03-022EN\",\n    --    \"BP03-023EN\",\n    --    \"BP03-024EN\",\n    --    \"BP03-025EN\",\n    --    \"BP03-026EN\",\n    --    \"BP03-027EN\",\n    --    \"BP03-028EN\",\n    --    \"BP03-029EN\",\n    --    \"BP03-030EN\",\n    --    \"BP03-031EN\",\n    --    \"BP03-032EN\",\n    --    \"BP03-033EN\",\n    --    \"BP03-034EN\",\n    --    \"BP03-035EN\",\n    --    \"BP03-036EN\",\n    --    \"BP03-037EN\",\n    --    \"BP03-038EN\",\n    --    \"BP03-039EN\",\n    --    \"BP03-040EN\",\n    --    \"BP03-041EN\",\n    --    \"BP03-042EN\",\n    --    \"BP03-043EN\",\n    --    \"BP03-044EN\",\n    --    \"BP03-045EN\",\n    --    \"BP03-046EN\",\n    --    \"BP03-047EN\",\n    --    \"BP03-048EN\",\n    --    \"BP03-049EN\",\n    --    \"BP03-050EN\",\n    --    \"BP03-051EN\",\n    --    \"BP03-052EN\",\n    --    \"BP03-053EN\",\n    --    \"BP03-054EN\",\n    --    \"BP03-055EN\",\n    --    \"BP03-056EN\",\n    --    \"BP03-057EN\",\n    --    \"BP03-058EN\",\n    --    \"BP03-059EN\",\n    --    \"BP03-060EN\",\n    --    \"BP03-061EN\",\n    --    \"BP03-062EN\",\n    --    \"BP03-063EN\",\n    --    \"BP03-064EN\",\n    --    \"BP03-065EN\",\n    --    \"BP03-066EN\",\n    --    \"BP03-067EN\",\n    --    \"BP03-068EN\",\n    --    \"BP03-069EN\",\n    --    \"BP03-070EN\",\n    --    \"BP03-071EN\",\n    --    \"BP03-072EN\",\n    --    \"BP03-073EN\",\n    --    \"BP03-074EN\",\n    --    \"BP03-075EN\",\n    --    \"BP03-076EN\",\n    --    \"BP03-077EN\",\n    --    \"BP03-078EN\",\n    --    \"BP03-079EN\",\n    --    \"BP03-080EN\",\n    --    \"BP03-081EN\",\n    --    \"BP03-082EN\",\n    --    \"BP03-083EN\",\n    --    \"BP03-084EN\",\n    --    \"BP03-085EN\",\n    --    \"BP03-086EN\",\n    --    \"BP03-087EN\",\n    --    \"BP03-088EN\",\n    --    \"BP03-089EN\",\n    --    \"BP03-090EN\",\n    --    \"BP03-091EN\",\n    --    \"BP03-092EN\",\n    --    \"BP03-093EN\",\n    --    \"BP03-094EN\",\n    --    \"BP03-095EN\",\n    --    \"BP03-096EN\",\n    --    \"BP03-097EN\",\n    --    \"BP03-098EN\",\n    --    \"BP03-099EN\",\n    --    \"BP03-101EN\",\n    --    \"BP03-102EN\",\n    --    \"BP03-103EN\",\n    --    \"BP03-104EN\",\n    --    \"BP03-105EN\",\n    --    \"BP03-106EN\",\n    --    \"BP03-107EN\",\n    --    \"BP03-108EN\",\n    --    \"BP03-109EN\",\n    --    \"BP03-110EN\",\n    --    \"BP03-111EN\",\n    --    \"BP03-112EN\",\n    --    \"BP03-113EN\",\n    --    \"BP03-114EN\",\n    --    \"BP03-115EN\",\n    --    \"BP03-116EN\",\n    --    \"BP03-117EN\",\n    --    \"BP03-118EN\",\n    --    \"BP03-119EN\",\n    --    \"BP03-120EN\",\n    --    \"BP03-121EN\",\n    --    \"BP04-001EN\",\n    --    \"BP04-002EN\",\n    --    \"BP04-003EN\",\n    --    \"BP04-004EN\",\n    --    \"BP04-005EN\",\n    --    \"BP04-006EN\",\n    --    \"BP04-007EN\",\n    --    \"BP04-008EN\",\n    --    \"BP04-009EN\",\n    --    \"BP04-010EN\",\n    --    \"BP04-011EN\",\n    --    \"BP04-012EN\",\n    --    \"BP04-010EN\",\n    --    \"BP04-011EN\",\n    --    \"BP04-012EN\",\n    --    \"BP04-013EN\",\n    --    \"BP04-014EN\",\n    --    \"BP04-015EN\",\n    --    \"BP04-016EN\",\n    --    \"BP04-017EN\",\n    --    \"BP04-018EN\",\n    --    \"BP04-019EN\",\n    --    \"BP04-020EN\",\n    --    \"BP04-021EN\",\n    --    \"BP04-022EN\",\n    --    \"BP04-023EN\",\n    --    \"BP04-024EN\",\n    --    \"BP04-025EN\",\n    --    \"BP04-026EN\",\n    --    \"BP04-027EN\",\n    --    \"BP04-028EN\",\n    --    \"BP04-029EN\",\n    --    \"BP04-030EN\",\n    --    \"BP04-031EN\",\n    --    \"BP04-032EN\",\n    --    \"BP04-033EN\",\n    --    \"BP04-034EN\",\n    --    \"BP04-035EN\",\n    --    \"BP04-036EN\",\n    --    \"BP04-037EN\",\n    --    \"BP04-038EN\",\n    --    \"BP04-039EN\",\n    --    \"BP04-040EN\",\n    --    \"BP04-041EN\",\n    --    \"BP04-042EN\",\n    --    \"BP04-043EN\",\n    --    \"BP04-044EN\",\n    --    \"BP04-045EN\",\n    --    \"BP04-046EN\",\n    --    \"BP04-047EN\",\n    --    \"BP04-048EN\",\n    --    \"BP04-049EN\",\n    --    \"BP04-050EN\",\n    --    \"BP04-051EN\",\n    --    \"BP04-052EN\",\n    --    \"BP04-053EN\",\n    --    \"BP04-054EN\",\n    --    \"BP04-055EN\",\n    --    \"BP04-056EN\",\n    --    \"BP04-057EN\",\n    --    \"BP04-058EN\",\n    --    \"BP04-059EN\",\n    --    \"BP04-060EN\",\n    --    \"BP04-061EN\",\n    --    \"BP04-062EN\",\n    --    \"BP04-063EN\",\n    --    \"BP04-064EN\",\n    --    \"BP04-065EN\",\n    --    \"BP04-066EN\",\n    --    \"BP04-067EN\",\n    --    \"BP04-068EN\",\n    --    \"BP04-069EN\",\n    --    \"BP04-070EN\",\n    --    \"BP04-071EN\",\n    --    \"BP04-072EN\",\n    --    \"BP04-073EN\",\n    --    \"BP04-074EN\",\n    --    \"BP04-075EN\",\n    --    \"BP04-076EN\",\n    --    \"BP04-077EN\",\n    --    \"BP04-078EN\",\n    --    \"BP04-079EN\",\n    --    \"BP04-080EN\",\n    --    \"BP04-081EN\",\n    --    \"BP04-082EN\",\n    --    \"BP04-083EN\",\n    --    \"BP04-084EN\",\n    --    \"BP04-085EN\",\n    --    \"BP04-086EN\",\n    --    \"BP04-087EN\",\n    --    \"BP04-088EN\",\n    --    \"BP04-089EN\",\n    --    \"BP04-090EN\",\n    --    \"BP04-091EN\",\n    --    \"BP04-092EN\",\n    --    \"BP04-093EN\",\n    --    \"BP04-094EN\",\n    --    \"BP04-095EN\",\n    --    \"BP04-096EN\",\n    --    \"BP04-097EN\",\n    --    \"BP04-098EN\",\n    --    \"BP04-099EN\",\n    --    \"BP04-101EN\",\n    --    \"BP04-102EN\",\n    --    \"BP04-103EN\",\n    --    \"BP04-104EN\",\n    --    \"BP04-105EN\",\n    --    \"BP04-106EN\",\n    --    \"BP04-107EN\",\n    --    \"BP04-108EN\",\n    --    \"BP04-109EN\",\n    --    \"BP04-110EN\",\n    --    \"BP04-111EN\",\n    --    \"BP04-112EN\",\n    --    \"BP04-113EN\",\n    --    \"BP04-114EN\",\n    --    \"BP04-115EN\",\n    --    \"BP04-116EN\",\n    --    \"BP04-117EN\",\n    --    \"BP04-118EN\",\n    --    \"BP04-119EN\",\n    --    \"BP04-120EN\",\n    --    \"BP04-121EN\",\n    --    \"BP04-122EN\",\n    --    \"BP04-123EN\",\n    --    \"BP04-124EN\",\n    --    \"BP04-125EN\",\n    --    \"BP04-126EN\",\n    --    \"BP04-127EN\",\n    --    \"BP04-128EN\",\n    --    \"BP04-129EN\",\n    --    \"BP04-130EN\",\n    --    \"BP05-001EN\",\n    --    \"BP05-002EN\",\n    --    \"BP05-003EN\",\n    --    \"BP05-004EN\",\n    --    \"BP05-005EN\",\n    --    \"BP05-006EN\",\n    --    \"BP05-007EN\",\n    --    \"BP05-008EN\",\n    --    \"BP05-009EN\",\n    --    \"BP05-010EN\",\n    --    \"BP05-011EN\",\n    --    \"BP05-012EN\",\n    --    \"BP05-010EN\",\n    --    \"BP05-011EN\",\n    --    \"BP05-012EN\",\n    --    \"BP05-013EN\",\n    --    \"BP05-014EN\",\n    --    \"BP05-015EN\",\n    --    \"BP05-016EN\",\n    --    \"BP05-017EN\",\n    --    \"BP05-018EN\",\n    --    \"BP05-019EN\",\n    --    \"BP05-020EN\",\n    --    \"BP05-021EN\",\n    --    \"BP05-022EN\",\n    --    \"BP05-023EN\",\n    --    \"BP05-024EN\",\n    --    \"BP05-025EN\",\n    --    \"BP05-026EN\",\n    --    \"BP05-027EN\",\n    --    \"BP05-028EN\",\n    --    \"BP05-029EN\",\n    --    \"BP05-030EN\",\n    --    \"BP05-031EN\",\n    --    \"BP05-032EN\",\n    --    \"BP05-033EN\",\n    --    \"BP05-034EN\",\n    --    \"BP05-035EN\",\n    --    \"BP05-036EN\",\n    --    \"BP05-037EN\",\n    --    \"BP05-038EN\",\n    --    \"BP05-039EN\",\n    --    \"BP05-040EN\",\n    --    \"BP05-041EN\",\n    --    \"BP05-042EN\",\n    --    \"BP05-043EN\",\n    --    \"BP05-044EN\",\n    --    \"BP05-045EN\",\n    --    \"BP05-046EN\",\n    --    \"BP05-047EN\",\n    --    \"BP05-048EN\",\n    --    \"BP05-049EN\",\n    --    \"BP05-050EN\",\n    --    \"BP05-051EN\",\n    --    \"BP05-052EN\",\n    --    \"BP05-053EN\",\n    --    \"BP05-054EN\",\n    --    \"BP05-055EN\",\n    --    \"BP05-056EN\",\n    --    \"BP05-057EN\",\n    --    \"BP05-058EN\",\n    --    \"BP05-059EN\",\n    --    \"BP05-060EN\",\n    --    \"BP05-061EN\",\n    --    \"BP05-062EN\",\n    --    \"BP05-063EN\",\n    --    \"BP05-064EN\",\n    --    \"BP05-065EN\",\n    --    \"BP05-066EN\",\n    --    \"BP05-067EN\",\n    --    \"BP05-068EN\",\n    --    \"BP05-069EN\",\n    --    \"BP05-070EN\",\n    --    \"BP05-071EN\",\n    --    \"BP05-072EN\",\n    --    \"BP05-073EN\",\n    --    \"BP05-074EN\",\n    --    \"BP05-075EN\",\n    --    \"BP05-076EN\",\n    --    \"BP05-077EN\",\n    --    \"BP05-078EN\",\n    --    \"BP05-079EN\",\n    --    \"BP05-080EN\",\n    --    \"BP05-081EN\",\n    --    \"BP05-082EN\",\n    --    \"BP05-083EN\",\n    --    \"BP05-084EN\",\n    --    \"BP05-085EN\",\n    --    \"BP05-086EN\",\n    --    \"BP05-087EN\",\n    --    \"BP05-088EN\",\n    --    \"BP05-089EN\",\n    --    \"BP05-090EN\",\n    --    \"BP05-091EN\",\n    --    \"BP05-092EN\",\n    --    \"BP05-093EN\",\n    --    \"BP05-094EN\",\n    --    \"BP05-095EN\",\n    --    \"BP05-096EN\",\n    --    \"BP05-097EN\",\n    --    \"BP05-098EN\",\n    --    \"BP05-099EN\",\n    --    \"BP05-101EN\",\n    --    \"BP05-102EN\",\n    --    \"BP05-103EN\",\n    --    \"BP05-104EN\",\n    --    \"BP05-105EN\",\n    --    \"BP05-106EN\",\n    --    \"BP05-107EN\",\n    --    \"BP05-108EN\",\n    --    \"BP05-109EN\",\n    --    \"BP05-110EN\",\n    --    \"BP05-111EN\",\n    --    \"BP05-112EN\",\n    --    \"BP05-113EN\",\n    --    \"BP05-114EN\",\n    --    \"BP05-115EN\",\n    --    \"BP05-116EN\",\n    --    \"BP05-117EN\",\n    --    \"CP01-001EN\",\n    --    \"CP01-002EN\",\n    --    \"CP01-003EN\",\n    --    \"CP01-004EN\",\n    --    \"CP01-005EN\",\n    --    \"CP01-006EN\",\n    --    \"CP01-007EN\",\n    --    \"CP01-008EN\",\n    --    \"CP01-009EN\",\n    --    \"CP01-010EN\",\n    --    \"CP01-011EN\",\n    --    \"CP01-012EN\",\n    --    \"CP01-010EN\",\n    --    \"CP01-011EN\",\n    --    \"CP01-012EN\",\n    --    \"CP01-013EN\",\n    --    \"CP01-014EN\",\n    --    \"CP01-015EN\",\n    --    \"CP01-016EN\",\n    --    \"CP01-017EN\",\n    --    \"CP01-018EN\",\n    --    \"CP01-019EN\",\n    --    \"CP01-020EN\",\n    --    \"CP01-021EN\",\n    --    \"CP01-022EN\",\n    --    \"CP01-023EN\",\n    --    \"CP01-024EN\",\n    --    \"CP01-025EN\",\n    --    \"CP01-026EN\",\n    --    \"CP01-027EN\",\n    --    \"CP01-028EN\",\n    --    \"CP01-029EN\",\n    --    \"CP01-030EN\",\n    --    \"CP01-031EN\",\n    --    \"CP01-032EN\",\n    --    \"CP01-033EN\",\n    --    \"CP01-034EN\",\n    --    \"CP01-035EN\",\n    --    \"CP01-036EN\",\n    --    \"CP01-037EN\",\n    --    \"CP01-038EN\",\n    --    \"CP01-039EN\",\n    --    \"CP01-040EN\",\n    --    \"CP01-041EN\",\n    --    \"CP01-042EN\",\n    --    \"CP01-043EN\",\n    --    \"CP01-044EN\",\n    --    \"CP01-045EN\",\n    --    \"CP01-046EN\",\n    --    \"CP01-047EN\",\n    --    \"CP01-048EN\",\n    --    \"CP01-049EN\",\n    --    \"CP01-050EN\",\n    --    \"CP01-051EN\",\n    --    \"CP01-052EN\",\n    --    \"CP01-053EN\",\n    --    \"CP01-054EN\",\n    --    \"CP01-055EN\",\n    --    \"CP01-056EN\",\n    --    \"CP01-057EN\",\n    --    \"CP01-058EN\",\n    --    \"CP01-059EN\",\n    --    \"CP01-060EN\",\n    --    \"CP01-061EN\",\n    --    \"CP01-062EN\",\n    --    \"CP01-063EN\",\n    --    \"CP01-064EN\",\n    --    \"CP01-065EN\",\n    --    \"CP01-066EN\",\n    --    \"CP01-067EN\",\n    --    \"CP01-068EN\",\n    --    \"CP01-069EN\",\n    --    \"CP01-070EN\",\n    --    \"CP01-071EN\",\n    --    \"CP01-072EN\",\n    --    \"CP01-073EN\",\n    --    \"CP01-074EN\",\n    --    \"CP01-075EN\",\n    --    \"CP01-076EN\",\n    --    \"CP01-077EN\",\n    --    \"CP01-078EN\",\n    --    \"CP01-079EN\",\n    --    \"CP01-080EN\",\n    --    \"CP01-081EN\",\n    --    \"CP01-082EN\",\n    --    \"CP01-083EN\",\n    --    \"CP01-084EN\",\n    --    \"SD01-001EN\",\n    --    \"SD01-002EN\",\n    --    \"SD01-003EN\",\n    --    \"SD01-004EN\",\n    --    \"SD01-005EN\",\n    --    \"SD01-006EN\",\n    --    \"SD01-007EN\",\n    --    \"SD01-008EN\",\n    --    \"SD01-009EN\",\n    --    \"SD01-010EN\",\n    --    \"SD01-011EN\",\n    --    \"SD01-012EN\",\n    --    \"SD01-010EN\",\n    --    \"SD01-011EN\",\n    --    \"SD01-012EN\",\n    --    \"SD01-013EN\",\n    --    \"SD01-014EN\",\n    --    \"SD01-015EN\",\n    --    \"SD01-016EN\",\n    --    \"SD01-017EN\",\n    --    \"SD01-018EN\",\n    --    \"SD01-019EN\",\n    --    \"SD01-020EN\",\n    --    \"SD02-001EN\",\n    --    \"SD02-002EN\",\n    --    \"SD02-003EN\",\n    --    \"SD02-004EN\",\n    --    \"SD02-005EN\",\n    --    \"SD02-006EN\",\n    --    \"SD02-007EN\",\n    --    \"SD02-008EN\",\n    --    \"SD02-009EN\",\n    --    \"SD02-010EN\",\n    --    \"SD02-011EN\",\n    --    \"SD02-012EN\",\n    --    \"SD02-010EN\",\n    --    \"SD02-011EN\",\n    --    \"SD02-012EN\",\n    --    \"SD02-013EN\",\n    --    \"SD02-014EN\",\n    --    \"SD02-015EN\",\n    --    \"SD02-016EN\",\n    --    \"SD02-017EN\",\n    --    \"SD02-018EN\",\n    --    \"SD02-019EN\",\n    --    \"SD02-020EN\",\n    --    \"SD03-001EN\",\n    --    \"SD03-002EN\",\n    --    \"SD03-003EN\",\n    --    \"SD03-004EN\",\n    --    \"SD03-005EN\",\n    --    \"SD03-006EN\",\n    --    \"SD03-007EN\",\n    --    \"SD03-008EN\",\n    --    \"SD03-009EN\",\n    --    \"SD03-010EN\",\n    --    \"SD03-011EN\",\n    --    \"SD03-012EN\",\n    --    \"SD03-010EN\",\n    --    \"SD03-011EN\",\n    --    \"SD03-012EN\",\n    --    \"SD03-013EN\",\n    --    \"SD03-014EN\",\n    --    \"SD03-015EN\",\n    --    \"SD03-016EN\",\n    --    \"SD03-017EN\",\n    --    \"SD03-018EN\",\n    --    \"SD03-019EN\",\n    --    \"SD03-020EN\",\n    --    \"SD04-001EN\",\n    --    \"SD04-002EN\",\n    --    \"SD04-003EN\",\n    --    \"SD04-004EN\",\n    --    \"SD04-005EN\",\n    --    \"SD04-006EN\",\n    --    \"SD04-007EN\",\n    --    \"SD04-008EN\",\n    --    \"SD04-009EN\",\n    --    \"SD04-010EN\",\n    --    \"SD04-011EN\",\n    --    \"SD04-012EN\",\n    --    \"SD04-010EN\",\n    --    \"SD04-011EN\",\n    --    \"SD04-012EN\",\n    --    \"SD04-013EN\",\n    --    \"SD04-014EN\",\n    --    \"SD04-015EN\",\n    --    \"SD04-016EN\",\n    --    \"SD04-017EN\",\n    --    \"SD04-018EN\",\n    --    \"SD04-019EN\",\n    --    \"SD04-020EN\",\n    --    \"SD05-001EN\",\n    --    \"SD05-002EN\",\n    --    \"SD05-003EN\",\n    --    \"SD05-004EN\",\n    --    \"SD05-005EN\",\n    --    \"SD05-006EN\",\n    --    \"SD05-007EN\",\n    --    \"SD05-008EN\",\n    --    \"SD05-009EN\",\n    --    \"SD05-010EN\",\n    --    \"SD05-011EN\",\n    --    \"SD05-012EN\",\n    --    \"SD05-010EN\",\n    --    \"SD05-011EN\",\n    --    \"SD05-012EN\",\n    --    \"SD05-013EN\",\n    --    \"SD05-014EN\",\n    --    \"SD05-015EN\",\n    --    \"SD05-016EN\",\n    --    \"SD05-017EN\",\n    --    \"SD05-018EN\",\n    --    \"SD05-019EN\",\n    --    \"SD05-020EN\",\n    --    \"SD06-001EN\",\n    --    \"SD06-002EN\",\n    --    \"SD06-003EN\",\n    --    \"SD06-004EN\",\n    --    \"SD06-005EN\",\n    --    \"SD06-006EN\",\n    --    \"SD06-007EN\",\n    --    \"SD06-008EN\",\n    --    \"SD06-009EN\",\n    --    \"SD06-010EN\",\n    --    \"SD06-011EN\",\n    --    \"SD06-012EN\",\n    --    \"SD06-010EN\",\n    --    \"SD06-011EN\",\n    --    \"SD06-012EN\",\n    --    \"SD06-013EN\",\n    --    \"SD06-014EN\",\n    --    \"SD06-015EN\",\n    --    \"SD06-016EN\",\n    --    \"SD06-017EN\",\n    --    \"SD06-018EN\",\n    --    \"SD06-019EN\",\n    --    \"SD06-020EN\",\n    --    \"CSD01-001EN\",\n    --    \"CSD01-002EN\",\n    --    \"CSD01-003EN\",\n    --    \"CSD01-004EN\",\n    --    \"CSD01-005EN\",\n    --    \"CSD01-006EN\",\n    --    \"CSD01-007EN\",\n    --    \"CSD01-008EN\",\n    --    \"CSD01-009EN\",\n    --    \"CSD01-010EN\",\n    --    \"CSD01-011EN\",\n    --    \"CSD01-012EN\",\n    --    \"CSD01-010EN\",\n    --    \"CSD01-011EN\",\n    --    \"CSD01-012EN\",\n    --    \"CSD01-013EN\",\n    --    \"CSD01-014EN\",\n    --    \"CSD01-015EN\",\n    --    \"CSD01-016EN\",\n    --    \"CSD01-017EN\",\n    --    \"CSD01-018EN\",\n    --    \"CSD01-019EN\",\n    --    \"CSD01-020EN\",\n    --    \"CSD01-021EN\",\n    --    \"CSD01-022EN\",\n    --    \"CSD01-023EN\",\n    --    \"CSD01-024EN\",\n    --    \"CSD01-025EN\",\n    --    \"CSD01-026EN\",\n    --    \"CSD01-027EN\",\n    --    \"CSD01-028EN\",\n    --    \"CSD01-029EN\",\n    --    \"CSD01-030EN\",\n    --    \"CSD01-031EN\",\n    --    \"CSD01-032EN\",\n    --    \"BP01-T01EN\",\n    --    \"BP01-T02EN\",\n    --    \"BP01-T03EN\",\n    --    \"BP01-T04EN\",\n    --    \"BP01-T05EN\",\n    --    \"BP01-T06EN\",\n    --    \"BP01-T07EN\",\n    --    \"BP01-T08EN\",\n    --    \"BP01-T09EN\",\n    --    \"BP01-T10EN\",\n    --    \"BP01-T11EN\",\n    --    \"BP01-T12EN\",\n    --    \"BP01-T10EN\",\n    --    \"BP01-T11EN\",\n    --    \"BP01-T12EN\",\n    --    \"BP01-T13EN\",\n    --    \"BP01-T14EN\",\n    --    \"BP01-T15EN\",\n    --    \"BP01-T16EN\",\n    --    \"BP01-T17EN\",\n    --    \"BP02-T01EN\",\n    --    \"BP02-T02EN\",\n    --    \"BP02-T03EN\",\n    --    \"BP02-T04EN\",\n    --    \"BP02-T05EN\",\n    --    \"BP02-T06EN\",\n    --    \"BP02-T07EN\",\n    --    \"BP02-T08EN\",\n    --    \"BP03-T01EN\",\n    --    \"BP04-T01EN\",\n    --    \"BP04-T02EN\",\n    --    \"BP04-T03EN\",\n    --    \"BP04-T04EN\",\n    --    \"BP05-T01EN\",\n    --    \"BP05-T02EN\",\n    --    \"BP05-T03EN\",\n    --    \"BP05-T04EN\",\n    --    \"BP05-T05EN\",\n    --    \"BP01-U01EN\",\n    --    \"BP01-U02EN\",\n    --    \"BP01-U03EN\",\n    --    \"BP01-U04EN\",\n    --    \"BP01-U05EN\",\n    --    \"BP01-U06EN\",\n    --    \"BP01-U07EN\",\n    --    \"BP02-U01EN\",\n    --    \"BP02-U02EN\",\n    --    \"BP02-U03EN\",\n    --    \"BP02-U04EN\",\n    --    \"BP02-U05EN\",\n    --    \"BP02-U06EN\",\n    --    \"BP02-U07EN\",\n    --    \"BP03-U01EN\",\n    --    \"BP03-U02EN\",\n    --    \"BP03-U03EN\",\n    --    \"BP03-U04EN\",\n    --    \"BP03-U05EN\",\n    --    \"BP03-U06EN\",\n    --    \"BP03-U07EN\",\n    --    \"BP04-U01EN\",\n    --    \"BP04-U02EN\",\n    --    \"BP04-U03EN\",\n    --    \"BP04-U04EN\",\n    --    \"BP04-U05EN\",\n    --    \"BP04-U06EN\",\n    --    \"BP04-U07EN\",\n    --    \"BP05-U01EN\",\n    --    \"BP05-U02EN\",\n    --    \"BP05-U03EN\",\n    --    \"BP05-U04EN\",\n    --    \"BP05-U05EN\",\n    --    \"BP05-U06EN\",\n    --    \"BP05-U07EN\",\n    --    \"BP01-LD01EN\",\n    --    \"BP01-LD02EN\",\n    --    \"BP01-LD03EN\",\n    --    \"BP01-LD04EN\",\n    --    \"BP01-LD05EN\",\n    --    \"BP01-LD06EN\",\n    --    \"BP01-LD07EN\",\n    --    \"BP01-LD08EN\",\n    --    \"BP01-LD09EN\",\n    --    \"BP01-LD10EN\",\n    --    \"BP01-LD11EN\",\n    --    \"BP01-LD12EN\",\n    --    \"BP02-LD01EN\",\n    --    \"BP02-LD02EN\",\n    --    \"BP03-LD01EN\",\n    --    \"BP03-LD02EN\",\n    --    \"BP03-LD03EN\",\n    --    \"BP04-LD01EN\",\n    --    \"BP04-LD02EN\",\n    --    \"BP04-LD03EN\",\n    --    \"BP04-LD04EN\",\n    --    \"BP04-LD05EN\",\n    --    \"BP04-LD06EN\",\n    --    \"BP04-LD07EN\",\n    --    \"BP04-LD08EN\",\n    --    \"BP04-LD09EN\",\n    --    \"BP04-LD10EN\",\n    --    \"BP05-LD01EN\",\n    --    \"BP05-LD02EN\",\n    --    \"BP05-LD03EN\",\n    --    \"BP05-LD04EN\",\n    --    \"BP05-LD05EN\",\n    --    \"BP05-LD06EN\",\n    --    \"CP01-LD01EN\",\n    --    \"CP01-LD02EN\",\n    --    \"CP01-LD03EN\",\n    --    \"CP01-LD04EN\",\n    --    \"CP01-LD05EN\",\n    --    \"CP01-LD06EN\",\n    --    \"CP01-LD07EN\",\n    --    \"CP01-LD08EN\",\n    --    \"CSD-LD01EN\"\n    --}\n\n\n    -- BP01\n    --local cards_to_load = {\n    --    \"BP01-001EN\",\n    --    \"BP01-002EN\",\n    --    \"BP01-003EN\",\n    --    \"BP01-004EN\",\n    --    \"BP01-005EN\",\n    --    \"BP01-006EN\",\n    --    \"BP01-007EN\",\n    --    \"BP01-008EN\",\n    --    \"BP01-009EN\",\n    --    \"BP01-010EN\",\n    --    \"BP01-011EN\",\n    --    \"BP01-012EN\",\n    --    \"BP01-013EN\",\n    --    \"BP01-014EN\",\n    --    \"BP01-015EN\",\n    --    \"BP01-016EN\",\n    --    \"BP01-017EN\",\n    --    \"BP01-018EN\",\n    --    \"BP01-019EN\",\n    --    \"BP01-020EN\",\n    --    \"BP01-021EN\",\n    --    \"BP01-022EN\",\n    --    \"BP01-023EN\",\n    --    \"BP01-024EN\",\n    --    \"BP01-025EN\",\n    --    \"BP01-026EN\",\n    --    \"BP01-027EN\",\n    --    \"BP01-028EN\",\n    --    \"BP01-029EN\",\n    --    \"BP01-030EN\",\n    --    \"BP01-031EN\",\n    --    \"BP01-032EN\",\n    --    \"BP01-033EN\",\n    --    \"BP01-034EN\",\n    --    \"BP01-035EN\",\n    --    \"BP01-036EN\",\n    --    \"BP01-037EN\",\n    --    \"BP01-038EN\",\n    --    \"BP01-039EN\",\n    --    \"BP01-040EN\",\n    --    \"BP01-041EN\",\n    --    \"BP01-042EN\",\n    --    \"BP01-043EN\",\n    --    \"BP01-044EN\",\n    --    \"BP01-045EN\",\n    --    \"BP01-046EN\",\n    --    \"BP01-047EN\",\n    --    \"BP01-048EN\",\n    --    \"BP01-049EN\",\n    --    \"BP01-050EN\",\n    --    \"BP01-051EN\",\n    --    \"BP01-052EN\",\n    --    \"BP01-053EN\",\n    --    \"BP01-054EN\",\n    --    \"BP01-055EN\",\n    --    \"BP01-056EN\",\n    --    \"BP01-057EN\",\n    --    \"BP01-058EN\",\n    --    \"BP01-059EN\",\n    --    \"BP01-060EN\",\n    --    \"BP01-061EN\",\n    --    \"BP01-062EN\",\n    --    \"BP01-063EN\",\n    --    \"BP01-064EN\",\n    --    \"BP01-065EN\",\n    --    \"BP01-066EN\",\n    --    \"BP01-067EN\",\n    --    \"BP01-068EN\",\n    --    \"BP01-069EN\",\n    --    \"BP01-070EN\",\n    --    \"BP01-071EN\",\n    --    \"BP01-072EN\",\n    --    \"BP01-073EN\",\n    --    \"BP01-074EN\",\n    --    \"BP01-075EN\",\n    --    \"BP01-076EN\",\n    --    \"BP01-077EN\",\n    --    \"BP01-078EN\",\n    --    \"BP01-079EN\",\n    --    \"BP01-080EN\",\n    --    \"BP01-081EN\",\n    --    \"BP01-082EN\",\n    --    \"BP01-083EN\",\n    --    \"BP01-084EN\",\n    --    \"BP01-085EN\",\n    --    \"BP01-086EN\",\n    --    \"BP01-087EN\",\n    --    \"BP01-088EN\",\n    --    \"BP01-089EN\",\n    --    \"BP01-090EN\",\n    --    \"BP01-091EN\",\n    --    \"BP01-092EN\",\n    --    \"BP01-093EN\",\n    --    \"BP01-094EN\",\n    --    \"BP01-095EN\",\n    --    \"BP01-096EN\",\n    --    \"BP01-097EN\",\n    --    \"BP01-098EN\",\n    --    \"BP01-099EN\",\n    --    \"BP01-100EN\",\n    --    \"BP01-101EN\",\n    --    \"BP01-102EN\",\n    --    \"BP01-103EN\",\n    --    \"BP01-104EN\",\n    --    \"BP01-105EN\",\n    --    \"BP01-106EN\",\n    --    \"BP01-107EN\",\n    --    \"BP01-108EN\",\n    --    \"BP01-109EN\",\n    --    \"BP01-110EN\",\n    --    \"BP01-111EN\",\n    --    \"BP01-112EN\",\n    --    \"BP01-113EN\",\n    --    \"BP01-114EN\",\n    --    \"BP01-115EN\",\n    --    \"BP01-116EN\",\n    --    \"BP01-117EN\",\n    --    \"BP01-118EN\",\n    --    \"BP01-119EN\",\n    --    \"BP01-120EN\",\n    --    \"BP01-121EN\",\n    --    \"BP01-122EN\",\n    --    \"BP01-123EN\",\n    --    \"BP01-124EN\",\n    --    \"BP01-125EN\",\n    --    \"BP01-126EN\",\n    --    \"BP01-127EN\",\n    --    \"BP01-128EN\",\n    --    \"BP01-129EN\",\n    --    \"BP01-130EN\",\n    --    \"BP01-131EN\",\n    --    \"BP01-132EN\",\n    --    \"BP01-133EN\",\n    --    \"BP01-134EN\",\n    --    \"BP01-135EN\",\n    --    \"BP01-136EN\",\n    --    \"BP01-137EN\",\n    --    \"BP01-138EN\",\n    --    \"BP01-139EN\",\n    --    \"BP01-140EN\",\n    --    \"BP01-141EN\",\n    --    \"BP01-142EN\",\n    --    \"BP01-143EN\",\n    --    \"BP01-144EN\",\n    --    \"BP01-145EN\",\n    --    \"BP01-146EN\",\n    --    \"BP01-147EN\",\n    --    \"BP01-148EN\",\n    --    \"BP01-149EN\",\n    --    \"BP01-150EN\",\n    --    \"BP01-151EN\",\n    --    \"BP01-152EN\",\n    --    \"BP01-153EN\",\n    --    \"BP01-154EN\",\n    --    \"BP01-155EN\",\n    --    \"BP01-156EN\",\n    --    \"BP01-157EN\",\n    --    \"BP01-158EN\",\n    --    \"BP01-159EN\",\n    --    \"BP01-160EN\",\n    --    \"BP01-161EN\",\n    --    \"BP01-162EN\",\n    --    \"BP01-163EN\",\n    --    \"BP01-164EN\",\n    --    \"BP01-165EN\",\n    --    \"BP01-166EN\",\n    --    \"BP01-167EN\",\n    --    \"BP01-168EN\",\n    --    \"BP01-169EN\",\n    --    \"BP01-170EN\",\n    --    \"BP01-171EN\",\n    --    \"BP01-172EN\",\n    --    \"BP01-173EN\",\n    --    \"BP01-174EN\",\n    --    \"BP01-175EN\",\n    --    \"BP01-176EN\",\n    --    \"BP01-177EN\",\n    --    \"BP01-178EN\",\n    --    \"BP01-179EN\",\n    --    \"BP01-180EN\",\n    --    \"BP01-U01EN\",\n    --    \"BP01-U02EN\",\n    --    \"BP01-U03EN\",\n    --    \"BP01-U04EN\",\n    --    \"BP01-U05EN\",\n    --    \"BP01-U06EN\",\n    --    \"BP01-U07EN\",\n    --    \"BP01-LD01EN\",\n    --    \"BP01-LD02EN\",\n    --    \"BP01-LD03EN\",\n    --    \"BP01-LD04EN\",\n    --    \"BP01-LD05EN\",\n    --    \"BP01-LD06EN\",\n    --    \"BP01-LD07EN\",\n    --    \"BP01-LD08EN\",\n    --    \"BP01-LD09EN\",\n    --    \"BP01-LD10EN\",\n    --    \"BP01-LD11EN\",\n    --    \"BP01-LD12EN\",\n    --    \"BP01-T01EN\",\n    --    \"BP01-T02EN\",\n    --    \"BP01-T03EN\",\n    --    \"BP01-T04EN\",\n    --    \"BP01-T05EN\",\n    --    \"BP01-T06EN\",\n    --    \"BP01-T07EN\",\n    --    \"BP01-T08EN\",\n    --    \"BP01-T09EN\",\n    --    \"BP01-T10EN\",\n    --    \"BP01-T11EN\",\n    --    \"BP01-T12EN\",\n    --    \"BP01-T13EN\",\n    --    \"BP01-T14EN\",\n    --    \"BP01-T15EN\",\n    --    \"BP01-T16EN\",\n    --    \"BP01-T17EN\",\n    --}\n\n    -- BP02\n    --local cards_to_load = {\n    --    \"BP02-001EN\",\n    --    \"BP02-002EN\",\n    --    \"BP02-003EN\",\n    --    \"BP02-004EN\",\n    --    \"BP02-005EN\",\n    --    \"BP02-006EN\",\n    --    \"BP02-007EN\",\n    --    \"BP02-008EN\",\n    --    \"BP02-009EN\",\n    --    \"BP02-010EN\",\n    --    \"BP02-011EN\",\n    --    \"BP02-012EN\",\n    --    \"BP02-013EN\",\n    --    \"BP02-014EN\",\n    --    \"BP02-015EN\",\n    --    \"BP02-016EN\",\n    --    \"BP02-017EN\",\n    --    \"BP02-018EN\",\n    --    \"BP02-019EN\",\n    --    \"BP02-020EN\",\n    --    \"BP02-021EN\",\n    --    \"BP02-022EN\",\n    --    \"BP02-023EN\",\n    --    \"BP02-024EN\",\n    --    \"BP02-025EN\",\n    --    \"BP02-026EN\",\n    --    \"BP02-027EN\",\n    --    \"BP02-028EN\",\n    --    \"BP02-029EN\",\n    --    \"BP02-030EN\",\n    --    \"BP02-031EN\",\n    --    \"BP02-032EN\",\n    --    \"BP02-033EN\",\n    --    \"BP02-034EN\",\n    --    \"BP02-035EN\",\n    --    \"BP02-036EN\",\n    --    \"BP02-037EN\",\n    --    \"BP02-038EN\",\n    --    \"BP02-039EN\",\n    --    \"BP02-040EN\",\n    --    \"BP02-041EN\",\n    --    \"BP02-042EN\",\n    --    \"BP02-043EN\",\n    --    \"BP02-044EN\",\n    --    \"BP02-045EN\",\n    --    \"BP02-046EN\",\n    --    \"BP02-047EN\",\n    --    \"BP02-048EN\",\n    --    \"BP02-049EN\",\n    --    \"BP02-050EN\",\n    --    \"BP02-051EN\",\n    --    \"BP02-052EN\",\n    --    \"BP02-053EN\",\n    --    \"BP02-054EN\",\n    --    \"BP02-055EN\",\n    --    \"BP02-056EN\",\n    --    \"BP02-057EN\",\n    --    \"BP02-058EN\",\n    --    \"BP02-059EN\",\n    --    \"BP02-060EN\",\n    --    \"BP02-061EN\",\n    --    \"BP02-062EN\",\n    --    \"BP02-063EN\",\n    --    \"BP02-064EN\",\n    --    \"BP02-065EN\",\n    --    \"BP02-066EN\",\n    --    \"BP02-067EN\",\n    --    \"BP02-068EN\",\n    --    \"BP02-069EN\",\n    --    \"BP02-070EN\",\n    --    \"BP02-071EN\",\n    --    \"BP02-072EN\",\n    --    \"BP02-073EN\",\n    --    \"BP02-074EN\",\n    --    \"BP02-075EN\",\n    --    \"BP02-076EN\",\n    --    \"BP02-077EN\",\n    --    \"BP02-078EN\",\n    --    \"BP02-079EN\",\n    --    \"BP02-080EN\",\n    --    \"BP02-081EN\",\n    --    \"BP02-082EN\",\n    --    \"BP02-083EN\",\n    --    \"BP02-084EN\",\n    --    \"BP02-085EN\",\n    --    \"BP02-086EN\",\n    --    \"BP02-087EN\",\n    --    \"BP02-088EN\",\n    --    \"BP02-089EN\",\n    --    \"BP02-090EN\",\n    --    \"BP02-091EN\",\n    --    \"BP02-092EN\",\n    --    \"BP02-093EN\",\n    --    \"BP02-094EN\",\n    --    \"BP02-095EN\",\n    --    \"BP02-096EN\",\n    --    \"BP02-097EN\",\n    --    \"BP02-098EN\",\n    --    \"BP02-099EN\",\n    --    \"BP02-100EN\",\n    --    \"BP02-101EN\",\n    --    \"BP02-102EN\",\n    --    \"BP02-103EN\",\n    --    \"BP02-104EN\",\n    --    \"BP02-105EN\",\n    --    \"BP02-106EN\",\n    --    \"BP02-107EN\",\n    --    \"BP02-108EN\",\n    --    \"BP02-109EN\",\n    --    \"BP02-110EN\",\n    --    \"BP02-111EN\",\n    --    \"BP02-112EN\",\n    --    \"BP02-113EN\",\n    --    \"BP02-114EN\",\n    --    \"BP02-115EN\",\n    --    \"BP02-116EN\",\n    --    \"BP02-117EN\",\n    --    \"BP02-U01EN\",\n    --    \"BP02-U02EN\",\n    --    \"BP02-U03EN\",\n    --    \"BP02-U04EN\",\n    --    \"BP02-U05EN\",\n    --    \"BP02-U06EN\",\n    --    \"BP02-U07EN\",\n    --    \"BP02-T01EN\",\n    --    \"BP02-T02EN\",\n    --    \"BP02-T03EN\",\n    --    \"BP02-T04EN\",\n    --    \"BP02-T05EN\",\n    --    \"BP02-T06EN\",\n    --    \"BP02-T07EN\",\n    --    \"BP02-T08EN\",\n    --}\n\n    --BP03\n    --local cards_to_load = {\n    --    \"BP03-001EN\",\n    --    \"BP03-002EN\",\n    --    \"BP03-003EN\",\n    --    \"BP03-004EN\",\n    --    \"BP03-005EN\",\n    --    \"BP03-006EN\",\n    --    \"BP03-007EN\",\n    --    \"BP03-008EN\",\n    --    \"BP03-009EN\",\n    --    \"BP03-010EN\",\n    --    \"BP03-011EN\",\n    --    \"BP03-012EN\",\n    --    \"BP03-013EN\",\n    --    \"BP03-014EN\",\n    --    \"BP03-015EN\",\n    --    \"BP03-016EN\",\n    --    \"BP03-017EN\",\n    --    \"BP03-018EN\",\n    --    \"BP03-019EN\",\n    --    \"BP03-020EN\",\n    --    \"BP03-021EN\",\n    --    \"BP03-022EN\",\n    --    \"BP03-023EN\",\n    --    \"BP03-024EN\",\n    --    \"BP03-025EN\",\n    --    \"BP03-026EN\",\n    --    \"BP03-027EN\",\n    --    \"BP03-028EN\",\n    --    \"BP03-029EN\",\n    --    \"BP03-030EN\",\n    --    \"BP03-031EN\",\n    --    \"BP03-032EN\",\n    --    \"BP03-033EN\",\n    --    \"BP03-034EN\",\n    --    \"BP03-035EN\",\n    --    \"BP03-036EN\",\n    --    \"BP03-037EN\",\n    --    \"BP03-038EN\",\n    --    \"BP03-039EN\",\n    --    \"BP03-040EN\",\n    --    \"BP03-041EN\",\n    --    \"BP03-042EN\",\n    --    \"BP03-043EN\",\n    --    \"BP03-044EN\",\n    --    \"BP03-045EN\",\n    --    \"BP03-046EN\",\n    --    \"BP03-047EN\",\n    --    \"BP03-048EN\",\n    --    \"BP03-049EN\",\n    --    \"BP03-050EN\",\n    --    \"BP03-051EN\",\n    --    \"BP03-052EN\",\n    --    \"BP03-053EN\",\n    --    \"BP03-054EN\",\n    --    \"BP03-055EN\",\n    --    \"BP03-056EN\",\n    --    \"BP03-057EN\",\n    --    \"BP03-058EN\",\n    --    \"BP03-059EN\",\n    --    \"BP03-060EN\",\n    --    \"BP03-061EN\",\n    --    \"BP03-062EN\",\n    --    \"BP03-063EN\",\n    --    \"BP03-064EN\",\n    --    \"BP03-065EN\",\n    --    \"BP03-066EN\",\n    --    \"BP03-067EN\",\n    --    \"BP03-068EN\",\n    --    \"BP03-069EN\",\n    --    \"BP03-070EN\",\n    --    \"BP03-071EN\",\n    --    \"BP03-072EN\",\n    --    \"BP03-073EN\",\n    --    \"BP03-074EN\",\n    --    \"BP03-075EN\",\n    --    \"BP03-076EN\",\n    --    \"BP03-077EN\",\n    --    \"BP03-078EN\",\n    --    \"BP03-079EN\",\n    --    \"BP03-080EN\",\n    --    \"BP03-081EN\",\n    --    \"BP03-082EN\",\n    --    \"BP03-083EN\",\n    --    \"BP03-084EN\",\n    --    \"BP03-085EN\",\n    --    \"BP03-086EN\",\n    --    \"BP03-087EN\",\n    --    \"BP03-088EN\",\n    --    \"BP03-089EN\",\n    --    \"BP03-090EN\",\n    --    \"BP03-091EN\",\n    --    \"BP03-092EN\",\n    --    \"BP03-093EN\",\n    --    \"BP03-094EN\",\n    --    \"BP03-095EN\",\n    --    \"BP03-096EN\",\n    --    \"BP03-097EN\",\n    --    \"BP03-098EN\",\n    --    \"BP03-099EN\",\n    --    \"BP03-100EN\",\n    --    \"BP03-101EN\",\n    --    \"BP03-102EN\",\n    --    \"BP03-103EN\",\n    --    \"BP03-104EN\",\n    --    \"BP03-105EN\",\n    --    \"BP03-106EN\",\n    --    \"BP03-107EN\",\n    --    \"BP03-108EN\",\n    --    \"BP03-109EN\",\n    --    \"BP03-110EN\",\n    --    \"BP03-111EN\",\n    --    \"BP03-112EN\",\n    --    \"BP03-113EN\",\n    --    \"BP03-114EN\",\n    --    \"BP03-115EN\",\n    --    \"BP03-116EN\",\n    --    \"BP03-117EN\",\n    --    \"BP03-118EN\",\n    --    \"BP03-119EN\",\n    --    \"BP03-120EN\",\n    --    \"BP03-121EN\",\n    --    \"BP03-U01EN\",\n    --    \"BP03-U02EN\",\n    --    \"BP03-U03EN\",\n    --    \"BP03-U04EN\",\n    --    \"BP03-U05EN\",\n    --    \"BP03-U06EN\",\n    --    \"BP03-U07EN\",\n    --    \"BP03-LD01EN\",\n    --    \"BP03-LD02EN\",\n    --    \"BP03-LD03EN\",\n    --    \"BP03-T01EN\",\n    --}\n\n    --BP04\n    --local cards_to_load = {\n    --    \"BP04-001EN\",\n    --    \"BP04-002EN\",\n    --    \"BP04-003EN\",\n    --    \"BP04-004EN\",\n    --    \"BP04-005EN\",\n    --    \"BP04-006EN\",\n    --    \"BP04-007EN\",\n    --    \"BP04-008EN\",\n    --    \"BP04-009EN\",\n    --    \"BP04-010EN\",\n    --    \"BP04-011EN\",\n    --    \"BP04-012EN\",\n    --    \"BP04-013EN\",\n    --    \"BP04-014EN\",\n    --    \"BP04-015EN\",\n    --    \"BP04-016EN\",\n    --    \"BP04-017EN\",\n    --    \"BP04-018EN\",\n    --    \"BP04-019EN\",\n    --    \"BP04-020EN\",\n    --    \"BP04-021EN\",\n    --    \"BP04-022EN\",\n    --    \"BP04-023EN\",\n    --    \"BP04-024EN\",\n    --    \"BP04-025EN\",\n    --    \"BP04-026EN\",\n    --    \"BP04-027EN\",\n    --    \"BP04-028EN\",\n    --    \"BP04-029EN\",\n    --    \"BP04-030EN\",\n    --    \"BP04-031EN\",\n    --    \"BP04-032EN\",\n    --    \"BP04-033EN\",\n    --    \"BP04-034EN\",\n    --    \"BP04-035EN\",\n    --    \"BP04-036EN\",\n    --    \"BP04-037EN\",\n    --    \"BP04-038EN\",\n    --    \"BP04-039EN\",\n    --    \"BP04-040EN\",\n    --    \"BP04-041EN\",\n    --    \"BP04-042EN\",\n    --    \"BP04-043EN\",\n    --    \"BP04-044EN\",\n    --    \"BP04-045EN\",\n    --    \"BP04-046EN\",\n    --    \"BP04-047EN\",\n    --    \"BP04-048EN\",\n    --    \"BP04-049EN\",\n    --    \"BP04-050EN\",\n    --    \"BP04-051EN\",\n    --    \"BP04-052EN\",\n    --    \"BP04-053EN\",\n    --    \"BP04-054EN\",\n    --    \"BP04-055EN\",\n    --    \"BP04-056EN\",\n    --    \"BP04-057EN\",\n    --    \"BP04-058EN\",\n    --    \"BP04-059EN\",\n    --    \"BP04-060EN\",\n    --    \"BP04-061EN\",\n    --    \"BP04-062EN\",\n    --    \"BP04-063EN\",\n    --    \"BP04-064EN\",\n    --    \"BP04-065EN\",\n    --    \"BP04-066EN\",\n    --    \"BP04-067EN\",\n    --    \"BP04-068EN\",\n    --    \"BP04-069EN\",\n    --    \"BP04-070EN\",\n    --    \"BP04-071EN\",\n    --    \"BP04-072EN\",\n    --    \"BP04-073EN\",\n    --    \"BP04-074EN\",\n    --    \"BP04-075EN\",\n    --    \"BP04-076EN\",\n    --    \"BP04-077EN\",\n    --    \"BP04-078EN\",\n    --    \"BP04-079EN\",\n    --    \"BP04-080EN\",\n    --    \"BP04-081EN\",\n    --    \"BP04-082EN\",\n    --    \"BP04-083EN\",\n    --    \"BP04-084EN\",\n    --    \"BP04-085EN\",\n    --    \"BP04-086EN\",\n    --    \"BP04-087EN\",\n    --    \"BP04-088EN\",\n    --    \"BP04-089EN\",\n    --    \"BP04-090EN\",\n    --    \"BP04-091EN\",\n    --    \"BP04-092EN\",\n    --    \"BP04-093EN\",\n    --    \"BP04-094EN\",\n    --    \"BP04-095EN\",\n    --    \"BP04-096EN\",\n    --    \"BP04-097EN\",\n    --    \"BP04-098EN\",\n    --    \"BP04-099EN\",\n    --    \"BP04-100EN\",\n    --    \"BP04-101EN\",\n    --    \"BP04-102EN\",\n    --    \"BP04-103EN\",\n    --    \"BP04-104EN\",\n    --    \"BP04-105EN\",\n    --    \"BP04-106EN\",\n    --    \"BP04-107EN\",\n    --    \"BP04-108EN\",\n    --    \"BP04-109EN\",\n    --    \"BP04-110EN\",\n    --    \"BP04-111EN\",\n    --    \"BP04-112EN\",\n    --    \"BP04-113EN\",\n    --    \"BP04-114EN\",\n    --    \"BP04-115EN\",\n    --    \"BP04-116EN\",\n    --    \"BP04-117EN\",\n    --    \"BP04-118EN\",\n    --    \"BP04-119EN\",\n    --    \"BP04-120EN\",\n    --    \"BP04-121EN\",\n    --    \"BP04-122EN\",\n    --    \"BP04-123EN\",\n    --    \"BP04-124EN\",\n    --    \"BP04-125EN\",\n    --    \"BP04-126EN\",\n    --    \"BP04-127EN\",\n    --    \"BP04-128EN\",\n    --    \"BP04-129EN\",\n    --    \"BP04-130EN\",\n    --    \"BP04-U01EN\",\n    --    \"BP04-U02EN\",\n    --    \"BP04-U03EN\",\n    --    \"BP04-U04EN\",\n    --    \"BP04-U05EN\",\n    --    \"BP04-U06EN\",\n    --    \"BP04-U07EN\",\n    --    \"BP04-LD01EN\",\n    --    \"BP04-LD02EN\",\n    --    \"BP04-LD03EN\",\n    --    \"BP04-LD04EN\",\n    --    \"BP04-LD05EN\",\n    --    \"BP04-LD06EN\",\n    --    \"BP04-LD07EN\",\n    --    \"BP04-LD08EN\",\n    --    \"BP04-LD09EN\",\n    --    \"BP04-LD10EN\",\n    --    \"BP04-T01EN\",\n    --    \"BP04-T02EN\",\n    --    \"BP04-T03EN\",\n    --    \"BP04-T04EN\",\n    --}\n\n    --BP05\n    --local cards_to_load = {\n    --    \"BP05-001EN\",\n    --    \"BP05-002EN\",\n    --    \"BP05-003EN\",\n    --    \"BP05-004EN\",\n    --    \"BP05-005EN\",\n    --    \"BP05-006EN\",\n    --    \"BP05-007EN\",\n    --    \"BP05-008EN\",\n    --    \"BP05-009EN\",\n    --    \"BP05-010EN\",\n    --    \"BP05-011EN\",\n    --    \"BP05-012EN\",\n    --    \"BP05-013EN\",\n    --    \"BP05-014EN\",\n    --    \"BP05-015EN\",\n    --    \"BP05-016EN\",\n    --    \"BP05-017EN\",\n    --    \"BP05-018EN\",\n    --    \"BP05-019EN\",\n    --    \"BP05-020EN\",\n    --    \"BP05-021EN\",\n    --    \"BP05-022EN\",\n    --    \"BP05-023EN\",\n    --    \"BP05-024EN\",\n    --    \"BP05-025EN\",\n    --    \"BP05-026EN\",\n    --    \"BP05-027EN\",\n    --    \"BP05-028EN\",\n    --    \"BP05-029EN\",\n    --    \"BP05-030EN\",\n    --    \"BP05-031EN\",\n    --    \"BP05-032EN\",\n    --    \"BP05-033EN\",\n    --    \"BP05-034EN\",\n    --    \"BP05-035EN\",\n    --    \"BP05-036EN\",\n    --    \"BP05-037EN\",\n    --    \"BP05-038EN\",\n    --    \"BP05-039EN\",\n    --    \"BP05-040EN\",\n    --    \"BP05-041EN\",\n    --    \"BP05-042EN\",\n    --    \"BP05-043EN\",\n    --    \"BP05-044EN\",\n    --    \"BP05-045EN\",\n    --    \"BP05-046EN\",\n    --    \"BP05-047EN\",\n    --    \"BP05-048EN\",\n    --    \"BP05-049EN\",\n    --    \"BP05-050EN\",\n    --    \"BP05-051EN\",\n    --    \"BP05-052EN\",\n    --    \"BP05-053EN\",\n    --    \"BP05-054EN\",\n    --    \"BP05-055EN\",\n    --    \"BP05-056EN\",\n    --    \"BP05-057EN\",\n    --    \"BP05-058EN\",\n    --    \"BP05-059EN\",\n    --    \"BP05-060EN\",\n    --    \"BP05-061EN\",\n    --    \"BP05-062EN\",\n    --    \"BP05-063EN\",\n    --    \"BP05-064EN\",\n    --    \"BP05-065EN\",\n    --    \"BP05-066EN\",\n    --    \"BP05-067EN\",\n    --    \"BP05-068EN\",\n    --    \"BP05-069EN\",\n    --    \"BP05-070EN\",\n    --    \"BP05-071EN\",\n    --    \"BP05-072EN\",\n    --    \"BP05-073EN\",\n    --    \"BP05-074EN\",\n    --    \"BP05-075EN\",\n    --    \"BP05-076EN\",\n    --    \"BP05-077EN\",\n    --    \"BP05-078EN\",\n    --    \"BP05-079EN\",\n    --    \"BP05-080EN\",\n    --    \"BP05-081EN\",\n    --    \"BP05-082EN\",\n    --    \"BP05-083EN\",\n    --    \"BP05-084EN\",\n    --    \"BP05-085EN\",\n    --    \"BP05-086EN\",\n    --    \"BP05-087EN\",\n    --    \"BP05-088EN\",\n    --    \"BP05-089EN\",\n    --    \"BP05-090EN\",\n    --    \"BP05-091EN\",\n    --    \"BP05-092EN\",\n    --    \"BP05-093EN\",\n    --    \"BP05-094EN\",\n    --    \"BP05-095EN\",\n    --    \"BP05-096EN\",\n    --    \"BP05-097EN\",\n    --    \"BP05-098EN\",\n    --    \"BP05-099EN\",\n    --    \"BP05-100EN\",\n    --    \"BP05-101EN\",\n    --    \"BP05-102EN\",\n    --    \"BP05-103EN\",\n    --    \"BP05-104EN\",\n    --    \"BP05-105EN\",\n    --    \"BP05-106EN\",\n    --    \"BP05-107EN\",\n    --    \"BP05-108EN\",\n    --    \"BP05-109EN\",\n    --    \"BP05-110EN\",\n    --    \"BP05-111EN\",\n    --    \"BP05-112EN\",\n    --    \"BP05-113EN\",\n    --    \"BP05-114EN\",\n    --    \"BP05-115EN\",\n    --    \"BP05-116EN\",\n    --    \"BP05-117EN\",\n    --    \"BP05-U01EN\",\n    --    \"BP05-U02EN\",\n    --    \"BP05-U03EN\",\n    --    \"BP05-U04EN\",\n    --    \"BP05-U05EN\",\n    --    \"BP05-U06EN\",\n    --    \"BP05-U07EN\",\n    --    \"BP05-LD01EN\",\n    --    \"BP05-LD02EN\",\n    --    \"BP05-LD03EN\",\n    --    \"BP05-LD04EN\",\n    --    \"BP05-LD05EN\",\n    --    \"BP05-LD06EN\",\n    --    \"BP05-T01EN\",\n    --    \"BP05-T02EN\",\n    --    \"BP05-T03EN\",\n    --    \"BP05-T04EN\",\n    --    \"BP05-T05EN\",\n    --}\n\n    --local cards_to_load = {\n        --\"CP01-001EN\",\n        --\"CP01-002EN\",\n        --\"CP01-003EN\",\n        --\"CP01-004EN\",\n        --\"CP01-005EN\",\n        --\"CP01-006EN\",\n        --\"CP01-007EN\",\n        --\"CP01-008EN\",\n        --\"CP01-009EN\",\n        --\"CP01-010EN\",\n        --\"CP01-011EN\",\n        --\"CP01-012EN\",\n        --\"CP01-013EN\",\n        --\"CP01-014EN\",\n        --\"CP01-015EN\",\n        --\"CP01-016EN\",\n        --\"CP01-017EN\",\n        --\"CP01-018EN\",\n        --\"CP01-019EN\",\n        --\"CP01-020EN\",\n        --\"CP01-021EN\",\n        --\"CP01-022EN\",\n        --\"CP01-023EN\",\n        --\"CP01-024EN\",\n        --\"CP01-025EN\",\n        --\"CP01-026EN\",\n        --\"CP01-027EN\",\n        --\"CP01-028EN\",\n        --\"CP01-029EN\",\n        --\"CP01-030EN\",\n        --\"CP01-031EN\",\n        --\"CP01-032EN\",\n        --\"CP01-033EN\",\n        --\"CP01-034EN\",\n        --\"CP01-035EN\",\n        --\"CP01-036EN\",\n        --\"CP01-037EN\",\n        --\"CP01-038EN\",\n        --\"CP01-039EN\",\n        --\"CP01-040EN\",\n        --\"CP01-041EN\",\n        --\"CP01-042EN\",\n        --\"CP01-043EN\",\n        --\"CP01-044EN\",\n        --\"CP01-045EN\",\n        --\"CP01-046EN\",\n        --\"CP01-047EN\",\n        --\"CP01-048EN\",\n        --\"CP01-049EN\",\n        --\"CP01-050EN\",\n        --\"CP01-051EN\",\n        --\"CP01-052EN\",\n        --\"CP01-053EN\",\n        --\"CP01-054EN\",\n        --\"CP01-055EN\",\n        --\"CP01-056EN\",\n        --\"CP01-057EN\",\n        --\"CP01-058EN\",\n        --\"CP01-059EN\",\n        --\"CP01-060EN\",\n        --\"CP01-061EN\",\n        --\"CP01-062EN\",\n        --\"CP01-063EN\",\n        --\"CP01-064EN\",\n        --\"CP01-065EN\",\n        --\"CP01-066EN\",\n        --\"CP01-067EN\",\n        --\"CP01-068EN\",\n        --\"CP01-069EN\",\n        --\"CP01-070EN\",\n        --\"CP01-071EN\",\n        --\"CP01-072EN\",\n        --\"CP01-073EN\",\n        --\"CP01-074EN\",\n        --\"CP01-075EN\",\n        --\"CP01-076EN\",\n        --\"CP01-077EN\",\n        --\"CP01-078EN\",\n        --\"CP01-079EN\",\n        --\"CP01-080EN\",\n        --\"CP01-081EN\",\n        --\"CP01-082EN\",\n        --\"CP01-083EN\",\n        --\"CP01-084EN\",\n        --\"CP01-085EN\",\n        --\"CP01-SP01EN\",\n        --\"CP01-SP02EN\",\n        --\"CP01-SP03EN\",\n        --\"CP01-SP04EN\",\n        --\"CP01-SP05EN\",\n        --\"CP01-SP06EN\",\n        --\"CP01-SP07EN\",\n        --\"CP01-SP08EN\",\n        --\"CP01-SP09EN\",\n        --\"CP01-SP10EN\",\n        --\"CP01-SP11EN\",\n        --\"CP01-SP12EN\",\n        --\"CP01-SP13EN\",\n        --\"CP01-SP14EN\",\n        --\"CP01-SP15EN\",\n        --\"CP01-SP16EN\",\n        --\"CP01-SP17EN\",\n        --\"CP01-SP18EN\",\n        --\"CP01-SP19EN\",\n        --\"CP01-LD01EN\",\n        --\"CP01-LD02EN\",\n        --\"CP01-LD03EN\",\n        --\"CP01-LD04EN\",\n        --\"CP01-LD05EN\",\n        --\"CP01-LD06EN\",\n        --\"CP01-LD07EN\",\n        --\"CP01-LD08EN\"\n    --}\n\n    --SD06\n    --local cards_to_load = {\n    --    \"SD06-001EN\",\n    --    \"SD06-002EN\",\n    --    \"SD06-003EN\",\n    --    \"SD06-004EN\",\n    --    \"SD06-005EN\",\n    --    \"SD06-006EN\",\n    --    \"SD06-007EN\",\n    --    \"SD06-008EN\",\n    --    \"SD06-009EN\",\n    --    \"SD06-010EN\",\n    --    \"SD06-011EN\",\n    --    \"SD06-012EN\",\n    --    \"SD06-013EN\",\n    --    \"SD06-014EN\",\n    --    \"SD06-015EN\",\n    --    \"SD06-016EN\",\n    --    \"SD06-017EN\",\n    --    \"SD06-018EN\",\n    --    \"SD06-019EN\",\n    --    \"SD06-020EN\",\n    --}\n\n    --SD05\n    --local cards_to_load = {\n    --    \"SD05-001EN\",\n    --    \"SD05-002EN\",\n    --    \"SD05-003EN\",\n    --    \"SD05-004EN\",\n    --    \"SD05-005EN\",\n    --    \"SD05-006EN\",\n    --    \"SD05-007EN\",\n    --    \"SD05-008EN\",\n    --    \"SD05-009EN\",\n    --    \"SD05-010EN\",\n    --    \"SD05-011EN\",\n    --    \"SD05-012EN\",\n    --    \"SD05-013EN\",\n    --    \"SD05-014EN\",\n    --    \"SD05-015EN\",\n    --    \"SD05-016EN\",\n    --    \"SD05-017EN\",\n    --    \"SD05-018EN\",\n    --    \"SD05-019EN\",\n    --    \"SD05-020EN\",\n    --}\n\n    --SD04\n    --local cards_to_load = {\n    --    \"SD04-001EN\",\n    --    \"SD04-002EN\",\n    --    \"SD04-003EN\",\n    --    \"SD04-004EN\",\n    --    \"SD04-005EN\",\n    --    \"SD04-006EN\",\n    --    \"SD04-007EN\",\n    --    \"SD04-008EN\",\n    --    \"SD04-009EN\",\n    --    \"SD04-010EN\",\n    --    \"SD04-011EN\",\n    --    \"SD04-012EN\",\n    --    \"SD04-013EN\",\n    --    \"SD04-014EN\",\n    --    \"SD04-015EN\",\n    --    \"SD04-016EN\",\n    --    \"SD04-017EN\",\n    --    \"SD04-018EN\",\n    --    \"SD04-019EN\",\n    --    \"SD04-020EN\",\n    --}\n\n    --SD03\n    --local cards_to_load = {\n    --    \"SD03-001EN\",\n    --    \"SD03-002EN\",\n    --    \"SD03-003EN\",\n    --    \"SD03-004EN\",\n    --    \"SD03-005EN\",\n    --    \"SD03-006EN\",\n    --    \"SD03-007EN\",\n    --    \"SD03-008EN\",\n    --    \"SD03-009EN\",\n    --    \"SD03-010EN\",\n    --    \"SD03-011EN\",\n    --    \"SD03-012EN\",\n    --    \"SD03-013EN\",\n    --    \"SD03-014EN\",\n    --    \"SD03-015EN\",\n    --    \"SD03-016EN\",\n    --    \"SD03-017EN\",\n    --    \"SD03-018EN\",\n    --    \"SD03-019EN\",\n    --    \"SD03-020EN\",\n    --}\n\n    --SD02\n    --local cards_to_load = {\n    --    \"SD02-001EN\",\n    --    \"SD02-002EN\",\n    --    \"SD02-003EN\",\n    --    \"SD02-004EN\",\n    --    \"SD02-005EN\",\n    --    \"SD02-006EN\",\n    --    \"SD02-007EN\",\n    --    \"SD02-008EN\",\n    --    \"SD02-009EN\",\n    --    \"SD02-010EN\",\n    --    \"SD02-011EN\",\n    --    \"SD02-012EN\",\n    --    \"SD02-013EN\",\n    --    \"SD02-014EN\",\n    --    \"SD02-015EN\",\n    --    \"SD02-016EN\",\n    --    \"SD02-017EN\",\n    --    \"SD02-018EN\",\n    --    \"SD02-019EN\",\n    --    \"SD02-020EN\",\n    --}\n\n    --SD01\n    --local cards_to_load = {\n    --    \"SD01-001EN\",\n    --    \"SD01-002EN\",\n    --    \"SD01-003EN\",\n    --    \"SD01-004EN\",\n    --    \"SD01-005EN\",\n    --    \"SD01-006EN\",\n    --    \"SD01-007EN\",\n    --    \"SD01-008EN\",\n    --    \"SD01-009EN\",\n    --    \"SD01-010EN\",\n    --    \"SD01-011EN\",\n    --    \"SD01-012EN\",\n    --    \"SD01-013EN\",\n    --    \"SD01-014EN\",\n    --    \"SD01-015EN\",\n    --    \"SD01-016EN\",\n    --    \"SD01-017EN\",\n    --    \"SD01-018EN\",\n    --    \"SD01-019EN\",\n    --    \"SD01-020EN\",\n    --}\n\n    --local new_loaded_cards = {\n    --}\n\n    --local offset = 0\n    --for i, card_code in ipairs(cards_to_load) do\n    --    local split_card_code = split(card_code, \"-\")\n    --    local new_card = spawnObject({ type = \"Card\", position = { 0, 3 + offset, 0 }, sound = false })\n    --    local file_path = \"file:///C:\\\\Users\\\\Matt\\\\Documents\\\\dev\\\\test_python_sve_stuff_idk\\\\cards\\\\\" .. split_card_code[1] .. \"\\\\\" .. card_code .. \".png\"\n    --    new_card.setCustomObject({ face = file_path, back = back_of_card })\n    --    table.insert(new_loaded_cards, new_card)\n    --    offset = offset + 0.3\n    --end\n\n    print(\"grouping \" .. tostring(#new_loaded_cards) .. \" cards\")\n    group(new_loaded_cards)\nend",
   "LuaScriptState": "",
   "XmlUI": "<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->",
   "CustomUIAssets": [
@@ -228,175 +228,114 @@
       "Type": 0,
       "Name": "def",
       "URL": "http://cloud-3.steamusercontent.com/ugc/2457357698596333912/9A7C8BECD7244690AA5BCC24A1CCCE673A566C43/"
+    },
+    {
+      "Type": 1,
+      "Name": "seagull",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/2457357698616080426/0ED12345CCD3E14B83FC82B224846C2E8932C99D/"
     }
   ],
   "SnapPoints": [
     {
       "Position": {
-        "x": 12.5562592,
+        "x": 12.8367672,
         "y": 0.9611349,
-        "z": -2.53192949
+        "z": -7.58334637
       }
     },
     {
       "Position": {
-        "x": 12.5640574,
+        "x": 12.8379745,
         "y": 0.9611349,
-        "z": -7.35452175
+        "z": -12.0872135
       }
     },
     {
       "Position": {
-        "x": 12.5730276,
+        "x": 12.84505,
         "y": 0.9611349,
-        "z": -12.1581764
+        "z": -3.08446431
       }
     },
     {
       "Position": {
-        "x": -12.5530968,
+        "x": -9.272748,
         "y": 0.9611349,
-        "z": -12.1550083
+        "z": -7.59137058
       }
     },
     {
       "Position": {
-        "x": -12.53928,
+        "x": -12.813467,
         "y": 0.9611349,
-        "z": -7.33606958
+        "z": -7.59512758
       }
     },
     {
       "Position": {
-        "x": -12.555645,
+        "x": -9.266325,
         "y": 0.9611349,
-        "z": 2.722245
+        "z": -12.0946054
       }
     },
     {
       "Position": {
-        "x": 12.5501251,
+        "x": -12.8192129,
         "y": 0.9611349,
-        "z": 7.534847
+        "z": -12.0925131
       }
     },
     {
       "Position": {
-        "x": 12.5602379,
+        "x": -12.83317,
         "y": 0.9611349,
-        "z": 12.3588285
+        "z": 3.07911325
       }
     },
     {
       "Position": {
-        "x": -12.55024,
+        "x": -12.833437,
         "y": 0.9611349,
-        "z": 12.3312674
+        "z": 7.582286
       }
     },
     {
       "Position": {
-        "x": -12.560873,
+        "x": -12.8391256,
         "y": 0.9611349,
-        "z": 7.52663469
+        "z": 12.0852814
+      }
+    },
+    {
+      "Position": {
+        "x": 9.267872,
+        "y": 0.9611349,
+        "z": 12.0820589
+      }
+    },
+    {
+      "Position": {
+        "x": 9.272864,
+        "y": 0.9611349,
+        "z": 7.58080864
+      }
+    },
+    {
+      "Position": {
+        "x": 12.829031,
+        "y": 0.9611349,
+        "z": 7.57762241
+      }
+    },
+    {
+      "Position": {
+        "x": 12.8329391,
+        "y": 0.9611349,
+        "z": 12.0783672
       }
     }
   ],
   "ObjectStates": [
-    {
-      "GUID": "241283",
-      "Name": "HandTrigger",
-      "Transform": {
-        "posX": 0.0,
-        "posY": 3.29337835,
-        "posZ": -20.5594063,
-        "rotX": 0.0,
-        "rotY": 0.0,
-        "rotZ": 0.0,
-        "scaleX": 20.0,
-        "scaleY": 11.8970528,
-        "scaleZ": 7.87418
-      },
-      "Nickname": "",
-      "Description": "",
-      "GMNotes": "",
-      "AltLookAngle": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "ColorDiffuse": {
-        "r": 0.856,
-        "g": 0.09999997,
-        "b": 0.09399996,
-        "a": 0.0
-      },
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": true,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "FogColor": "Red",
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
-    {
-      "GUID": "6de656",
-      "Name": "HandTrigger",
-      "Transform": {
-        "posX": 0.0,
-        "posY": 3.29337835,
-        "posZ": 20.56,
-        "rotX": 0.0,
-        "rotY": 180.0,
-        "rotZ": 0.0,
-        "scaleX": 20.0,
-        "scaleY": 11.8970528,
-        "scaleZ": 7.874141
-      },
-      "Nickname": "",
-      "Description": "",
-      "GMNotes": "",
-      "AltLookAngle": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "ColorDiffuse": {
-        "r": 0.117999978,
-        "g": 0.53,
-        "b": 1.0,
-        "a": 0.0
-      },
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": true,
-      "Grid": false,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "FogColor": "Blue",
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": ""
-    },
     {
       "GUID": "7f0840",
       "Name": "Custom_Token",
@@ -519,8 +458,8 @@
           "Stackable": false
         }
       },
-      "LuaScript": "local current_max_prop_name = \"currentMax\"\r\nlocal player_current = \"7f0840\"\r\n\r\nfunction onLoad(script_state)\r\n    local counter_state = JSON.decode(script_state)\r\n    local play_points_value = 0\r\n\r\n    if counter_state ~= nil and counter_state.play_points ~= nil then\r\n        play_points_value = counter_state.play_points\r\n    end\r\n\r\n    local params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(play_points_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 100},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase your maximum play points. Right-click to reduce instead.\",\r\n    }\r\n\r\n    self.setVar(current_max_prop_name, maximum_play_points_value)    \r\n    self.createButton(params)\r\nend\r\n\r\nfunction onSave()\r\n    local counter_state = {\r\n        play_points = self.getVar(current_max_prop_name)\r\n    }\r\n\r\n    return JSON.encode(counter_state)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    local maximum_play_points_value = self.getVar(current_max_prop_name)\r\n\r\n    if maximum_play_points_value == nil then\r\n        maximum_play_points_value = 0\r\n    end\r\n\r\n    if alt_click then\r\n        maximum_play_points_value = maximum_play_points_value - 1\r\n    else\r\n        maximum_play_points_value = maximum_play_points_value + 1\r\n    end\r\n\r\n    if maximum_play_points_value <= 0 then\r\n        maximum_play_points_value = 0\r\n    elseif maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n\r\n    self.setVar(current_max_prop_name, maximum_play_points_value)    \r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend\r\n\r\nfunction on_turn_start(params)\r\n    local maximum_play_points_value = params.value\r\n\r\n    if maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n    \r\n    self.setVar(current_max_prop_name, maximum_play_points_value)\r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend\r\n\r\nfunction onPlayerTurn(player, previous_player)\r\n    if player == nil or player.color ~= \"Red\" then\r\n        return\r\n    end\r\n\r\n    local current_object = getObjectFromGUID(player_current)\r\n    local new_max = self.getVar(current_max_prop_name)\r\n\r\n    if new_max == nil then\r\n        new_max = 0\r\n    end\r\n\r\n    new_max = new_max + 1\r\n\r\n    on_turn_start({value = new_max})\r\n\r\n    current_object.call(\"on_turn_start\", {value = new_max})\r\nend",
-      "LuaScriptState": "{\"play_points\":0}",
+      "LuaScript": "local current_max_prop_name = \"currentMax\"\r\nlocal player_current = \"7f0840\"\r\n\r\nfunction onLoad(script_state)\r\n    local counter_state = JSON.decode(script_state)\r\n    local play_points_value = 0\r\n\r\n    if counter_state ~= nil and counter_state.play_points ~= nil then\r\n        play_points_value = counter_state.play_points\r\n    end\r\n\r\n    local params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(play_points_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 100},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase your maximum play points. Right-click to reduce instead.\",\r\n    }\r\n\r\n    self.setVar(current_max_prop_name, maximum_play_points_value)    \r\n    self.createButton(params)\r\nend\r\n\r\nfunction onSave()\r\n    local counter_state = {\r\n        play_points = self.getVar(current_max_prop_name)\r\n    }\r\n\r\n    return JSON.encode(counter_state)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    local maximum_play_points_value = self.getVar(current_max_prop_name)\r\n\r\n    if maximum_play_points_value == nil then\r\n        maximum_play_points_value = 0\r\n    end\r\n\r\n    if alt_click then\r\n        maximum_play_points_value = maximum_play_points_value - 1\r\n    else\r\n        maximum_play_points_value = maximum_play_points_value + 1\r\n    end\r\n\r\n    if maximum_play_points_value <= 0 then\r\n        maximum_play_points_value = 0\r\n    elseif maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n\r\n    self.setVar(current_max_prop_name, maximum_play_points_value)    \r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend\r\n\r\nfunction on_turn_start(params)\r\n    local maximum_play_points_value = params.value\r\n\r\n    if maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n    \r\n    self.setVar(current_max_prop_name, maximum_play_points_value)\r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend\r\n\r\nfunction onPlayerTurn(player, previous_player)\r\n    if player == nil or player.color ~= \"Red\" then\r\n        return\r\n    end\r\n\r\n    local current_object = getObjectFromGUID(player_current)\r\n    local new_max = self.getVar(current_max_prop_name)\r\n\r\n    if new_max == nil then\r\n        new_max = 0\r\n    end\r\n\r\n    new_max = new_max + 1\r\n\r\n    on_turn_start({value = new_max})\r\n\r\n    current_object.call(\"on_turn_start\", {value = new_max})\r\n    getObjectFromGUID(\"c51012\").call(\"on_turn_start\", {})\r\nend",
+      "LuaScriptState": "[]",
       "PhysicsMaterial": {
         "StaticFriction": 1.0,
         "DynamicFriction": 0.7,
@@ -600,7 +539,7 @@
         "posZ": 2.067275,
         "rotX": -2.80414326E-07,
         "rotY": 0.0218273364,
-        "rotZ": -1.43123486E-08,
+        "rotZ": -1.431279E-08,
         "scaleX": 0.73,
         "scaleY": 1.0,
         "scaleZ": 0.73
@@ -738,7 +677,7 @@
         "posZ": 7.97,
         "rotX": -2.13641829E-06,
         "rotY": 0.02559891,
-        "rotZ": 1.57838429E-06,
+        "rotZ": 1.57841589E-06,
         "scaleX": 0.73,
         "scaleY": 1.0,
         "scaleZ": 0.73
@@ -782,7 +721,7 @@
           "Stackable": false
         }
       },
-      "LuaScript": "local current_max_prop_name = \"currentMax\"\r\nlocal player_current = \"bba386\"\r\n\r\nfunction onLoad(script_state)\r\n    local counter_state = JSON.decode(script_state)\r\n    local play_points_value = 0\r\n\r\n    if counter_state ~= nil and counter_state.play_points ~= nil then\r\n        play_points_value = counter_state.play_points\r\n    end\r\n\r\n    local params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(play_points_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 100},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase your maximum play points. Right-click to reduce instead.\",\r\n    }\r\n\r\n    self.setVar(current_max_prop_name, play_points_value)    \r\n    self.createButton(params)\r\nend\r\n\r\nfunction onSave()\r\n    local counter_state = {\r\n        play_points = self.getVar(current_max_prop_name)\r\n    }\r\n\r\n    return JSON.encode(counter_state)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    local maximum_play_points_value = self.getVar(current_max_prop_name)\r\n\r\n    if maximum_play_points_value == nil then\r\n        maximum_play_points_value = 0\r\n    end\r\n\r\n    if alt_click then\r\n        maximum_play_points_value = maximum_play_points_value - 1\r\n    else\r\n        maximum_play_points_value = maximum_play_points_value + 1\r\n    end\r\n\r\n    if maximum_play_points_value <= 0 then\r\n        maximum_play_points_value = 0\r\n    elseif maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n\r\n    self.setVar(current_max_prop_name, maximum_play_points_value)    \r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend\r\n\r\nfunction on_turn_start(params)\r\n    local maximum_play_points_value = params.value\r\n\r\n    if maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n    \r\n    self.setVar(current_max_prop_name, maximum_play_points_value)\r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend\r\n\r\nfunction onPlayerTurn(player, previous_player)\r\n    if player == nil or player.color ~= \"Blue\" then\r\n        return\r\n    end\r\n\r\n    local current_object = getObjectFromGUID(player_current)\r\n    local new_max = self.getVar(current_max_prop_name)\r\n\r\n    if new_max == nil then\r\n        new_max = 0\r\n    end\r\n\r\n    new_max = new_max + 1\r\n\r\n    on_turn_start({value = new_max})\r\n\r\n    current_object.call(\"on_turn_start\", {value = new_max})\r\nend",
+      "LuaScript": "local current_max_prop_name = \"currentMax\"\r\nlocal player_current = \"bba386\"\r\n\r\nfunction onLoad(script_state)\r\n    local counter_state = JSON.decode(script_state)\r\n    local play_points_value = 0\r\n\r\n    if counter_state ~= nil and counter_state.play_points ~= nil then\r\n        play_points_value = counter_state.play_points\r\n    end\r\n\r\n    local params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(play_points_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 100},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase your maximum play points. Right-click to reduce instead.\",\r\n    }\r\n\r\n    self.setVar(current_max_prop_name, play_points_value)    \r\n    self.createButton(params)\r\nend\r\n\r\nfunction onSave()\r\n    local counter_state = {\r\n        play_points = self.getVar(current_max_prop_name)\r\n    }\r\n\r\n    return JSON.encode(counter_state)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    local maximum_play_points_value = self.getVar(current_max_prop_name)\r\n\r\n    if maximum_play_points_value == nil then\r\n        maximum_play_points_value = 0\r\n    end\r\n\r\n    if alt_click then\r\n        maximum_play_points_value = maximum_play_points_value - 1\r\n    else\r\n        maximum_play_points_value = maximum_play_points_value + 1\r\n    end\r\n\r\n    if maximum_play_points_value <= 0 then\r\n        maximum_play_points_value = 0\r\n    elseif maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n\r\n    self.setVar(current_max_prop_name, maximum_play_points_value)    \r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend\r\n\r\nfunction on_turn_start(params)\r\n    local maximum_play_points_value = params.value\r\n\r\n    if maximum_play_points_value > 10 then\r\n        maximum_play_points_value = 10\r\n    end\r\n    \r\n    self.setVar(current_max_prop_name, maximum_play_points_value)\r\n    self.editButton({index=0, label=tostring(maximum_play_points_value)})\r\nend\r\n\r\nfunction onPlayerTurn(player, previous_player)\r\n    if player == nil or player.color ~= \"Blue\" then\r\n        return\r\n    end\r\n\r\n    local current_object = getObjectFromGUID(player_current)\r\n    local new_max = self.getVar(current_max_prop_name)\r\n\r\n    if new_max == nil then\r\n        new_max = 0\r\n    end\r\n\r\n    new_max = new_max + 1\r\n\r\n    on_turn_start({value = new_max})\r\n\r\n    current_object.call(\"on_turn_start\", {value = new_max})\r\n    getObjectFromGUID(\"31e453\").call(\"on_turn_start\", {})\r\nend",
       "LuaScriptState": "{\"play_points\":0}",
       "PhysicsMaterial": {
         "StaticFriction": 1.0,
@@ -802,13 +741,13 @@
       "GUID": "c51012",
       "Name": "ScriptingTrigger",
       "Transform": {
-        "posX": 0.02523126,
+        "posX": 1.84,
         "posY": 3.51,
         "posZ": -7.74875975,
         "rotX": 0.0,
         "rotY": 0.0,
         "rotZ": 0.0,
-        "scaleX": 22.0,
+        "scaleX": 19.0,
         "scaleY": 5.1,
         "scaleZ": 14.5
       },
@@ -847,13 +786,13 @@
       "GUID": "31e453",
       "Name": "ScriptingTrigger",
       "Transform": {
-        "posX": -0.03,
+        "posX": -1.84,
         "posY": 3.51,
         "posZ": 7.75,
         "rotX": 0.0,
         "rotY": -0.0009990222,
         "rotZ": 0.0,
-        "scaleX": 22.0,
+        "scaleX": 19.0,
         "scaleY": 5.1,
         "scaleZ": 14.5
       },
@@ -15757,9 +15696,9 @@
         "posX": 30.76,
         "posY": 0.8149663,
         "posZ": 16.00116,
-        "rotX": -8.521067E-07,
-        "rotY": -6.04645174E-05,
-        "rotZ": -1.11057238E-06,
+        "rotX": -8.37098867E-07,
+        "rotY": -6.09914568E-05,
+        "rotZ": -8.804537E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -24835,11 +24774,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 30.76,
-        "posY": 0.814967334,
-        "posZ": 12.0000048,
-        "rotX": 8.832896E-06,
-        "rotY": -0.000434444,
-        "rotZ": 2.07270182E-06,
+        "posY": 0.8149662,
+        "posZ": 12.0000086,
+        "rotX": -7.720768E-07,
+        "rotY": -0.00154699781,
+        "rotZ": -8.854463E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -33914,12 +33853,12 @@
       "GUID": "162aba",
       "Name": "Bag",
       "Transform": {
-        "posX": 30.8022766,
-        "posY": 0.814966,
-        "posZ": 8.000004,
-        "rotX": -1.24397513E-06,
-        "rotY": -0.00024357895,
-        "rotZ": -1.00048958E-07,
+        "posX": 30.8022861,
+        "posY": 0.81496644,
+        "posZ": 8.000031,
+        "rotX": -1.02720946E-06,
+        "rotY": -0.00179518585,
+        "rotZ": -8.304122E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -44287,11 +44226,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 30.8000011,
-        "posY": 0.814966,
-        "posZ": 4.000013,
-        "rotX": -1.17894581E-06,
-        "rotY": -0.0011086585,
-        "rotZ": -4.60225976E-07,
+        "posY": 0.8149665,
+        "posZ": 4.000048,
+        "rotX": -2.64161736E-06,
+        "rotY": -0.00373503263,
+        "rotZ": -7.838956E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -44305,7 +44244,7 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.350186318,
+        "r": 0.350181937,
         "g": 0.0,
         "b": 0.6777003
       },
@@ -53571,7 +53510,7 @@
       "Name": "Bag",
       "Transform": {
         "posX": 27.0,
-        "posY": 0.814966559,
+        "posY": 0.81496644,
         "posZ": 20.0,
         "rotX": -6.836857E-07,
         "rotY": 3.95670722E-05,
@@ -53620,9 +53559,9 @@
           "GUID": "6f610d",
           "Name": "Deck",
           "Transform": {
-            "posX": 26.8687687,
-            "posY": 3.64423156,
-            "posZ": 20.27366,
+            "posX": 27.0,
+            "posY": 2.61496639,
+            "posZ": 20.0,
             "rotX": 359.671326,
             "rotY": 180.013962,
             "rotZ": 359.737732,
@@ -61290,12 +61229,12 @@
       "GUID": "72c614",
       "Name": "Infinite_Bag",
       "Transform": {
-        "posX": 19.4999981,
-        "posY": 0.9830005,
-        "posZ": -1.10069358,
-        "rotX": -6.944362E-07,
-        "rotY": 0.0116269561,
-        "rotZ": -7.256442E-07,
+        "posX": 19.4345512,
+        "posY": 0.9830004,
+        "posZ": 1.69893622,
+        "rotX": -6.72903E-07,
+        "rotY": 0.01165208,
+        "rotZ": -1.13805061E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -61310,7 +61249,7 @@
       },
       "ColorDiffuse": {
         "r": 0.627451062,
-        "g": 0.125487685,
+        "g": 0.125483543,
         "b": 0.9411765
       },
       "LayoutGroupSortIndex": 0,
@@ -61440,122 +61379,15 @@
       ]
     },
     {
-      "GUID": "79b418",
-      "Name": "Infinite_Bag",
-      "Transform": {
-        "posX": 19.5000172,
-        "posY": 0.9830006,
-        "posZ": 1.94976091,
-        "rotX": -6.719057E-07,
-        "rotY": 0.0120492112,
-        "rotZ": -8.21638139E-07,
-        "scaleX": 1.0,
-        "scaleY": 1.0,
-        "scaleZ": 1.0
-      },
-      "Nickname": "Evolution Points",
-      "Description": "",
-      "GMNotes": "",
-      "AltLookAngle": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "ColorDiffuse": {
-        "r": 0.905882359,
-        "g": 0.8980392,
-        "b": 0.1725474
-      },
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": false,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "MaterialIndex": -1,
-      "MeshIndex": -1,
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": "",
-      "ContainedObjects": [
-        {
-          "GUID": "f60eb6",
-          "Name": "CardCustom",
-          "Transform": {
-            "posX": -4.79486561,
-            "posY": 4.064308,
-            "posZ": -8.260087,
-            "rotX": 359.919434,
-            "rotY": 180.000244,
-            "rotZ": 359.598022,
-            "scaleX": 2.11755562,
-            "scaleY": 1.0,
-            "scaleZ": 2.11755562
-          },
-          "Nickname": "",
-          "Description": "",
-          "GMNotes": "",
-          "AltLookAngle": {
-            "x": 0.0,
-            "y": 0.0,
-            "z": 0.0
-          },
-          "ColorDiffuse": {
-            "r": 0.713235259,
-            "g": 0.713235259,
-            "b": 0.713235259
-          },
-          "LayoutGroupSortIndex": 0,
-          "Value": 0,
-          "Locked": false,
-          "Grid": true,
-          "Snap": true,
-          "IgnoreFoW": false,
-          "MeasureMovement": false,
-          "DragSelectable": true,
-          "Autoraise": true,
-          "Sticky": true,
-          "Tooltip": true,
-          "GridProjection": false,
-          "HideWhenFaceDown": true,
-          "Hands": true,
-          "CardID": 100,
-          "SidewaysCard": false,
-          "CustomDeck": {
-            "1": {
-              "FaceURL": "http://cloud-3.steamusercontent.com/ugc/2070009654799965256/04AD59C56EBEDDB6D8280F0C48747CE0ED64CC3B/",
-              "BackURL": "http://cloud-3.steamusercontent.com/ugc/1824532464545138006/4D7DD077278313AC19F3785B5D16710DE15D3873/",
-              "NumWidth": 1,
-              "NumHeight": 1,
-              "BackIsHidden": true,
-              "UniqueBack": false,
-              "Type": 0
-            }
-          },
-          "LuaScript": "",
-          "LuaScriptState": "",
-          "XmlUI": ""
-        }
-      ]
-    },
-    {
       "GUID": "4e3251",
       "Name": "Infinite_Bag",
       "Transform": {
         "posX": 19.50026,
-        "posY": 0.983000636,
+        "posY": 0.983000457,
         "posZ": 7.69082069,
-        "rotX": -8.55997E-07,
-        "rotY": 0.0116153359,
-        "rotZ": -9.43387931E-07,
+        "rotX": -1.181183E-06,
+        "rotY": 0.0116165914,
+        "rotZ": -3.95382955E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -61570,8 +61402,8 @@
       },
       "ColorDiffuse": {
         "r": 0.854901969,
-        "g": 0.0980377,
-        "b": 0.09411601
+        "g": 0.09803378,
+        "b": 0.09411179
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -61808,11 +61640,11 @@
       "Name": "Infinite_Bag",
       "Transform": {
         "posX": 19.5,
-        "posY": 0.983000457,
+        "posY": 0.9830005,
         "posZ": 4.7958045,
-        "rotX": -8.78637536E-07,
-        "rotY": 0.00736977672,
-        "rotZ": -5.39035057E-07,
+        "rotX": -4.68761954E-07,
+        "rotY": 0.007371707,
+        "rotZ": -8.41050735E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -61826,7 +61658,7 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.121566929,
+        "r": 0.121562548,
         "g": 0.5294118,
         "b": 1.0
       },
@@ -63529,11 +63361,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 24.0,
-        "posY": 0.8149665,
+        "posY": 0.814966559,
         "posZ": 16.0000038,
-        "rotX": -2.48462726E-07,
-        "rotY": -0.000187823534,
-        "rotZ": -7.637268E-07,
+        "rotX": -7.804045E-07,
+        "rotY": -0.000259894034,
+        "rotZ": -8.721147E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -63549,7 +63381,7 @@
       "ColorDiffuse": {
         "r": 1.0,
         "g": 0.0,
-        "b": 0.323419333
+        "b": 0.323414952
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -64993,11 +64825,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 24.0,
-        "posY": 0.8149668,
-        "posZ": 12.0000019,
-        "rotX": 1.79426911E-06,
-        "rotY": -0.0002460669,
-        "rotZ": 4.910862E-06,
+        "posY": 0.8149662,
+        "posZ": 12.0000219,
+        "rotX": -7.50399067E-07,
+        "rotY": -0.00144179689,
+        "rotZ": -9.604859E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -66456,12 +66288,12 @@
       "GUID": "22e6cf",
       "Name": "Bag",
       "Transform": {
-        "posX": 24.0,
-        "posY": 0.8149673,
-        "posZ": 8.000004,
-        "rotX": -7.89738351E-06,
-        "rotY": -0.0003270153,
-        "rotZ": 7.8007115E-06,
+        "posX": 23.9999943,
+        "posY": 0.814966857,
+        "posZ": 8.000028,
+        "rotX": 2.781466E-06,
+        "rotY": -0.002203196,
+        "rotZ": 1.66413793E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -66476,7 +66308,7 @@
       },
       "ColorDiffuse": {
         "r": 0.0,
-        "g": 0.420072943,
+        "g": 0.4200686,
         "b": 1.0
       },
       "LayoutGroupSortIndex": 0,
@@ -67920,12 +67752,12 @@
       "GUID": "19484b",
       "Name": "Bag",
       "Transform": {
-        "posX": 24.0,
-        "posY": 0.8149669,
-        "posZ": 4.000005,
-        "rotX": 3.28504285E-07,
-        "rotY": -0.00019341975,
-        "rotZ": 9.08801553E-07,
+        "posX": 24.0000019,
+        "posY": 0.8149667,
+        "posZ": 4.00004339,
+        "rotX": -4.30189118E-07,
+        "rotY": -0.00263435813,
+        "rotZ": 1.42240992E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -69384,12 +69216,12 @@
       "GUID": "f840e9",
       "Name": "Bag",
       "Transform": {
-        "posX": 24.0,
-        "posY": 0.8149671,
-        "posZ": 2.10152939E-06,
-        "rotX": 3.101745E-07,
-        "rotY": -0.000480934657,
-        "rotZ": 3.46845377E-06,
+        "posX": 24.0000038,
+        "posY": 0.814966559,
+        "posZ": 1.89978164E-05,
+        "rotX": -3.5000196E-06,
+        "rotY": -0.00214795419,
+        "rotZ": 6.30998557E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -69403,7 +69235,7 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.0776977763,
+        "r": 0.07769411,
         "g": 0.6742159,
         "b": 0.0
       },
@@ -70848,12 +70680,12 @@
       "GUID": "468017",
       "Name": "CardCustom",
       "Transform": {
-        "posX": 25.3535976,
-        "posY": 1.01360512,
-        "posZ": -16.5994549,
-        "rotX": 6.550993E-07,
-        "rotY": 180.000153,
-        "rotZ": 9.094451E-07,
+        "posX": 6.89140749,
+        "posY": 0.973605037,
+        "posZ": 0.205902562,
+        "rotX": -5.07008657E-08,
+        "rotY": 180.0,
+        "rotZ": 5.23750441E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -70898,9 +70730,8 @@
           "Type": 0
         }
       },
-      "LuaScript": "\r\nfunction onLoad()\r\n    --local params_atk = {\r\n    --    click_function = \"on_atk_button_click\",\r\n    --    function_owner = self,\r\n    --    label          = tostring(10),\r\n    --    position       = {-0.85, 0.3, 1.23},\r\n    --    rotation       = {0, 0, 0},\r\n    --    width          = 260,\r\n    --    height         = 260,\r\n    --    font_size      = 150,\r\n    --    color          = {0, 0, 1},\r\n    --    font_color     = {1, 1, 1},\r\n    --    hover_color    = {0, 0, 1},\r\n    --    tooltip        = \"\",\r\n    --}\r\n\r\n    --local params_def = {\r\n    --    click_function = \"on_def_button_click\",\r\n    --    function_owner = self,\r\n    --    label          = tostring(10),\r\n    --    position       = {0.85, 0.3, 1.23},\r\n    --    rotation       = {0, 0, 0},\r\n    --    width          = 260,\r\n    --    height         = 260,\r\n    --    font_size      = 150,\r\n    --    color          = {1, 0, 0},\r\n    --    font_color     = {1, 1, 1},\r\n    --    hover_color    = {1, 0, 0},\r\n    --    tooltip        = \"\",\r\n    --}\r\n\r\n    --local params_remove = {\r\n    --    click_function = \"on_remove_button_click\",\r\n    --    function_owner = self,\r\n    --    label          = \"X\",\r\n    --    position       = {0, 0.3, 1.3},\r\n    --    rotation       = {0, 0, 0},\r\n    --    width          = 100,\r\n    --    height         = 100,\r\n    --    font_size      = 100,\r\n    --    color          = {0, 0, 0},\r\n    --    font_color     = {1, 1, 1},\r\n    --    hover_color    = {0.3, 0, 0},\r\n    --    tooltip        = \"\",\r\n    --}\r\n\r\n    --self.createButton(params_atk)\r\n    --self.createButton(params_def)\r\n    --self.createButton(params_remove)\r\n\r\n    self.UI.setXml(self.UI.getXml())\r\n\r\nend\r\n\r\nfunction onCollisionEnter(collision_info)\r\n    -- collision_info table:\r\n    --   collision_object    Object\r\n    --   contact_points      Table     {Vector, ...}\r\n    --   relative_velocity   Vector\r\n   \r\n    --print(\"Do the reset\")\r\n    if collision_info.collision_object.type ~= \"Card\" then\r\n        return\r\n    end\r\n\r\n\r\n    \r\nend",
+      "LuaScript": "\r\n\r\n-- TODO: DO NOT LEAVE THIS HERE, THIS IS FOR TESTING\r\n\r\nlocal dynamic_button_bindings = {}    \r\n\r\nlocal xmlToApply = {\r\n        {\r\n            tag = \"Image\",\r\n            attributes = {\r\n                id = \"atkImage\",\r\n                image = \"atk\",\r\n                position = \"85 120 -30\",\r\n                width = 62,\r\n                height = 77,\r\n                rotation = \"0 0 180\",\r\n                scale = \"0.5 0.5 1\"\r\n            }\r\n        },\r\n        {\r\n            tag = \"Image\",\r\n            attributes = {\r\n                id = \"defImage\",\r\n                image = \"def\",\r\n                position = \"-85 120 -30\",\r\n                width = 62,\r\n                height = 77,\r\n                rotation = \"0 0 180\",\r\n                scale = \"0.5 0.5 1\"\r\n            }\r\n        },\r\n        {\r\n            tag = \"Button\",\r\n            attributes = {\r\n                id = \"attackToggleButton\",\r\n                position = \"85 120 -40\",\r\n                width = 62,\r\n                height = 77,\r\n                rotation = \"0 0 180\",\r\n                scale = \"0.7 0.7 1\",\r\n                color = \"clear\",\r\n                textColor = \"white\",\r\n                onClick = \"on_dynamic_button_click\",\r\n            },\r\n            children = {\r\n                tag = \"Text\",\r\n                attributes = {\r\n                    id = \"attackButtonText\",\r\n                    font = \"seagull/seagull\",\r\n                    fontSize = 30,\r\n                },\r\n                value = \"10\"\r\n            }\r\n        },\r\n        {\r\n            tag = \"Button\",\r\n            attributes = {\r\n                id = \"attackIncreaseButton\",\r\n                position = \"130 95 -40\",\r\n                width = 50,\r\n                height = 50,\r\n                rotation = \"0 0 180\",\r\n                scale = \"1 1 1\",\r\n                color = \"rgba(0, 0, 0.75, 0.75)\",\r\n                onClick = \"on_dynamic_button_click\",\r\n            },\r\n            children = {\r\n                tag = \"Text\",\r\n                attributes = {\r\n                color = \"white\",\r\n                    --font = \"seagull/seagull\",\r\n                    --alignment = \"UpperCenter\",\r\n                    resizeTextForBestFit = \"true\"\r\n                },\r\n                value = \"+\"\r\n            }\r\n\r\n        },\r\n        {\r\n            tag = \"Button\",\r\n            attributes = {\r\n                id = \"attackDecreaseButton\",\r\n                position = \"130 145 -40\",\r\n                width = 50,\r\n                height = 50,\r\n                rotation = \"0 0 180\",\r\n                scale = \"1 1 1\",\r\n                color = \"rgba(0, 0, 0.75, 0.75)\",\r\n                onClick = \"on_dynamic_button_click\",\r\n            },\r\n            children = {\r\n                tag = \"Text\",\r\n                attributes = {\r\n                color = \"white\",\r\n                    --font = \"seagull/seagull\",\r\n                    alignment = \"UpperCenter\",\r\n                    resizeTextForBestFit = \"true\"\r\n                },\r\n                value = \"-\"\r\n            }\r\n        },\r\n        {\r\n            tag = \"Button\",\r\n            attributes = {\r\n                id = \"defenceToggleButton\",\r\n                position = \"-85 120 -40\",\r\n                width = 62,\r\n                height = 77,\r\n                rotation = \"0 0 180\",\r\n                scale = \"0.7 0.7 1\",\r\n                color = \"clear\",\r\n                textColor = \"white\",\r\n                onClick = \"on_dynamic_button_click\"\r\n            },\r\n            children = {\r\n                tag = \"Text\",\r\n                attributes = {\r\n                    id = \"defenceButtonText\",\r\n                    font = \"seagull/seagull\",\r\n                    fontSize = 30,\r\n                },\r\n                value = \"10\"\r\n            }\r\n        },\r\n        {\r\n            tag = \"Button\",\r\n            attributes = {\r\n                id = \"defenceIncreaseButton\",\r\n                position = \"-130 95 -40\",\r\n                width = 50,\r\n                height = 50,\r\n                rotation = \"0 0 180\",\r\n                scale = \"1 1 1\",\r\n                color = \"rgba(0.75, 0, 0, 0.75)\",\r\n                onClick = \"on_dynamic_button_click\",\r\n            },\r\n            children = {\r\n                tag = \"Text\",\r\n                attributes = {\r\n                color = \"white\",\r\n                    --font = \"seagull/seagull\",\r\n                    --alignment = \"UpperCenter\",\r\n                    resizeTextForBestFit = \"true\"\r\n                },\r\n                value = \"+\"\r\n            }\r\n\r\n        },\r\n        {\r\n            tag = \"Button\",\r\n            attributes = {\r\n                id = \"defenceDecreaseButton\",\r\n                position = \"-130 145 -40\",\r\n                width = 50,\r\n                height = 50,\r\n                rotation = \"0 0 180\",\r\n                scale = \"1 1 1\",\r\n                color = \"rgba(0.75, 0, 0, 0.75)\",\r\n                onClick = \"on_dynamic_button_click\",\r\n            },\r\n            children = {\r\n                tag = \"Text\",\r\n                attributes = {\r\n                color = \"white\",\r\n                    --font = \"seagull/seagull\",\r\n                    alignment = \"UpperCenter\",\r\n                    resizeTextForBestFit = \"true\"\r\n                },\r\n                value = \"-\"\r\n            }\r\n        },\r\n        {\r\n            tag = \"Button\",\r\n            attributes = {\r\n                id = \"deleteAtkDefCounterButton\",\r\n                position = \"0 170 -40\",\r\n                width = 30,\r\n                height = 30,\r\n                rotation = \"0 0 180\",\r\n                scale = \"1 1 1\",\r\n                color = \"rgba(0, 0, 0, 0.75)\",\r\n                textColor = \"white\",\r\n                onClick = \"on_dynamic_button_click\",\r\n            },\r\n            children = {\r\n                tag = \"Text\",\r\n                attributes = {\r\n                    --font = \"seagull/seagull\",\r\n                    alignment = \"UpperCenter\",\r\n                    resizeTextForBestFit = \"true\"\r\n                },\r\n                value = \"X\"\r\n            }\r\n        },\r\n    }\r\n\r\nfunction register_button(params, context_table)\r\n    if dynamic_button_bindings[params.id] ~= nil then\r\n        error(\"Attempt to add dynamic UI button binding when one already exists!\")\r\n        return\r\n    end\r\n\r\n    dynamic_button_bindings[params.id] = { binding = params.binding, context = context_table }\r\nend\r\n\r\nfunction unregister_button(params)\r\n    if dynamic_button_bindings[params.id] == nil then\r\n        return\r\n    end\r\n\r\n    dynamic_button_bindings[params.id] = nil\r\nend\r\n\r\nfunction on_dynamic_button_click(player, _, id)\r\n    if dynamic_button_bindings[id] == nil then\r\n       error(\"Dynamic button with no functionality was clicked!\")\r\n       return\r\n    end\r\n\r\n    dynamic_button_bindings[id].binding(dynamic_button_bindings[id].context)\r\nend\r\n\r\nfunction delete_ui_element(ui_table, element_id)\r\n    for k, v in ipairs(ui_table) do\r\n        if v.attributes ~= nil and v.attributes.id ~= nil and v.attributes.id == element_id then\r\n            ui_table[k] = nil\r\n            return true \r\n        end\r\n\r\n        if v.children ~= nil then\r\n            if delete_ui_element(v.children, element_id) then\r\n                return true\r\n            end\r\n        end\r\n    end\r\n\r\n    return false\r\nend\r\n\r\nfunction onLoad()\r\n    Global.call(\"shitpost\", {})\r\n    local assets = UI.getCustomAssets()\r\n    self.UI.setCustomAssets(assets)\r\n    \r\n\r\n\r\n    self.UI.setXmlTable(xmlToApply)\r\n\r\n    register_button({\r\n        id = \"attackButton\", \r\n        binding = function(context)\r\n\r\n            if context.active_str_value == \"false\" then\r\n                context.active_str_value = \"true\"\r\n            else\r\n                context.active_str_value = \"false\"\r\n            end\r\n\r\n            self.UI.setAttribute(\"attackIncreaseButton\", \"active\", context.active_str_value)\r\n            self.UI.setAttribute(\"attackDecreaseButton\", \"active\", context.active_str_value)\r\n        end}, {active_str_value = \"true\"}\r\n    )\r\n    \r\n    local attack_table = {attack_value = 1}\r\n\r\n    register_button({\r\n        id = \"attackIncreaseButton\", \r\n        binding = function(context)\r\n            context.attack_ref.attack_value = context.attack_ref.attack_value + 1\r\n\r\n            self.UI.setValue(\"attackButtonText\", context.attack_ref.attack_value)\r\n        end}, {attack_ref = attack_table}\r\n    )\r\n    \r\n    register_button({\r\n        id = \"attackDecreaseButton\", \r\n        binding = function(context)\r\n            context.attack_ref.attack_value = context.attack_ref.attack_value - 1\r\n\r\n            self.UI.setValue(\"attackButtonText\", context.attack_ref.attack_value)\r\n        end}, {attack_ref = attack_table}\r\n    )\r\n    \r\n    register_button({\r\n        id = \"defenceButton\", \r\n        binding = function(context)\r\n            if context.active_str_value == \"false\" then\r\n                context.active_str_value = \"true\"\r\n            else\r\n                context.active_str_value = \"false\"\r\n            end\r\n\r\n            self.UI.setAttribute(\"defenceIncreaseButton\", \"active\", context.active_str_value)\r\n            self.UI.setAttribute(\"defenceDecreaseButton\", \"active\", context.active_str_value)\r\n        end}, {active_str_value = \"true\"}\r\n    )\r\n\r\n    local defence_table = {defence_value = 1}\r\n\r\n    register_button({\r\n        id = \"defenceIncreaseButton\", \r\n        binding = function(context)\r\n            context.defence_ref.defence_value = context.defence_ref.defence_value + 1\r\n\r\n            if context.defence_ref.defence_value < 0 then\r\n                context.defence_ref.defence_value = 0\r\n            end\r\n\r\n            self.UI.setValue(\"defenceButtonText\", context.defence_ref.defence_value)\r\n        end}, {defence_ref = defence_table}\r\n    )\r\n    \r\n    register_button({\r\n        id = \"defenceDecreaseButton\", \r\n        binding = function(context)\r\n            context.defence_ref.defence_value = context.defence_ref.defence_value - 1\r\n\r\n            if context.defence_ref.defence_value < 0 then\r\n                context.defence_ref.defence_value = 0\r\n            end\r\n\r\n            self.UI.setValue(\"defenceButtonText\", context.defence_ref.defence_value)\r\n        end}, {defence_ref = defence_table}\r\n    )\r\n    \r\n    register_button({\r\n        id = \"deleteAtkDefCounterButton\", \r\n        binding = function(context)\r\n            local xml_table = self.UI.getXmlTable()\r\n\r\n            delete_ui_element(xml_table, \"atkImage\")\r\n            delete_ui_element(xml_table, \"defImage\")\r\n            delete_ui_element(xml_table, \"attackButton\")\r\n            delete_ui_element(xml_table, \"defenceButton\")\r\n            delete_ui_element(xml_table, \"attackIncreaseButton\")\r\n            delete_ui_element(xml_table, \"attackDecreaseButton\")\r\n            delete_ui_element(xml_table, \"defenceIncreaseButton\")\r\n            delete_ui_element(xml_table, \"defenceDecreaseButton\")\r\n            delete_ui_element(xml_table, \"deleteAtkDefCounterButton\")\r\n\r\n            -- TTS does not accept an empty table for the UI XML, so we put a table into a table to get around it.\r\n            -- Yes, this is stupid and insane, but it works. Too bad. Smile.png\r\n            if #xml_table == 0 then\r\n                xml_table = {{}}\r\n            end\r\n            \r\n            self.UI.setXmlTable(xml_table)\r\n\r\n        end}, {}\r\n    )\r\n\r\nend\r\n\r\nfunction onCollisionEnter(collision_info)\r\n    -- collision_info table:\r\n    --   collision_object    Object\r\n    --   contact_points      Table     {Vector, ...}\r\n    --   relative_velocity   Vector\r\n\r\n    if collision_info.collision_object.type ~= \"Card\" then\r\n        return\r\n    end\r\n\r\n    -- for the alpha, we don't need to overcomplicate the card support.\r\n    --if old_script ~= nil or old_script ~= \"\" then\r\n    --    return\r\n    --end\r\n\r\n    collision_info.collision_object.UI.setXmlTable(xmlToApply)\r\n    --Global.call(\"invoke_ui_handler\", {id = \"attackToggleButton\", args = {context_object = collision_info.collision_object.getGUID()}})\r\n\r\n    --<Image image=\"atk\" position=\"85 120 -30\" width=\"62\" height=\"77\" rotation=\"0 0 180\" scale=\"0.5 0.5 1\"/>\r\n    --<Image image=\"def\" position=\"-85 120 -30\" width=\"62\" height=\"77\" rotation=\"0 0 180\" scale=\"0.5 0.5 1\"/>\r\n\r\n    --<Button position=\"85 120 -40\" width=\"62\" height=\"77\" rotation=\"0 0 180\" scale=\"0.5 0.5 1\" color=\"clear\" textColor=\"white\" fontSize=\"30\">10</Button>\r\n    --<Button position=\"-85 120 -40\" width=\"62\" height=\"77\" rotation=\"0 0 180\" scale=\"0.5 0.5 1\" color=\"clear\" textColor=\"white\" fontSize=\"30\">10</Button>\r\n\r\nend",
       "LuaScriptState": "",
-      "XmlUI": "<Image image=\"atk\" position=\"85 120 -30\" width=\"62\" height=\"77\" rotation=\"0 0 180\" scale=\"0.5 0.5 1\"/>\r\n<Image image=\"def\" position=\"-85 120 -30\" width=\"62\" height=\"77\" rotation=\"0 0 180\" scale=\"0.5 0.5 1\"/>\r\n<Button position=\"85 120 -40\" width=\"62\" height=\"77\" rotation=\"0 0 180\" scale=\"0.5 0.5 1\" color=\"clear\" textColor=\"white\" fontSize=\"30\">10</Button>\r\n<Button position=\"-85 120 -40\" width=\"62\" height=\"77\" rotation=\"0 0 180\" scale=\"0.5 0.5 1\" color=\"clear\" textColor=\"white\" fontSize=\"30\">10</Button>",
       "CustomUIAssets": [
         {
           "Type": 0,
@@ -70911,8 +70742,266 @@
           "Type": 0,
           "Name": "def",
           "URL": "http://cloud-3.steamusercontent.com/ugc/2457357698596333912/9A7C8BECD7244690AA5BCC24A1CCCE673A566C43/"
+        },
+        {
+          "Type": 1,
+          "Name": "seagull",
+          "URL": "http://cloud-3.steamusercontent.com/ugc/2457357698616080426/0ED12345CCD3E14B83FC82B224846C2E8932C99D/"
         }
       ]
+    },
+    {
+      "GUID": "cf36d3",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 16.33,
+        "posY": 1.06121755,
+        "posZ": 0.940000057,
+        "rotX": 3.51284439E-06,
+        "rotY": 180.0,
+        "rotZ": -2.78138532E-06,
+        "scaleX": 0.73,
+        "scaleY": 1.0,
+        "scaleZ": 0.73
+      },
+      "Nickname": "Evolution Points",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2457357698615819190/27CFB4E22337871B9490F0D8EF5EA1703910C3B8/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "local evolution_points_prop_name = \"evolutionPoints\"\r\n\r\nfunction onLoad(script_state)\r\n    local leader_defence_state = JSON.decode(script_state)\r\n    local evolution_points_value = 0\r\n\r\n    if leader_defence_state ~= nil and leader_defence_state.evolution_points ~= nil then\r\n        evolution_points_value = leader_defence_state.evolution_points\r\n    end\r\n\r\n    params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(evolution_points_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 100},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase Evolution Points. Right click to decrease Evolution Points. You can use one a turn to assist in paying for the evolution of a follower.\",\r\n    }\r\n\r\n    self.setVar(evolution_points_prop_name, evolution_points_value)\r\n    self.createButton(params)\r\nend\r\n\r\nfunction onSave()\r\n    local leader_defence_state = {\r\n        leade = self.getVar(evolution_points_prop_name)\r\n    }\r\n\r\n    return JSON.encode(leader_defence_state)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    local evolution_points_value = self.getVar(evolution_points_prop_name)\r\n\r\n    if alt_click then\r\n        evolution_points_value = evolution_points_value - 1\r\n    else\r\n        evolution_points_value = evolution_points_value + 1\r\n    end\r\n\r\n    if evolution_points_value <= 0 then\r\n        evolution_points_value = 0\r\n    end\r\n    \r\n    self.setVar(evolution_points_prop_name, evolution_points_value)\r\n    self.editButton({index=0, label=tostring(evolution_points_value)})\r\nend",
+      "LuaScriptState": "{\"leade\":0}"
+    },
+    {
+      "GUID": "ca58ff",
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -16.33,
+        "posY": 1.03647566,
+        "posZ": -0.87,
+        "rotX": 3.51284439E-06,
+        "rotY": 0.0,
+        "rotZ": -2.78138532E-06,
+        "scaleX": 0.73,
+        "scaleY": 1.0,
+        "scaleZ": 0.73
+      },
+      "Nickname": "Evolution Points",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/2457357698615819190/27CFB4E22337871B9490F0D8EF5EA1703910C3B8/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.2,
+          "MergeDistancePixels": 15.0,
+          "StandUp": false,
+          "Stackable": false
+        }
+      },
+      "LuaScript": "local evolution_points_prop_name = \"evolutionPoints\"\r\n\r\nfunction onLoad(script_state)\r\n    local leader_defence_state = JSON.decode(script_state)\r\n    local evolution_points_value = 0\r\n\r\n    if leader_defence_state ~= nil and leader_defence_state.evolution_points ~= nil then\r\n        evolution_points_value = leader_defence_state.evolution_points\r\n    end\r\n\r\n    params = {\r\n        click_function = \"on_button_click\",\r\n        function_owner = self,\r\n        label          = tostring(evolution_points_value),\r\n        position       = {0, 0.2, 0},\r\n        rotation       = {0, 0, 0},\r\n        width          = 1000,\r\n        height         = 1000,\r\n        font_size      = 800,\r\n        color          = {0.5, 0.0, 0.0, 0},\r\n        font_color     = {1, 1, 1, 100},\r\n        hover_color    = {0.8, 0.8, 0.8, 0.2},\r\n        tooltip        = \"Left click to increase Evolution Points. Right click to decrease Evolution Points. You can use one a turn to assist in paying for the evolution of a follower.\",\r\n    }\r\n\r\n    self.setVar(evolution_points_prop_name, evolution_points_value)\r\n    self.createButton(params)\r\nend\r\n\r\nfunction onSave()\r\n    local leader_defence_state = {\r\n        leade = self.getVar(evolution_points_prop_name)\r\n    }\r\n\r\n    return JSON.encode(leader_defence_state)\r\nend\r\n\r\nfunction on_button_click(obj, color, alt_click)\r\n    local evolution_points_value = self.getVar(evolution_points_prop_name)\r\n\r\n    if alt_click then\r\n        evolution_points_value = evolution_points_value - 1\r\n    else\r\n        evolution_points_value = evolution_points_value + 1\r\n    end\r\n\r\n    if evolution_points_value <= 0 then\r\n        evolution_points_value = 0\r\n    end\r\n    \r\n    self.setVar(evolution_points_prop_name, evolution_points_value)\r\n    self.editButton({index=0, label=tostring(evolution_points_value)})\r\nend",
+      "LuaScriptState": "{\"leade\":0}"
+    },
+    {
+      "GUID": "49ffe0",
+      "Name": "HandTrigger",
+      "Transform": {
+        "posX": 0.0,
+        "posY": 3.29337835,
+        "posZ": -20.1042881,
+        "rotX": 0.0,
+        "rotY": 0.0,
+        "rotZ": 0.0,
+        "scaleX": 20.0,
+        "scaleY": 11.8970528,
+        "scaleZ": 3.70848465
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.856,
+        "g": 0.09999997,
+        "b": 0.09399996,
+        "a": 0.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "FogColor": "Red",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "bbc952",
+      "Name": "HandTrigger",
+      "Transform": {
+        "posX": 0.0,
+        "posY": 3.29,
+        "posZ": 20.1204128,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 20.0,
+        "scaleY": 11.8970528,
+        "scaleZ": 3.70846629
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.117999978,
+        "g": 0.53,
+        "b": 1.0,
+        "a": 0.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "FogColor": "Blue",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    },
+    {
+      "GUID": "56f05d",
+      "Name": "Infinite_Bag",
+      "Transform": {
+        "posX": 19.5787811,
+        "posY": 0.983000338,
+        "posZ": -1.86886942,
+        "rotX": -1.00889213E-06,
+        "rotY": 2.363836E-05,
+        "rotZ": -5.375963E-07,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Drop-On Attack/Defence card counters",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.3058885,
+        "g": 0.372555166,
+        "b": 1.0
+      },
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "MaterialIndex": -1,
+      "MeshIndex": -1,
+      "Number": 2,
+      "LuaScript": "function delete_ui_element(ui_table, element_id)\r\n    for k, v in ipairs(ui_table) do\r\n        if v.attributes ~= nil and v.attributes.id ~= nil and v.attributes.id == element_id then\r\n            ui_table[k] = nil\r\n            return true \r\n        end\r\n\r\n        if v.children ~= nil then\r\n            if delete_ui_element(v.children, element_id) then\r\n                return true\r\n            end\r\n        end\r\n    end\r\n\r\n    return false\r\nend\r\n\r\nlocal context_table_prop_name = \"contextualTableData\"\r\nlocal register_ui_handler_function_name = \"register_ui_handler\"\r\nlocal is_attack_enabled_prop_name = \"isAttackEnabled\"\r\nlocal attack_points_prop_name = \"attackPoints\"\r\nlocal attack_button_text_ui_name = \"attackButtonText\"\r\nlocal attack_increase_button_ui_name = \"attackIncreaseButton\"\r\nlocal attack_decrease_button_ui_name = \"attackDecreaseButton\"\r\nlocal is_defence_enabled_prop_name = \"isDefenceEnabled\"\r\nlocal defence_points_prop_name = \"defencePoints\"\r\nlocal defence_button_text_ui_name = \"defenceButtonText\"\r\nlocal defence_increase_button_ui_name = \"defenceIncreaseButton\"\r\nlocal defence_decrease_button_ui_name = \"defenceDecreaseButton\"\r\n\r\n\r\nfunction on_attack_toggle_button_clicked(context)\r\n    local binding_object = getObjectFromGUID(context.context_object)\r\n    local context_table = binding_object.getTable(context_table_prop_name)\r\n\r\n    if context_table == nil then\r\n        context_table = {}\r\n    end\r\n\r\n    local is_attack_enabled = context_table.is_attack_enabled\r\n\r\n    if is_attack_enabled == nil then\r\n        is_attack_enabled = true \r\n    end\r\n    is_attack_enabled = not is_attack_enabled\r\n\r\n    if is_attack_enabled then\r\n        binding_object.UI.show(attack_increase_button_ui_name)\r\n        binding_object.UI.show(attack_decrease_button_ui_name)\r\n    else\r\n        binding_object.UI.hide(attack_increase_button_ui_name)\r\n        binding_object.UI.hide(attack_decrease_button_ui_name)\r\n    end\r\n\r\n    context_table.is_attack_enabled = is_attack_enabled    \r\n    binding_object.setTable(context_table_prop_name, context_table)\r\nend\r\n\r\nfunction on_attack_increase_button_clicked(context)\r\n    local binding_object = getObjectFromGUID(context.context_object)\r\n    local context_table = binding_object.getTable(context_table_prop_name)\r\n    \r\n    if context_table == nil then\r\n        context_table = {}\r\n    end\r\n    \r\n    local attack_points = context_table.attack_points\r\n\r\n    if attack_points == nil then\r\n        attack_points = 1\r\n    end\r\n\r\n    attack_points = attack_points + 1\r\n    binding_object.UI.setValue(attack_button_text_ui_name, attack_points)\r\n    context_table.attack_points = attack_points\r\n\r\n    binding_object.setTable(context_table_prop_name, context_table)\r\nend\r\n\r\nfunction on_attack_decrease_button_clicked(context)\r\n    local binding_object = getObjectFromGUID(context.context_object)\r\n    local context_table = binding_object.getTable(context_table_prop_name)\r\n    \r\n    if context_table == nil then\r\n        context_table = {}\r\n    end\r\n    \r\n    local attack_points = context_table.attack_points\r\n\r\n    if attack_points == nil then\r\n        attack_points = 1\r\n    end\r\n\r\n    attack_points = attack_points - 1\r\n    binding_object.UI.setValue(attack_button_text_ui_name, attack_points)\r\n    context_table.attack_points = attack_points\r\n\r\n    binding_object.setTable(context_table_prop_name, context_table)\r\nend\r\n\r\nfunction on_defence_toggle_button_clicked(context)\r\n    local binding_object = getObjectFromGUID(context.context_object)\r\n    local context_table = binding_object.getTable(context_table_prop_name)\r\n\r\n    if context_table == nil then\r\n        context_table = {}\r\n    end\r\n\r\n    local is_defence_enabled = context_table.is_defence_enabled\r\n\r\n    if is_defence_enabled == nil then\r\n        is_defence_enabled = true \r\n    end\r\n\r\n    is_defence_enabled = not is_defence_enabled\r\n\r\n    if is_defence_enabled then\r\n        binding_object.UI.show(defence_increase_button_ui_name)\r\n        binding_object.UI.show(defence_decrease_button_ui_name)\r\n    else\r\n        binding_object.UI.hide(defence_increase_button_ui_name)\r\n        binding_object.UI.hide(defence_decrease_button_ui_name)\r\n    end\r\n\r\n    context_table.is_defence_enabled = is_defence_enabled    \r\n    binding_object.setTable(context_table_prop_name, context_table)\r\nend\r\n\r\nfunction on_defence_increase_button_clicked(context)\r\n    local binding_object = getObjectFromGUID(context.context_object)\r\n    local context_table = binding_object.getTable(context_table_prop_name)\r\n    \r\n    if context_table == nil then\r\n        context_table = {}\r\n    end\r\n    \r\n    local defence_points = context_table.defence_points\r\n\r\n    if defence_points == nil then\r\n        defence_points = 1\r\n    end\r\n\r\n    defence_points = defence_points + 1\r\n    binding_object.UI.setValue(defence_button_text_ui_name, defence_points)\r\n    context_table.defence_points = defence_points\r\n\r\n    binding_object.setTable(context_table_prop_name, context_table)\r\nend\r\n\r\nfunction on_defence_decrease_button_clicked(context)\r\n    local binding_object = getObjectFromGUID(context.context_object)\r\n    local context_table = binding_object.getTable(context_table_prop_name)\r\n    \r\n    if context_table == nil then\r\n        context_table = {}\r\n    end\r\n    \r\n    local defence_points = context_table.defence_points\r\n\r\n    if defence_points == nil then\r\n        defence_points = 1\r\n    end\r\n\r\n    defence_points = defence_points - 1\r\n\r\n    if defence_points < 0 then\r\n        defence_points = 0\r\n    end\r\n\r\n    binding_object.UI.setValue(defence_button_text_ui_name, defence_points)\r\n    context_table.defence_points = defence_points\r\n\r\n    binding_object.setTable(context_table_prop_name, context_table)\r\nend\r\n\r\nfunction on_delete_atk_def_counter_button_clicked(context)\r\n    local binding_object = getObjectFromGUID(context.context_object)\r\n    local xml_table = binding_object.UI.getXmlTable()\r\n\r\n    if xml_table == nil then\r\n        xml_table = {}\r\n    end\r\n\r\n    delete_ui_element(xml_table, \"atkImage\")\r\n    delete_ui_element(xml_table, \"defImage\")\r\n    delete_ui_element(xml_table, \"attackButton\")\r\n    delete_ui_element(xml_table, \"defenceButton\")\r\n    delete_ui_element(xml_table, \"attackIncreaseButton\")\r\n    delete_ui_element(xml_table, \"attackDecreaseButton\")\r\n    delete_ui_element(xml_table, \"defenceIncreaseButton\")\r\n    delete_ui_element(xml_table, \"defenceDecreaseButton\")\r\n    delete_ui_element(xml_table, \"deleteAtkDefCounterButton\")\r\n\r\n    -- TTS does not accept an empty table for the UI XML, so we put a table into a table to get around it.\r\n    -- Yes, this is stupid and insane, but it works. Too bad. Smile.png\r\n    if #xml_table == 0 then\r\n        xml_table = {{}}\r\n    end\r\n    \r\n    binding_object.UI.setXmlTable(xml_table)\r\nend\r\n\r\n\r\nfunction onLoad()\r\n    Global.call(register_ui_handler_function_name, {\r\n        id = \"attackToggleButton\",\r\n        binding = {binding_object = self.getGUID(),\r\n        func_name = \"on_attack_toggle_button_clicked\"}}\r\n    )\r\n\r\n    Global.call(register_ui_handler_function_name, {\r\n        id = \"attackIncreaseButton\",\r\n        binding =  {binding_object = self.getGUID(),\r\n        func_name = \"on_attack_increase_button_clicked\"}}\r\n    )\r\n\r\n    Global.call(register_ui_handler_function_name, {\r\n        id = \"attackDecreaseButton\",\r\n        binding =  {binding_object = self.getGUID(),\r\n        func_name = \"on_attack_decrease_button_clicked\"}}\r\n    )\r\n    \r\n    Global.call(register_ui_handler_function_name, {\r\n        id = \"defenceToggleButton\",\r\n        binding = {binding_object = self.getGUID(),\r\n        func_name = \"on_defence_toggle_button_clicked\"}}\r\n    )\r\n\r\n    Global.call(register_ui_handler_function_name, {\r\n        id = \"defenceIncreaseButton\",\r\n        binding =  {binding_object = self.getGUID(),\r\n        func_name = \"on_defence_increase_button_clicked\"}}\r\n    )\r\n\r\n    Global.call(register_ui_handler_function_name, {\r\n        id = \"defenceDecreaseButton\",\r\n        binding =  {binding_object = self.getGUID(),\r\n        func_name = \"on_defence_decrease_button_clicked\"}}\r\n    )\r\n\r\n    Global.call(register_ui_handler_function_name, {\r\n        id = \"deleteAtkDefCounterButton\",\r\n        binding =  {binding_object = self.getGUID(),\r\n        func_name = \"on_delete_atk_def_counter_button_clicked\"}}\r\n    )\r\nend",
+      "LuaScriptState": ""
     }
   ]
 }

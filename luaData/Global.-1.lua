@@ -14,6 +14,7 @@ end
 --[[ The onLoad event is called after the game save finishes loading. --]]
 function onLoad()
     --Tables.setTable("Table_Custom")
+    --Tables.setCustomURL("http://cloud-3.steamusercontent.com/ugc/2457357698616741578/7BBF631AAED3CD2655503C61051350C69E6B415F/")
     Tables.getTableObject().scale({ 0.33, 1, 0.584 })
 
 
@@ -33,6 +34,115 @@ function onLoad()
 
     --Tables.getTableObject().createButton(load_params)
 end
+
+local ui_handler_cache = {}
+
+function register_ui_handler(params)
+    if ui_handler_cache[params.id] ~= nil then
+        error("Attempt to re-register handler with the same ID.")
+        return
+    end
+
+    ui_handler_cache[params.id] = params.binding
+end
+
+function invoke_ui_handler(params)
+    if ui_handler_cache[params.id] == nil then
+        error("Attempt to invoke nonexistent UI handler function.")
+    end
+
+    local binding = ui_handler_cache[params.id]
+    getObjectFromGUID(binding.binding_object).call(binding.func_name, params.args)
+end
+
+--[[ The onUpdate event is called once per frame. --]]
+function onUpdate()
+
+end
+
+function onPlayerConnect(player)
+    player.promote()
+end
+
+function onPlayerTurn(player, previous_player)
+    if player == nil then
+        print("Player is nil! Please reset turn functionality.")
+        Turns.enable = false
+        return
+    end
+end
+
+function onPlayerChangeColor(player_color)
+    if player_color == "Grey" or player_color == "Black" then
+        return
+    end
+
+    --if Turns.enable == false then
+    --    Turns.enable = true
+    --end
+end
+
+function onObjectSpawn(object)
+    if object.type ~= "Card" then
+        return
+    end
+    
+    local existing_script = object.getLuaScript()
+    
+    --if existing_script ~= nil or existing_script ~= "" then
+    --    print(existing_script)
+    --    return
+    --end
+
+    
+    local functions_to_add = [[
+function onSave()
+
+    local xml_ui_str = self.UI.getXml()
+
+    local return_table = { xml_ui = xml_ui_str, context_table = self.getTable("contextualTableData") }
+
+    if return_table.context_table == nil then
+        return_table.context_table = {}
+    end
+
+    return JSON.encode(return_table)
+
+end
+
+
+function onLoad(script_state)
+    local state_table = JSON.decode(script_state)
+
+    if state_table == nil then
+        return
+    end
+    
+    local assets = UI.getCustomAssets()
+    self.UI.setCustomAssets(assets)
+
+    if state_table.xml_ui ~= nil then
+        self.UI.setXml(state_table.xml_ui)
+    end
+
+    local contextual_data = state_table.context_table
+
+    if contextual_data == nil then
+        contextual_data = {}
+    end
+
+    self.setTable("contextualTableData", contextual_data)
+end
+
+function on_dynamic_button_click(player, _, id)
+    Global.call("invoke_ui_handler", {id = id, args = {context_object = self.getGUID()}})
+end
+    ]]
+
+    object.setLuaScript(functions_to_add)
+end
+
+
 
 function load_cards(obj, color, alt_click)
     -- this is cooked as fuck bro
@@ -2149,71 +2259,4 @@ function load_cards(obj, color, alt_click)
 
     print("grouping " .. tostring(#new_loaded_cards) .. " cards")
     group(new_loaded_cards)
-end
-
---[[ The onUpdate event is called once per frame. --]]
-function onUpdate()
-
-end
-
-function onPlayerConnect(player)
-    player.promote()
-end
-
-function onPlayerTurn(player, previous_player)
-    if player == nil then
-        print("Player is nil! Please reset turn functionality.")
-        Turns.enable = false
-        return
-    end
-end
-
-function onPlayerChangeColor(player_color)
-    if player_color == "Grey" or player_color == "Black" then
-        return
-    end
-
-    --if Turns.enable == false then
-    --    Turns.enable = true
-    --end
-end
-
-function onObjectSpawn(object)
-    if object.type ~= "Card" then
-        return
-    end
-
-    local existing_script = object.getLuaScript()
-
-    if existing_script == nil then
-        existing_script = ""
-    end
-
-    local code_to_add = [[
-    ]]
-end
-
-
-
-local dynamic_button_bindings = {}
-
-function register_button(params)
-    if dynamic_button_bindings[params.id] ~= nil then
-        error("Attempt to add dynamic UI button binding when one already exists!")
-        return
-    end
-
-    dynamic_button_bindings[params.id] =  { main_function_binding = params.main_function_binding, alt_function_binding = params.alt_function_binding }
-end
-
-function unregister_button(params)
-    if dynamic_button_bindings[params.id] == nil then
-        return
-    end
-
-    dynamic_button_bindings[params.id] = nil
-end
-
-function on_dynamic_button_click(obj, color, alt_click)
-    
 end
