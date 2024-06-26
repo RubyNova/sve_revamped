@@ -88,6 +88,11 @@ function onObjectSpawn(object)
     end
     
     local existing_script = object.getLuaScript()
+
+    if string.find(existing_script, "--NONUKE") then
+        print("NONUKE found, ignoring.")
+        return
+    end
     
     --if existing_script ~= nil or existing_script ~= "" then
     --    print(existing_script)
@@ -140,6 +145,9 @@ end
     ]]
 
     object.setLuaScript(functions_to_add)
+
+
+    object.UI.setCustomAssets(self.UI.getCustomAssets())
 end
 
 
