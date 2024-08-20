@@ -24,7 +24,7 @@ function onLoad(script_state)
         tooltip        = "Left click to increase your maximum play points. Right-click to reduce instead.",
     }
 
-    self.setVar(current_max_prop_name, maximum_play_points_value)    
+    self.setVar(current_max_prop_name, play_points_value)    
     self.createButton(params)
 end
 

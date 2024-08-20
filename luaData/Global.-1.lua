@@ -14,8 +14,8 @@ end
 --[[ The onLoad event is called after the game save finishes loading. --]]
 function onLoad()
     --Tables.setTable("Table_Custom")
-    --Tables.setCustomURL("http://cloud-3.steamusercontent.com/ugc/2457357698616741578/7BBF631AAED3CD2655503C61051350C69E6B415F/")
-    Tables.getTableObject().scale({ 0.33, 1, 0.584 })
+    --Tables.setCustomURL("https://steamusercontent-a.akamaihd.net/ugc/2457357698616741578/7BBF631AAED3CD2655503C61051350C69E6B415F/")
+    Tables.getTableObject().scale({ 0.33, 1, 0.529 })
 
 
     --local load_params = {
@@ -39,14 +39,17 @@ local ui_handler_cache = {}
 
 function register_ui_handler(params)
     if ui_handler_cache[params.id] ~= nil then
-        error("Attempt to re-register handler with the same ID.")
+        error("Attempt to re-register UI handler with the same ID.")
         return
     end
 
+    print("REGISTERING: " .. params.id)
     ui_handler_cache[params.id] = params.binding
+    print(ui_handler_cache[params.id].func_name)
 end
 
 function invoke_ui_handler(params)
+    print("CALLING: " .. params.id)
     if ui_handler_cache[params.id] == nil then
         error("Attempt to invoke nonexistent UI handler function.")
     end
@@ -90,7 +93,6 @@ function onObjectSpawn(object)
     local existing_script = object.getLuaScript()
 
     if string.find(existing_script, "--NONUKE") then
-        print("NONUKE found, ignoring.")
         return
     end
     
@@ -137,9 +139,12 @@ function onLoad(script_state)
     end
 
     self.setTable("contextualTableData", contextual_data)
+
+    Global.call("ready_for_card_load", {context_object = self.getGUID()})
 end
 
 function on_dynamic_button_click(player, _, id)
+    print(id)
     Global.call("invoke_ui_handler", {id = id, args = {context_object = self.getGUID()}})
 end
     ]]
@@ -150,12 +155,22 @@ end
     object.UI.setCustomAssets(self.UI.getCustomAssets())
 end
 
+local load_handler_cache = {}
 
+function register_load_function_handler(params)
+    table.insert(load_handler_cache, params.binding)
+end
+
+function ready_for_card_load(context)
+    for _, binding in ipairs(load_handler_cache) do
+        getObjectFromGUID(binding.binding_object).call(binding.func_name, context)
+    end
+end
 
 function load_cards(obj, color, alt_click)
     -- this is cooked as fuck bro
     local back_of_card =
-    "http://cloud-3.steamusercontent.com/ugc/2462986661277403686/F7DECF05616CD3296AB56BC3D51096286805962F/"
+    "https://steamusercontent-a.akamaihd.net/ugc/2462986661277403686/F7DECF05616CD3296AB56BC3D51096286805962F/"
     --local test_array = {
     --    "BP01-001EN",
     --    "BP01-002EN",
@@ -1993,6 +2008,46 @@ function load_cards(obj, color, alt_click)
     --    "BP05-T05EN",
     --}
 
+    --CSD01
+    --local cards_to_load = {
+    --    "CSD01-001EN",
+    --    "CSD01-002EN",
+    --    "CSD01-003EN",
+    --    "CSD01-004EN",
+    --    "CSD01-005EN",
+    --    "CSD01-006EN",
+    --    "CSD01-007EN",
+    --    "CSD01-008EN",
+    --    "CSD01-009EN",
+    --    "CSD01-010EN",
+    --    "CSD01-011EN",
+    --    "CSD01-012EN",
+    --    "CSD01-010EN",
+    --    "CSD01-011EN",
+    --    "CSD01-012EN",
+    --    "CSD01-013EN",
+    --    "CSD01-014EN",
+    --    "CSD01-015EN",
+    --    "CSD01-016EN",
+    --    "CSD01-017EN",
+    --    "CSD01-018EN",
+    --    "CSD01-019EN",
+    --    "CSD01-020EN",
+    --    "CSD01-021EN",
+    --    "CSD01-022EN",
+    --    "CSD01-023EN",
+    --    "CSD01-024EN",
+    --    "CSD01-025EN",
+    --    "CSD01-026EN",
+    --    "CSD01-027EN",
+    --    "CSD01-028EN",
+    --    "CSD01-029EN",
+    --    "CSD01-030EN",
+    --    "CSD01-031EN",
+    --    "CSD01-032EN"
+    --}
+
+    --CP01
     --local cards_to_load = {
         --"CP01-001EN",
         --"CP01-002EN",
@@ -2252,18 +2307,18 @@ function load_cards(obj, color, alt_click)
     --    "SD01-020EN",
     --}
 
-    --local new_loaded_cards = {
-    --}
+    local new_loaded_cards = {
+    }
 
-    --local offset = 0
-    --for i, card_code in ipairs(cards_to_load) do
-    --    local split_card_code = split(card_code, "-")
-    --    local new_card = spawnObject({ type = "Card", position = { 0, 3 + offset, 0 }, sound = false })
-    --    local file_path = "file:///C:\\Users\\Matt\\Documents\\dev\\test_python_sve_stuff_idk\\cards\\" .. split_card_code[1] .. "\\" .. card_code .. ".png"
-    --    new_card.setCustomObject({ face = file_path, back = back_of_card })
-    --    table.insert(new_loaded_cards, new_card)
-    --    offset = offset + 0.3
-    --end
+    local offset = 0
+    for i, card_code in ipairs(cards_to_load) do
+        local split_card_code = split(card_code, "-")
+        local new_card = spawnObject({ type = "Card", position = { 0, 3 + offset, 0 }, sound = false })
+        local file_path = "file:///C:\\Users\\Matt\\Documents\\dev\\test_python_sve_stuff_idk\\cards\\" .. split_card_code[1] .. "\\" .. card_code .. ".png"
+        new_card.setCustomObject({ face = file_path, back = back_of_card })
+        table.insert(new_loaded_cards, new_card)
+        offset = offset + 0.3
+    end
 
     print("grouping " .. tostring(#new_loaded_cards) .. " cards")
     group(new_loaded_cards)
