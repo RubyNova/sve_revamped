@@ -62,7 +62,6 @@ function on_toggle_edit_keyword_ability_tracker(context)
     end
 
     context_table.is_edit_toggle_enabled = not context_table.is_edit_toggle_enabled
-    --print(context_table.is_edit_toggle_enabled)
 
     if context_table.is_edit_toggle_enabled then
         binding_object.UI.setAttribute("assailToggleButton", "active", "true")
@@ -75,8 +74,6 @@ function on_toggle_edit_keyword_ability_tracker(context)
         binding_object.UI.setAttribute("wardToggleButton", "active", "true")
     else
         binding_object.UI.setAttribute("assailToggleButton", "active", tostring(context_table.is_assail_enabled))
-        print(tostring(context_table.is_assail_enabled))
-        print(binding_object.UI.getAttribute("assailToggleButton", "active"))
         binding_object.UI.setAttribute("auraToggleButton", "active",  tostring(context_table.is_aura_enabled))
         binding_object.UI.setAttribute("baneToggleButton", "active",  tostring(context_table.is_bane_enabled))
         binding_object.UI.setAttribute("drainToggleButton", "active",  tostring(context_table.is_drain_enabled))

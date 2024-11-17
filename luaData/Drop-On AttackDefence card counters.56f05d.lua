@@ -194,6 +194,13 @@ function on_delete_atk_def_counter_button_clicked(context)
     end
     
     binding_object.UI.setXmlTable(xml_table)
+
+    local context_table = binding_object.getTable(context_table_prop_name)
+
+    context_table.attack_points = nil
+    context_table.defence_points = nil
+
+    binding_object.setTable(context_table_prop_name, context_table)
 end
 
 
