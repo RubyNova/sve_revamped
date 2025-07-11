@@ -406,6 +406,10 @@ function on_keyword_ability_tracker_card_load(context)
     local context_object = getObjectFromGUID(context.context_object)
     local context_table = context_object.getTable("contextualTableData")
 
+    if context_table == nil then
+        return
+    end
+
     local old_edit_toggle_value = context_table.is_edit_toggle_enabled
 
     if old_edit_toggle_value == nil then
