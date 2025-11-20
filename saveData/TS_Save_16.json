@@ -1,7 +1,7 @@
 {
   "SaveName": "testing lua stuff",
-  "EpochTime": 1749870960,
-  "Date": "6/14/2025 4:16:00 AM",
+  "EpochTime": 1761607636,
+  "Date": "10/27/2025 11:27:16 PM",
   "VersionNumber": "v13.3",
   "GameMode": "testing lua stuff",
   "GameType": "",
@@ -215,7 +215,7 @@
     "TurnColor": ""
   },
   "DecalPallet": [],
-  "LuaScript": "--[[ Lua code. See documentation: https://api.tabletopsimulator.com/ --]]\n\nfunction split(inputstr, sep)\n    if sep == nil then\n        sep = \"%s\" -- Default to whitespace\n    end\n    local t = {}\n    for str in string.gmatch(inputstr, \"([^\" .. sep .. \"]+)\") do\n        table.insert(t, str)\n    end\n    return t\nend\n\nlocal has_loaded = false\nlocal card_state_data = {}\n\nlocal load_handler_cache = {}\nlocal pre_load_card_cache = {}\n\nfunction onChat(message, sender)\n    if string.find(message, \"-import\") then\n        local arr = split(message, \" \")\n        load_cards(arr[2])\n    end\n\n    return true\nend\n\n--[[ The onLoad event is called after the game save finishes loading. --]]\nfunction onLoad(script_state)\n    --Tables.setTable(\"Table_Custom\")\n    --Tables.setCustomURL(\"https://steamusercontent-a.akamaihd.net/ugc/2457357698616741578/7BBF631AAED3CD2655503C61051350C69E6B415F/\")\n    Tables.getTableObject().scale({ 0.33, 1, 0.529 })\n \n    local state_table = JSON.decode(script_state)\n\n    if state_table == nil then\n        \n        for _, binding in ipairs(load_handler_cache) do\n            getObjectFromGUID(binding.binding_object).call(binding.func_name, context)\n        end\n\n        has_loaded = true\n        return\n    end\n\n    card_state_data = state_table.card_state_data_cached\n    \n    for _, binding in ipairs(load_handler_cache) do\n        getObjectFromGUID(binding.binding_object).call(binding.func_name, context)\n    end\n    \n    has_loaded = true\nend\n\nfunction onSave()\n    return JSON.encode({card_state_data_cached = card_state_data})\nend\n\nfunction update_card_state(data)\n    card_state_data[data.guid] = data.state\nend\n\nfunction get_card_state(data)\n    return card_state_data[data.guid] or {}\nend\n\nlocal ui_handler_cache = {}\n\nfunction register_ui_handler(params)\n    if ui_handler_cache[params.id] ~= nil then\n        error(\"Attempt to re-register UI handler with the same ID.\")\n        return\n    end\n\n    ui_handler_cache[params.id] = params.binding\nend\n\nfunction invoke_ui_handler(params)\n    if ui_handler_cache[params.id] == nil then\n        error(\"Attempt to invoke nonexistent UI handler function.\")\n    end\n\n    local binding = ui_handler_cache[params.id]\n    getObjectFromGUID(binding.binding_object).call(binding.func_name, params.args)\nend\n\n--[[ The onUpdate event is called once per frame. --]]\nfunction onUpdate()\n\nend\n\nfunction onPlayerConnect(player)\n    player.promote()\nend\n\nfunction onPlayerTurn(player, previous_player)\n    if player == nil then\n        print(\"Player is nil! Please reset turn functionality.\")\n        Turns.enable = false\n        return\n    end\nend\n\nfunction onPlayerChangeColor(player_color)\n    if player_color == \"Grey\" or player_color == \"Black\" then\n        return\n    end\n\n    --if Turns.enable == false then\n    --    Turns.enable = true\n    --end\nend\n\nfunction tprint (tbl, indent)\n  if not indent then indent = 0 end\n  local toprint = string.rep(\" \", indent) .. \"{\\r\\n\"\n  indent = indent + 2 \n  for k, v in pairs(tbl) do\n    toprint = toprint .. string.rep(\" \", indent)\n    if (type(k) == \"number\") then\n      toprint = toprint .. \"[\" .. k .. \"] = \"\n    elseif (type(k) == \"string\") then\n      toprint = toprint  .. k ..  \"= \"   \n    end\n    if (type(v) == \"number\") then\n      toprint = toprint .. v .. \",\\r\\n\"\n    elseif (type(v) == \"string\") then\n      toprint = toprint .. \"\\\"\" .. v .. \"\\\",\\r\\n\"\n    elseif (type(v) == \"table\") then\n      toprint = toprint .. tprint(v, indent + 2) .. \",\\r\\n\"\n    else\n      toprint = toprint .. \"\\\"\" .. tostring(v) .. \"\\\",\\r\\n\"\n    end\n  end\n  toprint = toprint .. string.rep(\" \", indent-2) .. \"}\"\n  return toprint\nend\n\nfunction onObjectEnterContainer(container, card)\n    if container.getData().Name ~= \"Deck\" then\n        return\n    end\n\n    local context_data = card.getTable(\"contextualTableData\")\n\n    if context_data == nil then\n        context_data = {}\n    end\n\n    update_card_state({guid = card.guid, state = context_data})\nend\n\nfunction onObjectLeaveContainer(container, card)\n    if container.getData().Name ~= \"Deck\" then\n        return\n    end\n\n    local state = get_card_state({ guid = card.getGUID() })\n    card.setTable(\"contextualTableData\", state)\n    \n    if state.xml_ui ~= nil and next(state.xml_ui) ~= nil then\n        Wait.time(function() card.UI.setXmlTable(state.xml_ui) end, 0.2)\n    end\nend\n    \nfunction onObjectSpawn(object)\n    if object.type ~= \"Card\" then\n        return\n    end\n    \n    local existing_script = object.getLuaScript()\n\n    if string.find(existing_script, \"--NONUKE\") then\n        return\n    end\n    \n    --if existing_script ~= nil or existing_script ~= \"\" then\n    --    print(existing_script)\n    --    return\n    --end\n\n    \n    local functions_to_add = [[\n--function onSave()\n--    local xml_ui_str = self.UI.getXmlTable()\n--\n--    local return_table = { xml_ui = xml_ui, context_table = self.getTable(\"contextualTableData\") }\n--\n--    if return_table.context_table == nil then\n--        return_table.context_table = {}\n--    end\n--\n--    Global.call(\"update_card_state\", {guid = self.getGUID(), state = return_table})\n--    return JSON.encode(return_table)\n--end\n--\n--\n--function onLoad(script_state)\n--    local state_table = JSON.decode(script_state)\n--\n--    if state_table == nil then\n--        Global.call(\"ready_for_card_load\", {context_object = self.getGUID()})\n--        return\n--    end\n--\n--    local assets = UI.getCustomAssets()\n--    self.UI.setCustomAssets(assets)\n--\n--    if state_table.xml_ui ~= nil then\n--        self.UI.setXml(state_table.xml_ui)\n--    end\n--\n--    local contextual_data = state_table.context_table\n--\n--    if contextual_data == nil then\n--        contextual_data = {}\n--    end\n--\n--    self.setTable(\"contextualTableData\", contextual_data)\n--\n--    Global.call(\"ready_for_card_load\", {context_object = self.getGUID()})\n--end\n\nfunction on_dynamic_button_click(player, _, id)\n    Global.call(\"invoke_ui_handler\", {id = id, args = {context_object = self.getGUID()}})\nend\n\nfunction on_card_flip(player, _, id)\n    local face_data = self.getCustomObject()\n    local context_table = Global.call(\"get_card_state\", { guid = self.getGUID() })\n    local back_of_card = \"https://steamusercontent-a.akamaihd.net/ugc/2462986661277403686/F7DECF05616CD3296AB56BC3D51096286805962F/\"\n    \n    if context_table.is_using_second_face then\n        self.setCustomObject({face = context_table.first_face.face_image, back = back_of_card })\n        self.setName(context_table.first_face.face_name)\n        self.setDescription(context_table.first_face.face_desc)\n    else\n        self.setCustomObject({face = context_table.second_face.face_image, back = back_of_card })\n        self.setName(context_table.second_face.face_name)\n        self.setDescription(context_table.second_face.face_desc)\n    end\n\n    context_table.is_using_second_face = not context_table.is_using_second_face\n    self.setTable(\"contextualTableData\", context_table)\n    Global.call(\"update_card_state\", { guid = self.getGUID(), state = context_table })\nend\n    ]]\n\n    object.setLuaScript(functions_to_add)\n\n\n    object.UI.setCustomAssets(self.UI.getCustomAssets())\nend\n\nfunction register_load_function_handler(params)\n    table.insert(load_handler_cache, params.binding)\nend\n\nfunction ready_for_card_load(context)\n    if not has_loaded then\n        table.insert(pre_load_card_cache, context)\n    else\n        for _, binding in ipairs(load_handler_cache) do\n            getObjectFromGUID(binding.binding_object).call(binding.func_name, context)\n        end\n    end\nend\n\nfunction load_cards(deck_code)\n\n    --local new_loaded_cards = {\n    --}\n\n    WebRequest.get(\"https://evolvecdb.org/api/deck/\" .. deck_code, function(requestData)\n        if requestData.is_error then\n            error(\"Unable to import target deck.\")\n        else\n            local back_of_card = \"https://steamusercontent-a.akamaihd.net/ugc/2462986661277403686/F7DECF05616CD3296AB56BC3D51096286805962F/\"\n            local data = JSON.decode(requestData.text)\n            local offset = 0\n            local new_loaded_cards = {}\n\n            print(\"Deck data received. Parsing main deck...\")\n            \n            for card_number, card_data in ipairs(data.mainCards) do\n                local new_card = spawnObject({type = \"Card\", position = { 0, 3 + offset, 0 }, rotation = {0, 0, 180}, sound = false})\n                new_card.setCustomObject({face = card_data.imgUrl, back = back_of_card})\n                new_card.setName(card_data.name)\n                new_card.setDescription(card_data.description)\n                update_card_state({guid = new_card.getGUID(), data = {}})\n                table.insert(new_loaded_cards, new_card)\n                offset = offset + 0.3\n            end\n            \n            print(\"grouping \" .. tostring(#new_loaded_cards) .. \" cards\")\n            group(new_loaded_cards)\n            print(\"Parsing evolve deck...\")\n\n            new_loaded_cards = {}\n\n            for card_number, card_data in ipairs(data.evolveCards) do\n                local new_card = spawnObject({type = \"Card\", position = { 3, 3 + offset, 0 }, rotation = {0, 0, 180}, sound = false})\n                new_card.setCustomObject({face = card_data.imgUrl, back = back_of_card})\n                new_card.setName(card_data.name)\n                new_card.setDescription(card_data.description)\n                \n                if card_data.alternateDetails ~= nil then\n                   local context_data = {first_face = { face_name = card_data.name, face_image = card_data.imgUrl, face_desc = card_data.description }, second_face = { face_name = card_data.alternateDetails.name, face_image = card_data.alternateDetails.imgUrl, face_desc = card_data.alternateDetails.description }, is_using_second_face = false} \n                   context_data.xml_ui = {{\n                       tag = \"Button\",\n                       attributes = {\n                           id = \"flipCardSide\",\n                           position = \"120 -170 -50\",\n                           width = 30,\n                           height = 30,\n                           rotation = \"0 0 180\",\n                           scale = \"1 1 1\",\n                           color = \"rgba(0, 0, 0, 1)\",\n                           textColor = \"white\",\n                           onClick = \"on_card_flip\",\n                       },\n                       children = {\n                           tag = \"Text\",\n                           attributes = {\n                               --font = \"seagull/seagull\",\n                               --alignment = \"LowerCenter\",\n                               resizeTextForBestFit = \"true\"\n                           },\n                           value = \"F\"\n                       }\n                   }}\n                   \n                   new_card.setTable(\"contextualTableData\", context_data)\n                   new_card.UI.setXmlTable(context_data.xml_ui)                   \n                   update_card_state({guid = new_card.getGUID(), data = context_data })\n                    \n                    --collision_info.collision_object.UI.setXmlTable(xml_table)\n                else\n                    update_card_state({guid = new_card.getGUID(), data = {}})\n                end\n\n                --new_card.UI.setXmlTable(undefined, undefined)\n\n                table.insert(new_loaded_cards, new_card)\n                offset = offset + 0.3\n            end\n\n            print(\"grouping \" .. tostring(#new_loaded_cards) .. \" cards\")\n            group(new_loaded_cards)\n\n            print(\"Spawning leader...\")\n\n            local leader_data = data.leaderCard\n \n            local new_card = spawnObject({type = \"Card\", position = { 0, 3 + offset, -4 }, sound = false})\n            new_card.setCustomObject({face = leader_data.imgUrl, back = back_of_card})\n            new_card.setName(leader_data.name)\n\n            print(\"done!\")\n        end\n    end)\nend",
+  "LuaScript": "--[[ Lua code. See documentation: https://api.tabletopsimulator.com/ --]]\n\nfunction split(inputstr, sep)\n    if sep == nil then\n        sep = \"%s\" -- Default to whitespace\n    end\n    local t = {}\n    for str in string.gmatch(inputstr, \"([^\" .. sep .. \"]+)\") do\n        table.insert(t, str)\n    end\n    return t\nend\n\nlocal has_loaded = false\nlocal card_state_data = {}\n\nlocal load_handler_cache = {}\nlocal pre_load_card_cache = {}\n\nfunction onChat(message, sender)\n    if string.find(message, \"-import\") then\n        local arr = split(message, \" \")\n        load_cards(arr[2])\n    end\n\n    return true\nend\n\n--[[ The onLoad event is called after the game save finishes loading. --]]\nfunction onLoad(script_state)\n    --Tables.setTable(\"Table_Custom\")\n    --Tables.setCustomURL(\"https://steamusercontent-a.akamaihd.net/ugc/2457357698616741578/7BBF631AAED3CD2655503C61051350C69E6B415F/\")\n    Tables.getTableObject().scale({ 0.33, 1, 0.529 })\n \n    local state_table = JSON.decode(script_state)\n\n    if state_table == nil then\n        \n        for _, binding in ipairs(load_handler_cache) do\n            getObjectFromGUID(binding.binding_object).call(binding.func_name, context)\n        end\n\n        has_loaded = true\n        return\n    end\n\n    card_state_data = state_table.card_state_data_cached\n    \n    for _, binding in ipairs(load_handler_cache) do\n        getObjectFromGUID(binding.binding_object).call(binding.func_name, context)\n    end\n    \n    has_loaded = true\nend\n\nfunction onSave()\n    return JSON.encode({card_state_data_cached = card_state_data})\nend\n\nfunction update_card_state(data)\n    card_state_data[data.guid] = data.state\nend\n\nfunction get_card_state(data)\n    return card_state_data[data.guid] or {}\nend\n\nlocal ui_handler_cache = {}\n\nfunction register_ui_handler(params)\n    if ui_handler_cache[params.id] ~= nil then\n        error(\"Attempt to re-register UI handler with the same ID.\")\n        return\n    end\n\n    ui_handler_cache[params.id] = params.binding\nend\n\nfunction invoke_ui_handler(params)\n    if ui_handler_cache[params.id] == nil then\n        error(\"Attempt to invoke nonexistent UI handler function.\")\n    end\n\n    local binding = ui_handler_cache[params.id]\n    getObjectFromGUID(binding.binding_object).call(binding.func_name, params.args)\nend\n\n--[[ The onUpdate event is called once per frame. --]]\nfunction onUpdate()\n\nend\n\nfunction onPlayerConnect(player)\n    player.promote()\nend\n\nfunction onPlayerTurn(player, previous_player)\n    if player == nil then\n        print(\"Player is nil! Please reset turn functionality.\")\n        Turns.enable = false\n        return\n    end\nend\n\nfunction onPlayerChangeColor(player_color)\n    if player_color == \"Grey\" or player_color == \"Black\" then\n        return\n    end\n\n    --if Turns.enable == false then\n    --    Turns.enable = true\n    --end\nend\n\nfunction tprint (tbl, indent)\n  if not indent then indent = 0 end\n  local toprint = string.rep(\" \", indent) .. \"{\\r\\n\"\n  indent = indent + 2 \n  for k, v in pairs(tbl) do\n    toprint = toprint .. string.rep(\" \", indent)\n    if (type(k) == \"number\") then\n      toprint = toprint .. \"[\" .. k .. \"] = \"\n    elseif (type(k) == \"string\") then\n      toprint = toprint  .. k ..  \"= \"   \n    end\n    if (type(v) == \"number\") then\n      toprint = toprint .. v .. \",\\r\\n\"\n    elseif (type(v) == \"string\") then\n      toprint = toprint .. \"\\\"\" .. v .. \"\\\",\\r\\n\"\n    elseif (type(v) == \"table\") then\n      toprint = toprint .. tprint(v, indent + 2) .. \",\\r\\n\"\n    else\n      toprint = toprint .. \"\\\"\" .. tostring(v) .. \"\\\",\\r\\n\"\n    end\n  end\n  toprint = toprint .. string.rep(\" \", indent-2) .. \"}\"\n  return toprint\nend\n\nfunction onObjectEnterContainer(container, card)\n    if container.getData().Name ~= \"Deck\" then\n        return\n    end\n\n    local context_data = card.getTable(\"contextualTableData\")\n\n    if context_data == nil then\n        context_data = {}\n    end\n\n    update_card_state({guid = card.guid, state = context_data})\nend\n\nfunction onObjectLeaveContainer(container, card)\n    if container.getData().Name ~= \"Deck\" then\n        return\n    end\n\n    local state = get_card_state({ guid = card.getGUID() })\n    card.setTable(\"contextualTableData\", state)\n    \n    if state.xml_ui ~= nil and next(state.xml_ui) ~= nil then\n        Wait.time(function() card.UI.setXmlTable(state.xml_ui) end, 0.2)\n    end\nend\n    \nfunction onObjectSpawn(object)\n    if object.type ~= \"Card\" then\n        return\n    end\n    \n    local existing_script = object.getLuaScript()\n\n    if string.find(existing_script, \"--NONUKE\") then\n        return\n    end\n    \n    --if existing_script ~= nil or existing_script ~= \"\" then\n    --    print(existing_script)\n    --    return\n    --end\n\n    \n    local functions_to_add = [[\n--function onSave()\n--    local xml_ui_str = self.UI.getXmlTable()\n--\n--    local return_table = { xml_ui = xml_ui, context_table = self.getTable(\"contextualTableData\") }\n--\n--    if return_table.context_table == nil then\n--        return_table.context_table = {}\n--    end\n--\n--    Global.call(\"update_card_state\", {guid = self.getGUID(), state = return_table})\n--    return JSON.encode(return_table)\n--end\n--\n--\n--function onLoad(script_state)\n--    local state_table = JSON.decode(script_state)\n--\n--    if state_table == nil then\n--        Global.call(\"ready_for_card_load\", {context_object = self.getGUID()})\n--        return\n--    end\n--\n--    local assets = UI.getCustomAssets()\n--    self.UI.setCustomAssets(assets)\n--\n--    if state_table.xml_ui ~= nil then\n--        self.UI.setXml(state_table.xml_ui)\n--    end\n--\n--    local contextual_data = state_table.context_table\n--\n--    if contextual_data == nil then\n--        contextual_data = {}\n--    end\n--\n--    self.setTable(\"contextualTableData\", contextual_data)\n--\n--    Global.call(\"ready_for_card_load\", {context_object = self.getGUID()})\n--end\n\nfunction on_dynamic_button_click(player, _, id)\n    Global.call(\"invoke_ui_handler\", {id = id, args = {context_object = self.getGUID()}})\nend\n\nfunction on_card_flip(player, _, id)\n    local face_data = self.getCustomObject()\n    local context_table = Global.call(\"get_card_state\", { guid = self.getGUID() })\n    local back_of_card = \"https://steamusercontent-a.akamaihd.net/ugc/2462986661277403686/F7DECF05616CD3296AB56BC3D51096286805962F/\"\n    \n    if context_table.is_using_second_face then\n        self.setCustomObject({face = context_table.first_face.face_image, back = back_of_card })\n        self.setName(context_table.first_face.face_name)\n        self.setDescription(context_table.first_face.face_desc)\n    else\n        self.setCustomObject({face = context_table.second_face.face_image, back = back_of_card })\n        self.setName(context_table.second_face.face_name)\n        self.setDescription(context_table.second_face.face_desc)\n    end\n\n    context_table.is_using_second_face = not context_table.is_using_second_face\n    self.setTable(\"contextualTableData\", context_table)\n    Global.call(\"update_card_state\", { guid = self.getGUID(), state = context_table })\nend\n    ]]\n\n    object.setLuaScript(functions_to_add)\n\n\n    object.UI.setCustomAssets(self.UI.getCustomAssets())\nend\n\nfunction register_load_function_handler(params)\n    table.insert(load_handler_cache, params.binding)\nend\n\nfunction ready_for_card_load(context)\n    if not has_loaded then\n        table.insert(pre_load_card_cache, context)\n    else\n        for _, binding in ipairs(load_handler_cache) do\n            getObjectFromGUID(binding.binding_object).call(binding.func_name, context)\n        end\n    end\nend\n\nfunction load_cards(deck_code)\n\n    --local new_loaded_cards = {\n    --}\n\n    WebRequest.get(\"https://evolvecdb.org/api/deck/\" .. deck_code, function(requestData)\n        if requestData.is_error then\n            error(\"Unable to import target deck.\")\n        else\n            local back_of_card = \"https://steamusercontent-a.akamaihd.net/ugc/2462986661277403686/F7DECF05616CD3296AB56BC3D51096286805962F/\"\n            local data = JSON.decode(requestData.text)\n            local offset = 0\n            local new_loaded_cards = {}\n            \n            for card_number, card_data in ipairs(data.mainCards) do\n                local new_card = spawnObject({type = \"Card\", position = { 0, 3 + offset, 0 }, rotation = {0, 0, 180}, sound = false})\n                local card_face_url = card_data.imgUrl .. \".png\";\n                print(card_face_url)\n                new_card.setCustomObject({face = card_face_url, back = back_of_card})\n                new_card.setName(card_data.name)\n                new_card.setDescription(card_data.description)\n                update_card_state({guid = new_card.getGUID(), data = {}})\n                table.insert(new_loaded_cards, new_card)\n                offset = offset + 0.3\n            end\n            \n            print(\"grouping \" .. tostring(#new_loaded_cards) .. \" cards\")\n            group(new_loaded_cards)\n            print(\"Parsing evolve deck...\")\n\n            new_loaded_cards = {}\n\n            for card_number, card_data in ipairs(data.evolveCards) do\n                local new_card = spawnObject({type = \"Card\", position = { 3, 3 + offset, 0 }, rotation = {0, 0, 180}, sound = false})\n                local card_face_url = card_data.imgUrl .. \".png\";\n                new_card.setCustomObject({face = card_face_url, back = back_of_card})\n                new_card.setName(card_data.name)\n                new_card.setDescription(card_data.description)\n                \n                if card_data.alternateDetails ~= nil then\n                local alternate_face_url = card_data.alternateDetails.imgUrl .. \".png\"\n\n                    local context_data = {first_face = { face_name = card_data.name, face_image = card_face_url, face_desc = card_data.description }, second_face = { face_name = card_data.alternateDetails.name, face_image = alternate_face_url, face_desc = card_data.alternateDetails.description }, is_using_second_face = false} \n                    context_data.xml_ui = {{\n                        tag = \"Button\",\n                        attributes = {\n                            id = \"flipCardSide\",\n                            position = \"120 -170 -50\",\n                            width = 30,\n                            height = 30,\n                            rotation = \"0 0 180\",\n                            scale = \"1 1 1\",\n                            color = \"rgba(0, 0, 0, 1)\",\n                            textColor = \"white\",\n                            onClick = \"on_card_flip\",\n                        },\n                        children = {\n                            tag = \"Text\",\n                            attributes = {\n                                --font = \"seagull/seagull\",\n                                --alignment = \"LowerCenter\",\n                                resizeTextForBestFit = \"true\"\n                            },\n                            value = \"F\"\n                        }\n                    }}\n                   \n                    new_card.setTable(\"contextualTableData\", context_data)\n                    new_card.UI.setXmlTable(context_data.xml_ui)                   \n                    update_card_state({guid = new_card.getGUID(), data = context_data })\n\n                    --collision_info.collision_object.UI.setXmlTable(xml_table)\n                else\n                    update_card_state({guid = new_card.getGUID(), data = {}})\n                end\n\n                --new_card.UI.setXmlTable(undefined, undefined)\n\n                table.insert(new_loaded_cards, new_card)\n                offset = offset + 0.3\n            end\n\n            print(\"grouping \" .. tostring(#new_loaded_cards) .. \" cards\")\n            group(new_loaded_cards)\n\n            print(\"Spawning leader...\")\n\n            local leader_data = data.leaderCard\n            local card_face_url = leader_data.imgUrl .. \".png\";\n \n            local new_card = spawnObject({type = \"Card\", position = { 0, 3 + offset, -4 }, sound = false})\n            new_card.setCustomObject({face = card_face_url, back = back_of_card})\n            new_card.setName(leader_data.name)\n\n            print(\"done!\")\n        end\n    end)\nend",
   "LuaScriptState": "{\"card_state_data_cached\":{\"0ad686\":[],\"12c5c9\":[],\"144d88\":[],\"176c59\":[],\"191a2e\":[],\"1a9dad\":[],\"1bc8dd\":[],\"1bd0a9\":[],\"1f6bc4\":[],\"219173\":[],\"2da41b\":[],\"2f0590\":[],\"2fdeee\":[],\"43b2b9\":[],\"5a8e87\":[],\"5dbe96\":{\"first_face\":{\"face_desc\":\"Ward.\\nOn Evolve - Bury an amulet: Give your leader Defense +4.\",\"face_image\":\"https://en.shadowverse-evolve.com/wordpress/wp-content/images/cardlist/BP09/BP09-110EN.png\",\"face_name\":\"Ceryneian Lighthind\"},\"is_using_second_face\":false,\"second_face\":{\"face_desc\":\"Bane.\\nOn Evolve - Bury an amulet: Select an enemy leader or enemy follower on the field and deal it 4 damage.\",\"face_image\":\"https://en.shadowverse-evolve.com/wordpress/wp-content/images/cardlist/BP09/BP09-110EN_URA.png\",\"face_name\":\"Ceryneian Darkhind\"},\"xml_ui\":[{\"attributes\":{\"color\":\"rgba(0, 0, 0, 1)\",\"height\":30,\"id\":\"flipCardSide\",\"onClick\":\"on_card_flip\",\"position\":\"120 -170 -50\",\"rotation\":\"0 0 180\",\"scale\":\"1 1 1\",\"textColor\":\"white\",\"width\":30},\"children\":{\"attributes\":{\"resizeTextForBestFit\":\"true\"},\"tag\":\"Text\",\"value\":\"F\"},\"tag\":\"Button\"}]},\"658dc1\":[],\"669d3f\":[],\"6e7473\":[],\"7da7a7\":[],\"8cbaca\":[],\"8da885\":[],\"9196bc\":[],\"9597c2\":{\"first_face\":{\"face_desc\":\"Ward.\\nOn Evolve - Bury an amulet: Give your leader Defense +4.\",\"face_image\":\"https://en.shadowverse-evolve.com/wordpress/wp-content/images/cardlist/BP09/BP09-110EN.png\",\"face_name\":\"Ceryneian Lighthind\"},\"is_using_second_face\":false,\"second_face\":{\"face_desc\":\"Bane.\\nOn Evolve - Bury an amulet: Select an enemy leader or enemy follower on the field and deal it 4 damage.\",\"face_image\":\"https://en.shadowverse-evolve.com/wordpress/wp-content/images/cardlist/BP09/BP09-110EN_URA.png\",\"face_name\":\"Ceryneian Darkhind\"},\"xml_ui\":[{\"attributes\":{\"color\":\"rgba(0, 0, 0, 1)\",\"height\":30,\"id\":\"flipCardSide\",\"onClick\":\"on_card_flip\",\"position\":\"120 -170 -50\",\"rotation\":\"0 0 180\",\"scale\":\"1 1 1\",\"textColor\":\"white\",\"width\":30},\"children\":{\"attributes\":{\"resizeTextForBestFit\":\"true\"},\"tag\":\"Text\",\"value\":\"F\"},\"tag\":\"Button\"}]},\"95b4ac\":[],\"95ddf0\":[],\"9806d5\":[],\"98ec6b\":[],\"9ef386\":[],\"a9c14a\":[],\"aeed7a\":[],\"aefd8a\":[],\"b354bd\":[],\"b6a458\":[],\"ba71d5\":[],\"bd099f\":[],\"c22294\":[],\"ca9e51\":[],\"d2f393\":[],\"d3d80f\":[],\"d48f58\":[],\"dca819\":{\"first_face\":{\"face_desc\":\"Ward.\\nOn Evolve - Bury an amulet: Give your leader Defense +4.\",\"face_image\":\"https://en.shadowverse-evolve.com/wordpress/wp-content/images/cardlist/BP09/BP09-110EN.png\",\"face_name\":\"Ceryneian Lighthind\"},\"is_using_second_face\":false,\"second_face\":{\"face_desc\":\"Bane.\\nOn Evolve - Bury an amulet: Select an enemy leader or enemy follower on the field and deal it 4 damage.\",\"face_image\":\"https://en.shadowverse-evolve.com/wordpress/wp-content/images/cardlist/BP09/BP09-110EN_URA.png\",\"face_name\":\"Ceryneian Darkhind\"},\"xml_ui\":[{\"attributes\":{\"color\":\"rgba(0, 0, 0, 1)\",\"height\":30,\"id\":\"flipCardSide\",\"onClick\":\"on_card_flip\",\"position\":\"120 -170 -50\",\"rotation\":\"0 0 180\",\"scale\":\"1 1 1\",\"textColor\":\"white\",\"width\":30},\"children\":{\"attributes\":{\"resizeTextForBestFit\":\"true\"},\"tag\":\"Text\",\"value\":\"F\"},\"tag\":\"Button\"}]},\"ddae32\":[],\"e4e842\":[],\"e5bd45\":[],\"ef020f\":[],\"f1e200\":[],\"f4630e\":[]}}",
   "XmlUI": "<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->",
   "CustomUIAssets": [
@@ -587,7 +587,7 @@
         "posZ": 2.067275,
         "rotX": -2.80414326E-07,
         "rotY": 0.0218273364,
-        "rotZ": -1.43129872E-08,
+        "rotZ": -1.43129908E-08,
         "scaleX": 0.73,
         "scaleY": 1.0,
         "scaleZ": 0.73
@@ -727,7 +727,7 @@
         "posZ": 7.97,
         "rotX": -2.13641829E-06,
         "rotY": 0.02559891,
-        "rotZ": 1.57843E-06,
+        "rotZ": 1.57843021E-06,
         "scaleX": 0.73,
         "scaleY": 1.0,
         "scaleZ": 0.73
@@ -955,7 +955,7 @@
       "Name": "Bag",
       "Transform": {
         "posX": 30.7605343,
-        "posY": 0.8149663,
+        "posY": 0.8149662,
         "posZ": 20.0,
         "rotX": -1.01052115E-06,
         "rotY": 5.72295176E-06,
@@ -15809,11 +15809,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 30.7599983,
-        "posY": 0.81496644,
+        "posY": 0.814966261,
         "posZ": 16.0011616,
-        "rotX": -1.27065641E-06,
-        "rotY": -0.000166792684,
-        "rotZ": -7.87070746E-07,
+        "rotX": -8.437696E-07,
+        "rotY": -0.000166779355,
+        "rotZ": -7.837363E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -24889,11 +24889,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 30.76,
-        "posY": 0.8149669,
+        "posY": 0.814965844,
         "posZ": 11.9999876,
-        "rotX": -7.4438E-06,
-        "rotY": -0.0021284176,
-        "rotZ": 2.04619323E-06,
+        "rotX": -1.020543E-06,
+        "rotY": -0.002128491,
+        "rotZ": -9.037804E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -33969,11 +33969,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 30.8022861,
-        "posY": 0.814966142,
-        "posZ": 8.000038,
-        "rotX": -1.01387548E-06,
-        "rotY": -0.00249198521,
-        "rotZ": -8.83767029E-07,
+        "posY": 0.8149664,
+        "posZ": 8.000039,
+        "rotX": -7.70335646E-07,
+        "rotY": -0.00250121648,
+        "rotZ": 2.82147153E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -44341,11 +44341,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 30.8,
-        "posY": 0.814966261,
-        "posZ": 4.000065,
-        "rotX": -9.638695E-07,
-        "rotY": -0.00514290575,
-        "rotZ": -8.70405643E-07,
+        "posY": 0.8149675,
+        "posZ": 4.00006533,
+        "rotX": -3.15055019E-07,
+        "rotY": -0.005151323,
+        "rotZ": 2.39124734E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -44359,7 +44359,7 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.35018,
+        "r": 0.35017997,
         "g": 0.0,
         "b": 0.6777003
       },
@@ -61345,11 +61345,11 @@
       "Name": "Infinite_Bag",
       "Transform": {
         "posX": 19.4345512,
-        "posY": 0.9830004,
+        "posY": 0.9830005,
         "posZ": 1.69893622,
-        "rotX": -1.00819261E-06,
-        "rotY": 0.0116640562,
-        "rotZ": -6.658381E-07,
+        "rotX": -1.16189312E-06,
+        "rotY": 0.011664073,
+        "rotZ": -2.58854953E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -61364,7 +61364,7 @@
       },
       "ColorDiffuse": {
         "r": 0.627451062,
-        "g": 0.1254817,
+        "g": 0.125481665,
         "b": 0.9411765
       },
       "LayoutGroupSortIndex": 0,
@@ -61498,11 +61498,11 @@
       "Name": "Infinite_Bag",
       "Transform": {
         "posX": 19.50026,
-        "posY": 0.9830006,
+        "posY": 0.9830005,
         "posZ": 7.69082069,
-        "rotX": -8.99443648E-07,
-        "rotY": 0.0116172954,
-        "rotZ": -9.513596E-07,
+        "rotX": -6.92439E-07,
+        "rotY": 0.011617301,
+        "rotZ": -1.06969787E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -61517,8 +61517,8 @@
       },
       "ColorDiffuse": {
         "r": 0.854901969,
-        "g": 0.09803205,
-        "b": 0.0941099
+        "g": 0.09803202,
+        "b": 0.09410987
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -61755,11 +61755,11 @@
       "Name": "Infinite_Bag",
       "Transform": {
         "posX": 19.5,
-        "posY": 0.9830005,
+        "posY": 0.9830004,
         "posZ": 4.7958045,
-        "rotX": -6.851485E-07,
-        "rotY": 0.007372675,
-        "rotZ": -5.766702E-07,
+        "rotX": -1.02389549E-06,
+        "rotY": 0.007372684,
+        "rotZ": -3.61535569E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -61773,7 +61773,7 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.121560596,
+        "r": 0.121560566,
         "g": 0.5294118,
         "b": 1.0
       },
@@ -63558,7 +63558,7 @@
       "ColorDiffuse": {
         "r": 1.0,
         "g": 0.0,
-        "b": 0.323413
+        "b": 0.323412985
       },
       "LayoutGroupSortIndex": 0,
       "Value": 0,
@@ -66485,7 +66485,7 @@
       },
       "ColorDiffuse": {
         "r": 0.0,
-        "g": 0.420066625,
+        "g": 0.4200666,
         "b": 1.0
       },
       "LayoutGroupSortIndex": 0,
@@ -67930,11 +67930,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 24.0000019,
-        "posY": 0.8149677,
-        "posZ": 4.000065,
-        "rotX": 2.02285787E-06,
-        "rotY": -0.00425047847,
-        "rotZ": 3.996986E-06,
+        "posY": 0.8149676,
+        "posZ": 4.00006533,
+        "rotX": 1.50091E-06,
+        "rotY": -0.00424703,
+        "rotZ": 3.67517259E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -69394,11 +69394,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 24.0000057,
-        "posY": 0.814967453,
-        "posZ": 3.41488048E-05,
-        "rotX": -3.22972915E-06,
-        "rotY": -0.00420156633,
-        "rotZ": 7.350575E-06,
+        "posY": 0.8149676,
+        "posZ": 3.409898E-05,
+        "rotX": 1.3825146E-06,
+        "rotY": -0.004212939,
+        "rotZ": 3.6751776E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -69412,7 +69412,7 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.07769244,
+        "r": 0.07769243,
         "g": 0.6742159,
         "b": 0.0
       },
@@ -71066,11 +71066,11 @@
       "Name": "Infinite_Bag",
       "Transform": {
         "posX": 19.4299984,
-        "posY": 0.983000457,
+        "posY": 0.983000338,
         "posZ": -1.243575,
-        "rotX": -9.613083E-07,
-        "rotY": 4.38823445E-05,
-        "rotZ": -9.43879854E-07,
+        "rotX": -7.724915E-07,
+        "rotY": 4.416661E-05,
+        "rotZ": -6.58041E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -71197,9 +71197,9 @@
         "posX": 19.43,
         "posY": 0.983000338,
         "posZ": -4.231546,
-        "rotX": -6.081349E-07,
-        "rotY": 2.66501456E-06,
-        "rotZ": -3.07630984E-07,
+        "rotX": -8.665697E-07,
+        "rotY": 2.66657071E-06,
+        "rotZ": -8.14616669E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -71363,12 +71363,12 @@
       "GUID": "06dd8c",
       "Name": "Bag",
       "Transform": {
-        "posX": 23.9999733,
-        "posY": 0.8149661,
-        "posZ": -3.99998522,
-        "rotX": -8.254313E-07,
-        "rotY": -0.000470149127,
-        "rotZ": -1.36069843E-06,
+        "posX": 23.9999752,
+        "posY": 0.8149674,
+        "posZ": -3.999985,
+        "rotX": 1.15899286E-06,
+        "rotY": -0.0004976166,
+        "rotZ": 1.4250676E-05,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -73910,11 +73910,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 30.7999439,
-        "posY": 0.8149667,
-        "posZ": 8.101109E-06,
-        "rotX": -3.8686253E-06,
-        "rotY": -0.0006814247,
-        "rotZ": 6.063149E-06,
+        "posY": 0.8149665,
+        "posZ": 8.336268E-06,
+        "rotX": 6.004405E-08,
+        "rotY": -0.000698920339,
+        "rotZ": 2.14777378E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -90777,9 +90777,9 @@
         "posX": 27.34,
         "posY": 0.814966559,
         "posZ": 16.0,
-        "rotX": -2.301194E-07,
-        "rotY": -5.21268848E-05,
-        "rotZ": -1.58081514E-06,
+        "rotX": -2.26784167E-07,
+        "rotY": -5.23203162E-05,
+        "rotZ": -1.14559077E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -126620,11 +126620,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 24.0,
-        "posY": 0.8149662,
+        "posY": 0.8149664,
         "posZ": -7.99999762,
-        "rotX": -1.26898863E-06,
-        "rotY": -0.000166892743,
-        "rotZ": -5.702923E-07,
+        "rotX": -8.88793238E-07,
+        "rotY": -0.000165125166,
+        "rotZ": -1.048873E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -129324,11 +129324,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 24.0,
-        "posY": 0.8149668,
+        "posY": 0.814967,
         "posZ": -11.9999952,
-        "rotX": 1.71088618E-06,
-        "rotY": -0.000197288391,
-        "rotZ": 2.32119419E-06,
+        "rotX": -5.54952248E-06,
+        "rotY": -0.000212696366,
+        "rotZ": 3.39509461E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -132028,11 +132028,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 24.0,
-        "posY": 0.814966,
+        "posY": 0.814966261,
         "posZ": -16.0,
-        "rotX": -5.736311E-07,
-        "rotY": -0.000161069736,
-        "rotZ": -1.38904886E-06,
+        "rotX": -5.68628252E-07,
+        "rotY": -0.0001612765,
+        "rotZ": -1.16893534E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -134732,11 +134732,11 @@
       "Name": "Bag",
       "Transform": {
         "posX": 30.8,
-        "posY": 0.814966,
-        "posZ": -3.99999857,
-        "rotX": -9.17143E-08,
-        "rotY": -7.234398E-05,
-        "rotZ": -5.219358E-07,
+        "posY": 0.814966559,
+        "posZ": -3.99999881,
+        "rotX": -1.00218358E-06,
+        "rotY": -5.52017955E-05,
+        "rotZ": -4.202162E-07,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -134750,7 +134750,7 @@
         "z": 0.0
       },
       "ColorDiffuse": {
-        "r": 0.2713762,
+        "r": 0.271376163,
         "g": 1.0,
         "b": 0.0
       },

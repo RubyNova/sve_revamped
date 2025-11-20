@@ -280,12 +280,12 @@ function load_cards(deck_code)
             local data = JSON.decode(requestData.text)
             local offset = 0
             local new_loaded_cards = {}
-
-            print("Deck data received. Parsing main deck...")
             
             for card_number, card_data in ipairs(data.mainCards) do
                 local new_card = spawnObject({type = "Card", position = { 0, 3 + offset, 0 }, rotation = {0, 0, 180}, sound = false})
-                new_card.setCustomObject({face = card_data.imgUrl, back = back_of_card})
+                local card_face_url = card_data.imgUrl .. ".png";
+                print(card_face_url)
+                new_card.setCustomObject({face = card_face_url, back = back_of_card})
                 new_card.setName(card_data.name)
                 new_card.setDescription(card_data.description)
                 update_card_state({guid = new_card.getGUID(), data = {}})
@@ -301,40 +301,43 @@ function load_cards(deck_code)
 
             for card_number, card_data in ipairs(data.evolveCards) do
                 local new_card = spawnObject({type = "Card", position = { 3, 3 + offset, 0 }, rotation = {0, 0, 180}, sound = false})
-                new_card.setCustomObject({face = card_data.imgUrl, back = back_of_card})
+                local card_face_url = card_data.imgUrl .. ".png";
+                new_card.setCustomObject({face = card_face_url, back = back_of_card})
                 new_card.setName(card_data.name)
                 new_card.setDescription(card_data.description)
                 
                 if card_data.alternateDetails ~= nil then
-                   local context_data = {first_face = { face_name = card_data.name, face_image = card_data.imgUrl, face_desc = card_data.description }, second_face = { face_name = card_data.alternateDetails.name, face_image = card_data.alternateDetails.imgUrl, face_desc = card_data.alternateDetails.description }, is_using_second_face = false} 
-                   context_data.xml_ui = {{
-                       tag = "Button",
-                       attributes = {
-                           id = "flipCardSide",
-                           position = "120 -170 -50",
-                           width = 30,
-                           height = 30,
-                           rotation = "0 0 180",
-                           scale = "1 1 1",
-                           color = "rgba(0, 0, 0, 1)",
-                           textColor = "white",
-                           onClick = "on_card_flip",
-                       },
-                       children = {
-                           tag = "Text",
-                           attributes = {
-                               --font = "seagull/seagull",
-                               --alignment = "LowerCenter",
-                               resizeTextForBestFit = "true"
-                           },
-                           value = "F"
-                       }
-                   }}
+                local alternate_face_url = card_data.alternateDetails.imgUrl .. ".png"
+
+                    local context_data = {first_face = { face_name = card_data.name, face_image = card_face_url, face_desc = card_data.description }, second_face = { face_name = card_data.alternateDetails.name, face_image = alternate_face_url, face_desc = card_data.alternateDetails.description }, is_using_second_face = false} 
+                    context_data.xml_ui = {{
+                        tag = "Button",
+                        attributes = {
+                            id = "flipCardSide",
+                            position = "120 -170 -50",
+                            width = 30,
+                            height = 30,
+                            rotation = "0 0 180",
+                            scale = "1 1 1",
+                            color = "rgba(0, 0, 0, 1)",
+                            textColor = "white",
+                            onClick = "on_card_flip",
+                        },
+                        children = {
+                            tag = "Text",
+                            attributes = {
+                                --font = "seagull/seagull",
+                                --alignment = "LowerCenter",
+                                resizeTextForBestFit = "true"
+                            },
+                            value = "F"
+                        }
+                    }}
                    
-                   new_card.setTable("contextualTableData", context_data)
-                   new_card.UI.setXmlTable(context_data.xml_ui)                   
-                   update_card_state({guid = new_card.getGUID(), data = context_data })
-                    
+                    new_card.setTable("contextualTableData", context_data)
+                    new_card.UI.setXmlTable(context_data.xml_ui)                   
+                    update_card_state({guid = new_card.getGUID(), data = context_data })
+
                     --collision_info.collision_object.UI.setXmlTable(xml_table)
                 else
                     update_card_state({guid = new_card.getGUID(), data = {}})
@@ -352,9 +355,10 @@ function load_cards(deck_code)
             print("Spawning leader...")
 
             local leader_data = data.leaderCard
+            local card_face_url = leader_data.imgUrl .. ".png";
  
             local new_card = spawnObject({type = "Card", position = { 0, 3 + offset, -4 }, sound = false})
-            new_card.setCustomObject({face = leader_data.imgUrl, back = back_of_card})
+            new_card.setCustomObject({face = card_face_url, back = back_of_card})
             new_card.setName(leader_data.name)
 
             print("done!")
