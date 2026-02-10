@@ -284,7 +284,6 @@ function load_cards(deck_code)
             for card_number, card_data in ipairs(data.mainCards) do
                 local new_card = spawnObject({type = "Card", position = { 0, 3 + offset, 0 }, rotation = {0, 0, 180}, sound = false})
                 local card_face_url = card_data.imgUrl .. ".png";
-                print(card_face_url)
                 new_card.setCustomObject({face = card_face_url, back = back_of_card})
                 new_card.setName(card_data.name)
                 new_card.setDescription(card_data.description)
@@ -302,14 +301,14 @@ function load_cards(deck_code)
             for card_number, card_data in ipairs(data.evolveCards) do
                 local new_card = spawnObject({type = "Card", position = { 3, 3 + offset, 0 }, rotation = {0, 0, 180}, sound = false})
                 local card_face_url = card_data.imgUrl .. ".png";
-                new_card.setCustomObject({face = card_face_url, back = back_of_card})
+                new_card.setCustomObject({face = "{verifycache}"..card_face_url, back = back_of_card})
                 new_card.setName(card_data.name)
                 new_card.setDescription(card_data.description)
                 
                 if card_data.alternateDetails ~= nil then
                 local alternate_face_url = card_data.alternateDetails.imgUrl .. ".png"
 
-                    local context_data = {first_face = { face_name = card_data.name, face_image = card_face_url, face_desc = card_data.description }, second_face = { face_name = card_data.alternateDetails.name, face_image = alternate_face_url, face_desc = card_data.alternateDetails.description }, is_using_second_face = false} 
+                    local context_data = {first_face = { face_name = card_data.name, face_image = "{verifycache}"..card_face_url, face_desc = card_data.description }, second_face = { face_name = card_data.alternateDetails.name, face_image = "{verifycache}"..alternate_face_url, face_desc = card_data.alternateDetails.description }, is_using_second_face = false} 
                     context_data.xml_ui = {{
                         tag = "Button",
                         attributes = {
