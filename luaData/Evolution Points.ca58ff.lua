@@ -29,7 +29,7 @@ end
 
 function onSave()
     local leader_defence_state = {
-        leade = self.getVar(evolution_points_prop_name)
+        evolution_points = self.getVar(evolution_points_prop_name)
     }
 
     return JSON.encode(leader_defence_state)

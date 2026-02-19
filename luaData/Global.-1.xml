@@ -1,1 +1,79 @@
 <!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->
+
+<Panel id="root"
+    width="100%"
+    height="100%">
+
+    <!-- Window -->
+    <Panel id="window"
+        width="300"
+        height="190"
+        rectAlignment="MiddleLeft"
+        offsetXY="20 -40"
+        color="#2B2B2BEE"
+        allowDragging="true"
+        returnToOriginalPositionWhenReleased="false">
+
+        <VerticalLayout childForceExpandWidth="true">
+
+            <!-- Header -->
+            <Panel id="header"
+                height="30"
+                color="#1E1E1EFF"
+            >
+
+                <Text text="Token Spawner"
+                    alignment="MiddleCenter"
+                    fontSize="16"
+                    color="#DDDDDD" />
+            </Panel>
+
+            <!-- Content -->
+            <Panel padding="10,10,10,10">
+
+                <VerticalLayout spacing="8" childForceExpandWidth="true">
+
+                    <HorizontalLayout spacing="6" childForceExpandWidth="false">
+                        <Text text="Token name:"
+                            fontSize="15"
+                            alignment="MiddleLeft"
+                            preferredWidth="100"
+                            color="#DDDDDD" />
+
+                        <InputField id="tokenName"
+                            fontSize="15"
+                            lineType="SingleLine"
+                            flexibleWidth="1"
+                            colors="#FFFFFF|#FFFFFF|#AAAAAA|#FFFFFF"
+                            onValueChanged="onTokenNameChanged"/>
+                    </HorizontalLayout>
+
+                    <HorizontalLayout spacing="6" childForceExpandWidth="false">
+                        <Text text="Token count:"
+                            fontSize="15"
+                            alignment="MiddleLeft"
+                            preferredWidth="100"
+                            color="#DDDDDD" />
+
+                        <InputField id="tokenCount"
+                            fontSize="15"
+                            lineType="SingleLine"
+                            flexibleWidth="1"
+                            colors="#FFFFFF|#FFFFFF|#AAAAAA|#FFFFFF" 
+                            onValueChanged="onTokenCountChanged"/>
+                    </HorizontalLayout>
+
+                    <Button text="Spawn Tokens"
+                        height="34"
+                        fontSize="16"
+                        onClick="spawnTokens"
+                        colors="#3B7DDD|#2F6CC0|#1F4F91|#FFFFFFFF" />
+
+                </VerticalLayout>
+
+            </Panel>
+
+        </VerticalLayout>
+
+    </Panel>
+</Panel>
